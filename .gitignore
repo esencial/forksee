@@ -1,3 +1,2 @@
-#Le decimos que ignore settings.php porque son los ajustes de mi ORSEE local, y por tanto no deben ser trasladados al desarrollo en la nube
-############################################################################################################################################
-config/**
+config/*
+/nbproject/private/

@@ -42,8 +42,10 @@ echo '<HTML>
 <meta http-equiv="content-type" content="text/html; charset='.$charset.'">
 <meta http-equiv="expires" content="0">
 <TITLE>'.$pagetitle.'</TITLE>
+    <link href="../style/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!--
 <link rel="stylesheet" type="text/css" href="../style/'.$settings['style'].'/'.$stylesheet.'">
-
+-->
 ';
 
 script__open_help();

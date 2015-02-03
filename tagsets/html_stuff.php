@@ -54,16 +54,16 @@ if (thisdoc()=="faq.php") script__open_faq();
 
 echo '
 </HEAD>
-<body';
-if (isset($color['body_text'])) echo ' text="'.$color['body_text'].'"';
+<body>';
+/*if (isset($color['body_text'])) echo ' text="'.$color['body_text'].'"';
 if (isset($color['body_link'])) echo ' link="'.$color['body_link'].'"';
 if (isset($color['body_vlink'])) echo ' vlink="'.$color['body_vlink'].'"';
 if (isset($color['body_alink'])) echo ' alink="'.$color['body_alink'].'"';
 if (isset($color['body_bgcolor'])) echo ' bgcolor="'.$color['body_bgcolor'].'"';
-echo ' TOPMARGIN=0 LEFTMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0';
+echo ' TOPMARGIN=0 LEFTMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0';*/
 if (thisdoc()=="admin_login.php") echo ' onload="gotoUsername();"';
-echo '>
-';
+//echo '>
+//';
 
 }
 

@@ -14,9 +14,18 @@ echo '<BR><BR>
         //llamamos a una función que nos dibuje el formulario
         formulario_contacto ();
 	echo '
-		</TD></TR></TABLE>
+		</TD></TR>
+</TABLE>
 
 		</center>';
+
+           
+session_start();
+include("simple-php-captcha.php");
+$_SESSION['captcha'] = simple_php_captcha();
+echo '<img src="' . $_SESSION['captcha']['image_src'] . '" alt="CAPTCHA" />';         
+
+var_dump($_SESSION['captcha']['image_src']);
 
 include ("footer.php");
 

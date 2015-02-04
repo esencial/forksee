@@ -7,7 +7,7 @@
 //	See readme.md for usage, demo, and licensing info
 //
 function simple_php_captcha($config = array()) {
-	
+	     
 	// Check for GD library
 	if( !function_exists('gd_info') ) {
 		throw new Exception('Required GD library is missing');
@@ -16,6 +16,7 @@ function simple_php_captcha($config = array()) {
 	$bg_path = dirname(__FILE__) . '/backgrounds/';
 	$font_path = dirname(__FILE__) . '/fonts/';
 	
+               
 	// Default values
 	$captcha_config = array(
 		'code' => '',
@@ -46,9 +47,10 @@ function simple_php_captcha($config = array()) {
 		'shadow_offset_y' => 1
 	);
 	
+                     
 	// Overwrite defaults with custom config values
 	if( is_array($config) ) {
-		foreach( $config as $key => $value ) $captcha_config[$key] = $value;
+            	foreach( $config as $key => $value ) $captcha_config[$key] = $value;
 	}
 	
 	// Restrict certain values
@@ -59,10 +61,12 @@ function simple_php_captcha($config = array()) {
 	if( $captcha_config['min_font_size'] < 10 ) $captcha_config['min_font_size'] = 10;
 	if( $captcha_config['max_font_size'] < $captcha_config['min_font_size'] ) $captcha_config['max_font_size'] = $captcha_config['min_font_size'];
 	
+
+        
 	// Use milliseconds instead of seconds
 	srand(microtime() * 100);
-	
-	// Generate CAPTCHA code if not set by user
+	           
+        // Generate CAPTCHA code if not set by user
 	if( empty($captcha_config['code']) ) {
 		$captcha_config['code'] = '';
 		$length = rand($captcha_config['min_length'], $captcha_config['max_length']);
@@ -71,10 +75,13 @@ function simple_php_captcha($config = array()) {
 		}
 	}
 	
+        
+        
 	// Generate HTML for image src
 	$image_src = substr(__FILE__, strlen( realpath($_SERVER['DOCUMENT_ROOT']) )) . '?_CAPTCHA&amp;t=' . urlencode(microtime());
 	$image_src = '/' . ltrim(preg_replace('/\\\\/', '/', $image_src), '/');
 	
+            
 	$_SESSION['_CAPTCHA']['config'] = serialize($captcha_config);
 	
 	return array(

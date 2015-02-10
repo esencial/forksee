@@ -5,27 +5,19 @@ $menu__area="contact";
 include ("header.php");
 
 echo '<BR><BR>
-	<center>
+	<div class="">
 	<h4>'; echo $lang['contact'];
 	echo '</h4>
-		<BR>
-		<TABLE width=80%><TR><TD>';
+		<BR>';
 	//echo content__get_content("contact");
         //llamamos a una función que nos dibuje el formulario
         formulario_contacto ();
-	echo '
-		</TD></TR>
-</TABLE>
-
-		</center>';
+	echo '</div>';
 
            
 session_start();
 include("simple-php-captcha.php");
 $_SESSION['captcha'] = simple_php_captcha();
-echo '<img src="' . $_SESSION['captcha']['image_src'] . '" alt="CAPTCHA" />';         
-
-var_dump($_SESSION['captcha']['image_src']);
 
 include ("footer.php");
 
@@ -41,6 +33,8 @@ function formulario_contacto() {
     echo '<input type="text" name="subject"><br>';
     echo $lang['body_of_message'];
     echo '<textarea rows="4" cols="50" type="text" name="message"></textarea><br>';
+    echo '<img src="' . $_SESSION['captcha']['image_src'] . '" alt="CAPTCHA" /><br>'; 
+    echo $_SESSION['captcha']['image_src'];
     echo '<input type="submit" value="Submit">';
     echo '</form>';   
     

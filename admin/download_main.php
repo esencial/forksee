@@ -33,7 +33,7 @@ include ("header.php");
 		}
 	   else {
 
-                echo '  <TR bgcolor="'.$color['list_title_background'].'">
+                echo '  <TR class="cabecera">
 			<TD>
                                 '.$lang['general_downloads'].'
                         </TD>

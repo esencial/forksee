@@ -57,10 +57,10 @@ function experiment__current_experiment_summary($experimenter="",$finished="n",$
 	
 		echo '</TR>
 			<TR><TD>&nbsp;&nbsp;&nbsp;</TD>
-			<TD bgcolor="'.$color['list_list_background'].'">
+			<TD class="cabecera">
 
 			<TABLE border=0 width="100%">
-			<TR bgcolor="'.$color['list_title_background'].'"><TD colspan=2>
+			<TR class="cabecera"><TD colspan=2>
 				'.$lang['experiments_with_dedicated_sessions'].'
 			</TD></TR>';
 
@@ -80,7 +80,7 @@ function experiment__current_experiment_summary($experimenter="",$finished="n",$
 		$done=orsee_query($query,$format_function);
 
 		echo '<TR><TD colspan=2>&nbsp;</TD></TR>
-			<TR bgcolor="'.$color['list_title_background'].'"><TD colspan=2>
+			<TR class="cabecera"><TD colspan=2>
 			'.$lang['experiments_without_dedicated_sessions'].'
 			</TD></TR>';
 
@@ -97,7 +97,7 @@ function experiment__current_experiment_summary($experimenter="",$finished="n",$
 
 
 		echo '<TR><TD colspan=2>&nbsp;</TD></TR>
-			<TR bgcolor="'.$color['list_title_background'].'"><TD colspan=2>
+			<TR class="cabecera"><TD colspan=2>
 			'.$lang['internet_experiments'].'
 			</TD></TR>';
 

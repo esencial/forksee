@@ -61,15 +61,15 @@ if (isset($_REQUEST['s']) && !(isset($_REQUEST['dr']))) {
 	      <FORM action='.thisdoc().'>
 	      <INPUT type=hidden name=s value="'.$_REQUEST['s'].'">
 	      	<TABLE width=70%>
-		<TR><TD bgcolor="'.$color['list_title_background'].'">'.$lang['rules'].'</TD></TR>
+		<TR><TD class="cabecera">'.$lang['rules'].'</TD></TR>
 		<TR><TD>';
 	echo content__get_content("rules");
 	echo '</TD></TR>
-		<TR><TD bgcolor="'.$color['list_title_background'].'">'.$lang['privacy_policy'].'</TD></TR>
+		<TR><TD class="cabecera">'.$lang['privacy_policy'].'</TD></TR>
 		<TR><TD>';
 	echo content__get_content("privacy_policy");
 	echo '</TD></TR>
-		<TR><TD bgcolor="'.$color['list_title_background'].'">'.$lang['do_you_agree_privacy'].'</TD></TR>
+		<TR><TD class="cabecera">'.$lang['do_you_agree_privacy'].'</TD></TR>
 		<TR><TD align=center>
 		<INPUT type=submit name=dr value="'.$lang['yes'].'">&nbsp;&nbsp;&nbsp;
 		<INPUT type=submit name=no value="'.$lang['no'].'">

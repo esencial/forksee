@@ -53,7 +53,7 @@ menu_item_highlighted_background:	#B22222
 
 # item lists (experiments/sessions/options etc.)
 list_header_background:		#D2B48C
-list_title_background:		#DEB887
+list_title_background:		#038516
 list_item_background:		antiquewhite
 list_item_emphasize_background:	white
 list_list_background: 		#FFE4C4

@@ -140,7 +140,7 @@ include("header.php");
 
 
 		<TABLE width=80%>
-		<TR><TD colspan=3 bgcolor="'.$color['list_title_background'].'">';
+		<TR><TD colspan=3 class="cabecera">';
 	echo $lang['experiments_you_are_invited_for'];
 	echo '</TD>
 		</TR>
@@ -152,7 +152,7 @@ include("header.php");
 
 
 	echo '<TR><TD colspan=3>&nbsp;</TD></TR>
-		<TR><TD colspan=3 bgcolor="'.$color['list_title_background'].'">
+		<TR><TD colspan=3 class="cabecera">
 		'.$lang['experiments_already_registered_for'].'
 		(<A HREF="javascript:openprint()">'.$lang['print_version'].'</A>)
 		</TD>
@@ -186,7 +186,7 @@ include("header.php");
 		}
 
 
-	echo '<TR><TD colspan=3 bgcolor="'.$color['list_title_background'].'">
+	echo '<TR><TD colspan=3 class="cabecera">
 		'.$lang['experiments_you_participated'].'
 		</TD></TR>
 		<TR><TD colspan=3>

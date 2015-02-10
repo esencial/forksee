@@ -10,7 +10,7 @@ include ("header.php");
 		<center><h3>'.$lang['statistics'].'</h3>
 
 		<TABLE width=80% border=0>
-                <TR bgcolor="'.$color['list_title_background'].'">
+                <TR class="cabecera">
                         <TD colspan=2>
                                 '.$lang['statistics'].'
                         </TD>

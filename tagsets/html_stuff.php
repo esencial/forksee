@@ -32,17 +32,19 @@ function navigation($orientation="vertical",$icons=true) {
 function html__header($print=false) {
 	global $pagetitle,$settings, $color, $settings__charset;
 
-	if ($print) $stylesheet="stylesheet_print.css"; else $stylesheet="stylesheet.css";
+	//if ($print) $stylesheet="stylesheet_print.css"; else $stylesheet="stylesheet.css";
 
 	if (isset($settings__charset) && $settings__charset=='ISO-8859-1') $charset='ISO-8859-1';
 	else $charset='UTF-8';
 
-echo '<HTML>
+echo '<!DOCTYPE html><html>
 <HEAD>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta http-equiv="content-type" content="text/html; charset='.$charset.'">
 <meta http-equiv="expires" content="0">
 <TITLE>'.$pagetitle.'</TITLE>
     <link href="../style/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../style/bootstrap/css/style.css" rel="stylesheet">
 <!--
 <link rel="stylesheet" type="text/css" href="../style/'.$settings['style'].'/'.$stylesheet.'">
 -->
@@ -54,7 +56,7 @@ if (thisdoc()=="faq.php") script__open_faq();
 
 echo '
 </HEAD>
-<body>';
+<body class="container"><div ="row">';
 /*if (isset($color['body_text'])) echo ' text="'.$color['body_text'].'"';
 if (isset($color['body_link'])) echo ' link="'.$color['body_link'].'"';
 if (isset($color['body_vlink'])) echo ' vlink="'.$color['body_vlink'].'"';
@@ -70,14 +72,14 @@ echo ' TOPMARGIN=0 LEFTMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0';*/
 
 function html__footer() {
 
-echo '
+echo '</div>
 </BODY>
 </HTML>';
 
 }
 
 
-function tab_menu($menu_items,$orientation="vertical",$current_user_data_box="",$showicons=true) {
+function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="",$showicons=true) {
 	// menu entry format:
  	// info[0]       1          2      3   4     5     6        7          8	  9
  	// entrytype|menu__area|lang_item|url|icon|target|addp?|showonlyifp?|hideifp?|options_condition

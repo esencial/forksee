@@ -17,7 +17,7 @@ function expregister__list_invited_for_format($varray) {
         	if ($experiment_id != $saved_experiment_id) {
         		$saved_experiment_id=$experiment_id;
         		echo '<TR><TD>&nbsp;&nbsp;&nbsp;</TD>
-        			<TD colspan=2 bgcolor="'.$color['list_title_background'].'">
+        			<TD colspan=2 class="cabecera">
                 		'.$experiment_public_name.'
         			</TD></TR>';
        			} 
@@ -86,7 +86,7 @@ function expregister__list_registered_for_format($varray,$reg_session_id="",$typ
 
                 if ((!$history && !$first_line) || ($history && !$first_hline)) {
                 	echo '<TR';
-			if (!$print) echo ' bgcolor="'.$color['list_title_background'].'"';
+			if (!$print) echo ' class="cabecera"';
 			echo '><TD>
                         	'.$lang['experiment'].'
                     		</TD>

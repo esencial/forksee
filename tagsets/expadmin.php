@@ -10,9 +10,9 @@ function admin__login_form() {
 			else echo 'admin/index.php';
 	echo '">
 		'.$lang['username'].':
-		<input type=integer size=20 maxlength=20 name=adminname onChange="gotoPassword()"><BR>
+		<input type=integer size=20 maxlength=20 name=adminname><BR>
 		'.$lang['password'].':
-		<input type=password size=20 maxlength=20 name=password onChange="sendForm()"><BR>
+		<input type=password size=20 maxlength=20 name=password><BR>
 		<input type=submit name=login value="'.$lang['login'].'">
 		</form>';
 }

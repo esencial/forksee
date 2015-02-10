@@ -61,7 +61,7 @@ if (isset($color['body_vlink'])) echo ' vlink="'.$color['body_vlink'].'"';
 if (isset($color['body_alink'])) echo ' alink="'.$color['body_alink'].'"';
 if (isset($color['body_bgcolor'])) echo ' bgcolor="'.$color['body_bgcolor'].'"';
 echo ' TOPMARGIN=0 LEFTMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0';*/
-if (thisdoc()=="admin_login.php") echo ' onload="gotoUsername();"';
+//if (thisdoc()=="admin_login.php") echo ' onload="gotoUsername();"';
 //echo '>
 //';
 

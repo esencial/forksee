@@ -83,15 +83,15 @@ include ("header.php");
 
 	// load languages
 	$languages=get_languages();
-
+        
 
 	echo '<BR>
 		<table border=0>
-			<TR>
-				<TD class="small">
+			<TR>';
+        /*echo '				<TD class="small">
 					'.$lang['id'].'
             	</TD>
- 				';
+ 				';*/
         		foreach ($languages as $language) {
                 	echo '<td class="small">
 							'.$language.'
@@ -128,17 +128,18 @@ include ("header.php");
    		echo '	<tr class="small"'; 
    		if ($shade) echo ' bgcolor="'.$color['list_shade1'].'"';
 		else echo ' bgcolor="'.$color['list_shade2'].'"';
-   		echo '>
-				<td class="small" valign=top>
+   		echo '>';
+                ///////OCULTAMOS LA COLUMNA ID, NO NOS HACE FALTA REALMENTE
+		/*echo '<td class="small" valign=top>
 					'.$line['content_name'].'
-				</td>';
+				</td>';*/
 		foreach ($languages as $language) {
-        	echo '	<td class="small" valign=top';
+        	echo '	<td class="small" valign=top width="33%"';
             if ($shade) echo ' bgcolor="'.$color['list_shade1'].'"'; 
 			else echo ' bgcolor="'.$color['list_shade2'].'"';
             echo '>';
 			if (isset($chnl2br) && $chnl2br) echo nl2br(stripslashes($line[$language]));
-            else echo stripslashes($line[$language]);
+                        else echo stripslashes($line[$language]);
             echo '</td>';
 		}
 		if ($show_part_stats) {

@@ -139,7 +139,7 @@ include ("header.php");
 			else echo ' bgcolor="'.$color['list_shade2'].'"';
             echo '>';
 			if (isset($chnl2br) && $chnl2br) echo nl2br(stripslashes($line[$language]));
-                        else echo stripslashes($line[$language]);
+                        else echo substr(strip_tags(stripslashes($line[$language])), 0, 100).'...';
             echo '</td>';
 		}
 		if ($show_part_stats) {
@@ -147,9 +147,9 @@ include ("header.php");
 			echo '<td class="small">'.$np.'</td>';
 		}
                        
-   		echo '		<TD>
+   		echo '		<TD><button type="button">
 					<A HREF="lang_item_edit.php?item='.$item.'&id='.$line['lang_id'].'">'.
-						$lang['edit'].'</A>
+						$lang['edit'].'</A></button>
 				</TD>
    			</tr>';
    		if ($shade) $shade=false; else $shade=true;

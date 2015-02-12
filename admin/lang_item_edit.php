@@ -173,7 +173,7 @@ include ("header.php");
 			   else echo '???';
 		echo '		</TD>
 			</TR>';
-
+        /////ESTE ES EL CÓDIGO QUE DIBUJA EL FORMULARIO/////
 	foreach ($languages as $language) {
 		if (!isset($titem[$language])) $titem[$language]="";
 		echo '	<TR>

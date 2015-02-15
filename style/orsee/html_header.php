@@ -38,21 +38,14 @@
 
 	</TR>
 
-	<TR>
+	<TR class="cabecera">
 		<TD>
 
-			<TABLE>
-			<TR>
-				<TD>
-					<IMG src="../style/orsee/clearpixel.gif" border=0 height=500 width=10>
-				</TD>
-
-				<TD>
-					<IMG src="../style/orsee/clearpixel.gif" border=0 height=1 width=140>
-					<BR>
+					
 					<?php navigation(); ?>
-					<BR><BR>
+					
 				</TD>
-
+                        </tr>
+                        <tr>
 			<TD width=100% valign=top>
 

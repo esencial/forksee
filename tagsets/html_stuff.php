@@ -2,19 +2,19 @@
 // part of orsee. see orsee.org
 
 
-function navigation($orientation="vertical",$icons=true) {
+function navigation($orientation="horizontal",$icons=true) {
 	global $expadmindata, $lang, $navigation_disabled, $color;
 
    if (!(isset($navigation_disabled) && $navigation_disabled)) {
 	if (isset($expadmindata['adminname'])) {
 		$now=time();
-		$current_user_data_box=$lang['admin_area'].'<BR>'.
-                	$lang['user'].': <FONT color="'.$color['menu_item'].'">'.
-                	$expadmindata['adminname'].'</FONT><BR>'.
-                	$lang['date'].': <FONT color="'.$color['menu_item'].'">'.
-                	time__format($expadmindata['language'],"",false,true,true,true,$now).'</FONT><BR>'.
-                	$lang['time'].': <FONT color="'.$color['menu_item'].'">'.
-                	time__format($expadmindata['language'],"",true,false,true,true,$now).'</FONT>';
+		$current_user_data_box=$lang['admin_area'].''.
+                	$lang['user'].': '.
+                	$expadmindata['adminname'].''.
+                	$lang['date'].': '.
+                	time__format($expadmindata['language'],"",false,true,true,true,$now).''.
+                	$lang['time'].': '.
+                	time__format($expadmindata['language'],"",true,false,true,true,$now);
 		$navfile=file ("../admin/navigation.php");
 		}
 	   else {
@@ -45,6 +45,8 @@ echo '<!DOCTYPE html><html>
 <TITLE>'.$pagetitle.'</TITLE>
     <link href="../style/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../style/bootstrap/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="../style/bootstrap/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../style/bootstrap/js/bootstrap.min.js"></script>
 <!--
 <link rel="stylesheet" type="text/css" href="../style/'.$settings['style'].'/'.$stylesheet.'">
 -->
@@ -99,127 +101,89 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
 	   else {
                 $addp="";
         	}
+        $url="http://".$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_PORT'].$_SERVER['REQUEST_URI'];
+        if (strpos($url,'/public/') !== false) {
 
-	$target="_top";
+            echo '<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
 
-	$list=""; $list1=""; $list2=""; $hlist=array(); $hlist[1]=""; $hlist[2]="";
-	$last_hcl="";
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/public/index.php">mainpage</a></li> 
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Participant <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+        <li><a href="/public/participant_create.php">register</a></li>
+        <li><a href="/public/participant_login.php">login</a></li>
+        <li><a href="/public/participant_edit.php">my data</a></li>
+        <li><a href="/public/participant_show.php">my registrations</a></li>
+        </ul>
+        </li>
+        <li><a href="/public/show_calendar.php">calendar</a></li>
+        <li><a href="/public/rules.php">rules</a></li>
+        <li><a href="/public/privacy.php">privacy_policy</a></li>
+        <li><a href="/public/faq.php">faqs</a></li>
+        <li><a href="/public/ie.php">internet_experiments</a></li>        
+        <li><a href="/public/impressum.php">impressum</a></li>
+        <li><a href="/public/contact.php">contact</a></li>        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>';   
+        }
+        else
+        {
+            echo '<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
 
-	$list.='<TABLE border=0>';
-	$hlist[1].='<TR>'; $hlist[2].='<TR>';
-
-	foreach ($menu_items as $item) {
-
-		$info=array(); $icon=""; $target="";
-		$info=explode("|",$item); for ($i=0; $i<=9; $i++) { if (!isset($info[$i])) $info[$i]=""; }
-		
-		if (!(isset($info[9]) && $info[9] && $settings[$info[9]]!='y')) {
-		
-        	if (substr($info[3],0,1)=="/")
-                	$info[3] = $settings__root_url.$info[3];
-
-			if (isset($info[6]) && $info[6]) $info[3].=$addp;
-
-			if (isset($info[7]) && $info[7] && !$addp) continue;
-			if ($info[8] && $addp) continue;
-
-        	if (isset($info[4]) && $info[4]) $icon=$info[4];
-        	if (isset($info[5]) && $info[5]) $target=$info[5];
-			if (isset($color['menu_item_highlighted_background']) && preg_match("/^".$info[1].".*/i",$menu__area) && preg_match("/link/i",$info[0]))
-                		$bgcolor=' BGCOLOR="'.$color['menu_item_highlighted_background'].'"';
-           				else $bgcolor='';
-
-			$list.='<TR>';
-
-			if (preg_match("/head/i",$info[0])) {
-
-                	$list.='<td colspan=3>&nbsp;</td></tr><TR>
-                        	<td'; if ($icon && $showicons) $list.=$bgcolor; $list.='>';
-                        	if ($icon && $showicons) $list.= icon($icon,$info[3]);
-                	$list.= '</td>
-                        	<td colspan=2 valign=middle'.$bgcolor.'>';
-
-					$hlist_cl=1; $hlist_ncl=2;
-
-         	} else {
-                	$list.= '<td>&nbsp;</td>
-                        	<td'; if ($icon) $list.= $bgcolor; $list.= '>';
-                        	if ($icon && $showicons) $list.= icon($icon,$info[3]);
-                	$list.= '</td>
-                        	<td valign=middle'.$bgcolor.'>';
-
-					$hlist_cl=2; $hlist_ncl=1;
-
-        	}
-
-			$hlist[$hlist_cl].='<TD ';
-			if ($info[2]=='current_user_data_box') $hlist[$hlist_cl].=' rowspan=2'; 
-			if ($icon && $showicons) $hlist[$hlist_cl].=$bgcolor;
-			if ($hlist_cl==1) $hlist[$hlist_cl].=' valign=bottom'; else $hlist[$hlist_cl].=' valign=top';
-			$hlist[$hlist_cl].='>';
-            if ($icon && $showicons) $hlist[$hlist_cl].= icon($icon,$info[3]);
-            $hlist[$hlist_cl].='</TD><TD '.$bgcolor;
-			if ($info[2]=='current_user_data_box') $hlist[$hlist_cl].=' rowspan=2';
-			if ($hlist_cl==1) $hlist[$hlist_cl].=' valign=bottom'; else $hlist[$hlist_cl].=' valign=top';
-			$hlist[$hlist_cl].='>';
-
-			if (preg_match("/link/i",$info[0])) {
-    			$list.= '<A HREF="'.$info[3].'" target="'.$target.'" class="menu_item"><FONT color="'.$color['menu_item'].'">';
-				$hlist[$hlist_cl].='<A HREF="'.$info[3].'" target="'.$target.'" class="menu_item"><FONT color="'.
-				$color['menu_item'].'">';
-			}
-
-			if (preg_match("/head/i",$info[0])) {
-            	$list.= '<FONT class="menu_title"><FONT color="'.$color['menu_title'].'">';
-				$hlist[$hlist_cl].='<FONT class="menu_title"><FONT color="'.$color['menu_title'].'">';
-			}
-
-        	if ($info[2]=='current_user_data_box') {
-				$list.= $current_user_data_box;
-				$hlist[$hlist_cl].= $current_user_data_box;
-			} else {
-				if ($info[2]!="") {
-					$list.= $lang[$info[2]];
-					$hlist[$hlist_cl].= $lang[$info[2]];
-				}
-			}
-
-			if (preg_match("/head/i",$info[0])) {
-            	$list.= '</FONT></FONT>';
-				$hlist[$hlist_cl].= '</FONT></FONT>';
-			}
-
-			if (preg_match("/link/i",$info[0])) {
-            	$list.= '</FONT></A>';
-				$hlist[$hlist_cl].= '</FONT></A>';
-			}
-
-        	$list.= '</TD>
-                	</TR>';
-
-			$hlist[$hlist_cl].='</TD>
-				';
-
-			if (($hlist_cl==$last_hcl || !$info[2]) && $info[2]!='current_user_data_box')
-				$hlist[$hlist_ncl].='<TD></TD><TD></TD>
-			';
-
-			$last_hcl=$hlist_cl;
-			if ($info[2]=='current_user_data_box') $last_hcl=0;
-		}
-
-	}
-	$list.= '</TABLE>';
-
-	$hlist[$hlist_cl].='</TR>';
-        $hlist[$hlist_ncl].='</TR>';
-
-	$hor_list='<TABLE border=0>'.$hlist[1].$hlist[2].'</TABLE>';
-
-	if ($orientation=="horizontal") return $hor_list;
-		else return $list;
-
-}
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-2">
+      <ul class="nav navbar-nav">
+      <li><a href="/admin/">home</a></li>
+      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Experiments <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/admin/experiment_main.php">Main</a></li>  
+            <li><a href="/admin/experiment_my.php">My experiments</a></li>  
+            <li><a href="/admin/experiment_old.php">Finished</a></li>  
+            <li><a href="/admin/experiment_edit.php?addit=true">Create new experiment</a></li>
+          </ul>
+      </li>
+      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Participants <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/admin/participants_main.php">Main</a></li>  
+            <li><a href="/admin/participants_edit.php?addit=true">Create new participant</a></li>
+          </ul>
+      </li>    
+      <li><a href="/admin/calendar_main.php">calendar</a></li> 
+      <li><a href="/admin/download_main.php">download</a></li> 
+      <li><a href="/admin/options_main.php">options</a></li> 
+      <li><a href="/admin/statistics_main.php">stats</a></li> 
+      <li><a href="/admin/admin_logout.php">logout</a></li> 
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+';
+            
+        }    
+                }
 
 function get_style_array() {
 	global $settings__root_directory, $settings__root_to_server;

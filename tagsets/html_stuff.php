@@ -50,19 +50,18 @@ echo '<!DOCTYPE html><html>
 <!--
 <link rel="stylesheet" type="text/css" href="../style/'.$settings['style'].'/'.$stylesheet.'">
 -->
-<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
-<script type="text/javascript">';
+<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>';
 
 $url="http://".$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_PORT'].$_SERVER['REQUEST_URI'];
 $espubliccontent=strpos($url,'/public_content/');
 
 if ($espubliccontent !== false){
+echo '<script type="text/javascript">
 tinymce.init({
     selector: "textarea"
  });
-};
-echo '</script>
-';
+</script>'
+;}
 
 script__open_help();
 if (thisdoc()=="admin_login.php") script__login_page();

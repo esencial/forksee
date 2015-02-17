@@ -51,11 +51,17 @@ echo '<!DOCTYPE html><html>
 <link rel="stylesheet" type="text/css" href="../style/'.$settings['style'].'/'.$stylesheet.'">
 -->
 <script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
-<script type="text/javascript">
+<script type="text/javascript">';
+
+$url="http://".$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_PORT'].$_SERVER['REQUEST_URI'];
+$espubliccontent=strpos($url,'/public_content/');
+
+if ($espubliccontent !== false){
 tinymce.init({
     selector: "textarea"
  });
-</script>
+};
+echo '</script>
 ';
 
 script__open_help();
@@ -102,7 +108,12 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
                 $addp="";
         	}
         $url="http://".$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_PORT'].$_SERVER['REQUEST_URI'];
-        if (strpos($url,'/public/') !== false) {
+        
+        
+        
+        
+        
+        if (strpos($url,'/public/') !== false) {          
 
             echo '<nav class="navbar navbar-default">
   <div class="container-fluid">

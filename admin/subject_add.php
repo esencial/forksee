@@ -20,7 +20,7 @@ include ("header.php");
                 $inserting=mysqli_query($GLOBALS['mysqli'],$query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']));
                 if($inserting)
                     {
-                        header('location:subject_list.php');
+                        header('location:subject_main.php');
                     }
             }
         ?>

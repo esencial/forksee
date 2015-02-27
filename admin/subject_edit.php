@@ -24,7 +24,7 @@ include ("header.php");
                             $updating=mysqli_query($GLOBALS['mysqli'],$query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']));
                             if($updating)
                                 {
-                                    header('location:subject_list.php');
+                                    header('location:subject_main.php');
                                 }
                         }
                 }

@@ -22,7 +22,7 @@ include ("header.php");
                         {                            
                             $query="UPDATE or_subjects SET subject_desc='".$new_desc."' WHERE subject_id='".$id."'";
                             $updating=mysqli_query($GLOBALS['mysqli'],$query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']));
-                            if($query)
+                            if($updating)
                                 {
                                     header('location:subject_list.php');
                                 }
@@ -31,10 +31,10 @@ include ("header.php");
         ?>
         
     <form method="post" action="">
-        Nuevo nombre para la asignatura <?php echo $former ?>:
-        <input type="text" name="new" value="" />
+        Asignatura:
+        <input type="text" name="new" value="<?php echo $former ?>" />
         <br /><br /><br />
-        <input type="submit" name="submit" value="update" />
+        <input type="submit" name="submit" value="Guardar" />
     </form>
         
     </body>

@@ -247,7 +247,7 @@ CREATE TABLE `or_experiments` (
   `experiment_finished` char(1) collate latin1_general_ci default 'n',
   `hide_in_stats` char(1) collate latin1_general_ci default 'n',
   `hide_in_cal` char(1) collate latin1_general_ci default 'n',
-  `experiment_link_to_paper` mediumtext collate latin1_general_ci,
+  `google_maps` mediumtext collate latin1_general_ci,
   PRIMARY KEY  (`experiment_id`),
   UNIQUE KEY `uindex` (`experiment_id`),
   KEY `tindex` (`experiment_finished`),

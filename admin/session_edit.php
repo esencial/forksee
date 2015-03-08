@@ -179,6 +179,17 @@ include ("header.php");
 		</TR>';
 
 
+        echo '	<TR>
+			<TD>
+				Repeat next X days
+			</TD>
+			<TD>';
+				helpers__select_numbers("session_repetitions",0,0,99,2,1);
+				echo '
+			</TD>
+		</TR>';
+                                
+                                
 	echo '	<TR>
 			<TD>
 				'.$lang['experiment_duration'].':

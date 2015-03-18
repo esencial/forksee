@@ -27,7 +27,7 @@ link|participants_main|overview|/admin/participants_main.php
 
 link|participant_create|create_new|/admin/participants_edit.php
 
-headlink|calendar|calendar|/admin/calendar_main.php|calendar
+headlink|calendar|calendar|/admin/calendar_main.php|calendario
 
 headlink|download|downloads|/admin/download_main.php|download
 

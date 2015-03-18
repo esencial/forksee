@@ -56,9 +56,52 @@ include ("header.php");
 			}
 
    		$edit=$_REQUEST;
-		$edit['session_id_crypt']=unix_crypt($edit['session_id']); 
+		$edit['session_id_crypt']=unix_crypt($edit['session_id']);          
+                
+                //en función del número de repeticiones seleccionado, hacemos una inserción o varias   
+                $repeticiones = $_REQUEST['session_repetitions'];
+                if ($repeticiones > 0) {
+                        //grabamos una sesión  
+                        $edit['session_id']=get_unique_id("sessions","session_id");                    
+                        $done=orsee_db_save_array($edit,"sessions",$edit['session_id'],"session_id");
+                        //Y ahora grabamos las X repeticiones. Para ello hay que manipular fecha y hora porque 
+                        //las sesiones se guardan en forma de horas y minutos
+                        $hour = $_REQUEST['session_start_hour'];
+                        $minute = $_REQUEST['session_start_minute'];
+                        $month = $_REQUEST['session_start_month'];
+                        $day = $_REQUEST['session_start_day'];
+                        $year = $_REQUEST['session_start_year'];
+                        $break = $_REQUEST['break_between_sessions'];
+                        for ($x = 1; $x <= $repeticiones; $x++) {
+                            //convertimos a timestamp para hacer el incremento
+                            $timestamp = mktime($hour, $minute, 0, $month, $day, $year);
+                            $timestamp += $_REQUEST['session_duration_hour']*3600; //sumamos el nº de horas de la sesión
+                            $timestamp += $_REQUEST['session_duration_minute']*60; //sumamos el nº de minutos de la sesión
+                            $timestamp += $break * 60;
+                            //y deshacemos el cambio para volver a tener horas, minutos, segundos... para poder graba
+                            $hour = date('H', $timestamp);
+                            $minute = date('i', $timestamp);
+                            $month = date('m', $timestamp);
+                            $day = date('d', $timestamp);
+                            $year = date('Y', $timestamp);
+                            $edit['session_start_day'] = $day;
+                            $edit['session_start_month'] = $month;
+                            $edit['session_start_year'] = $year;
+                            $edit['session_start_hour'] = $hour;
+                            $edit['session_start_minute'] = $minute; 
+                            //cada sesión debe llevar una id diferente y única
+                            $edit['session_id']=get_unique_id("sessions","session_id");
+                            $edit['session_id_crypt']=unix_crypt($edit['session_id']); //la id encriptada tampoco se puede repetir
+                            //insertamos
+                            $done=orsee_db_save_array($edit,"sessions",$edit['session_id'],"session_id");
+                        }    
+                    }
+                    else
+                        //grabamos una sola sesión
+                        $done=orsee_db_save_array($edit,"sessions",$edit['session_id'],"session_id");
+                
 
-		$done=orsee_db_save_array($edit,"sessions",$edit['session_id'],"session_id"); 
+		//$done=orsee_db_save_array($edit,"sessions",$edit['session_id'],"session_id"); 
 
 		if ($done) {
 			log__admin("session_edit","session:".session__build_name($edit,
@@ -99,7 +142,7 @@ include ("header.php");
 			$edit['session_start_minute']=date("i");
 
 			$edit['session_duration_hour']=$settings['session_duration_hour_default'];
-			$edit['session_duration_minute']=$settings['session_duration_minute_default'];
+			$edit['session_duration_minute']=$settings['session_duration_minute_default'];                        
 
 			$edit['session_reminder_hours']=$settings['session_reminder_hours_default'];
 			$edit['send_reminder_on']=$settings['session_reminder_send_on_default'];
@@ -181,7 +224,7 @@ include ("header.php");
 
         echo '	<TR>
 			<TD>
-				Repeat next X days
+				Repeat X times
 			</TD>
 			<TD>';
 				helpers__select_numbers("session_repetitions",0,0,99,2,1);
@@ -205,6 +248,18 @@ include ("header.php");
 			</TD>
 		</TR>';
 
+
+	echo ' <TR>
+			<TD>
+				Break between sessions (minutes):
+			</TD>
+			<TD>';
+				helpers__select_numbers("break_between_sessions",0,0,299,2,5);
+				echo '
+			</TD>
+		</TR>';
+                                
+                                
 	echo ' <TR>
 			<TD>
 				'.$lang['session_reminder_hours_before'].':
@@ -286,11 +341,17 @@ include ("header.php");
 		</TR>
 
 		<TR>
-			<TD COLSPAN=2 align="center">
-				<INPUT name="edit" type="submit" value="'.$button_name.'">
+			<TD COLSPAN=2 align="center">';
+				echo '<INPUT name="edit" type="submit" value="'.$button_name.'">
 			</TD>
 		</TR>';
 	
+        
+            
+            
+                          
+                                
+                                
 	if ($session_id) {
 	
 		if (isset($lang['copy_as_new_session'])) $copy_button=$lang['copy_as_new_session']; else $copy_button="Copy as new session";
@@ -305,8 +366,7 @@ include ("header.php");
 	echo '
 	      </table>
 	</FORM>
-	<BR>';
-
+	<BR>';    
 
 	if ($session_id) {
 		$reg=experiment__count_participate_at($edit['experiment_id'],$session_id);

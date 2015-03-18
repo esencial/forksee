@@ -306,13 +306,14 @@ echo '<center><h4>'.$lang['edit_experiment'].'</h4></center>';
 
 	echo '		<TR>
 				<TD>
-					'.$lang['google_maps'].':
+					'//.$lang['google_maps']
+                                        .'URL de Google Maps:
 				</TD>
 				<TD>
 					<INPUT name=google_maps type=text size=40 
-					value="'.stripslashes($edit['google_maps']).'">
-					'.help("link_to_paper").'
-				</TD>
+					value="'.stripslashes($edit['google_maps']).'">';
+					//.help("link_to_paper").
+                                '</TD>
 			</TR>';
 
 

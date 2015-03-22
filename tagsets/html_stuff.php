@@ -131,19 +131,19 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Participant <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-        <li><a href="/public/participant_create.php">register</a></li>
-        <li><a href="/public/participant_login.php">login</a></li>
-        <li><a href="/public/participant_edit.php">my data</a></li>
-        <li><a href="/public/participant_show.php">my registrations</a></li>
+        <li><a href="participant_create.php">register</a></li>
+        <li><a href="participant_login.php">login</a></li>
+        <li><a href="participant_edit.php">my data</a></li>
+        <li><a href="participant_show.php">my registrations</a></li>
         </ul>
         </li>
-        <li><a href="/public/show_calendar.php">calendar</a></li>
-        <li><a href="/public/rules.php">rules</a></li>
-        <li><a href="/public/privacy.php">privacy_policy</a></li>
-        <li><a href="/public/faq.php">faqs</a></li>
-        <li><a href="/public/ie.php">internet_experiments</a></li>        
-        <li><a href="/public/impressum.php">impressum</a></li>
-        <li><a href="/public/contact.php">contact</a></li>        
+        <li><a href="show_calendar.php">calendar</a></li>
+        <li><a href="rules.php">rules</a></li>
+        <li><a href="privacy.php">privacy_policy</a></li>
+        <li><a href="faq.php">faqs</a></li>
+        <li><a href="ie.php">internet_experiments</a></li>        
+        <li><a href="impressum.php">impressum</a></li>
+        <li><a href="contact.php">contact</a></li>        
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

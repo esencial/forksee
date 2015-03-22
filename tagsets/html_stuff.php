@@ -168,24 +168,24 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
       <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Experiments <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/admin/experiment_main.php">Main</a></li>  
-            <li><a href="/admin/experiment_my.php">My experiments</a></li>  
-            <li><a href="/admin/experiment_old.php">Finished</a></li>  
-            <li><a href="/admin/experiment_edit.php?addit=true">Create new experiment</a></li>
+            <li><a href="experiment_main.php">Main</a></li>  
+            <li><a href="experiment_my.php">My experiments</a></li>  
+            <li><a href="experiment_old.php">Finished</a></li>  
+            <li><a href="experiment_edit.php?addit=true">Create new experiment</a></li>
           </ul>
       </li>
       <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Participants <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/admin/participants_main.php">Main</a></li>  
-            <li><a href="/admin/participants_edit.php?addit=true">Create new participant</a></li>
+            <li><a href="participants_main.php">Main</a></li>  
+            <li><a href="participants_edit.php?addit=true">Create new participant</a></li>
           </ul>
       </li>    
-      <li><a href="/admin/calendar_main.php">calendar</a></li> 
-      <li><a href="/admin/download_main.php">download</a></li> 
-      <li><a href="/admin/options_main.php">options</a></li> 
-      <li><a href="/admin/statistics_main.php">stats</a></li> 
-      <li><a href="/admin/admin_logout.php">logout</a></li> 
+      <li><a href="calendar_main.php">calendar</a></li> 
+      <li><a href="download_main.php">download</a></li> 
+      <li><a href="options_main.php">options</a></li> 
+      <li><a href="statistics_main.php">stats</a></li> 
+      <li><a href="admin_logout.php">logout</a></li> 
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

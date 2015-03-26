@@ -7,6 +7,10 @@
                         <td>lang[lastname]</td>
                         <td>#lname#</td>
                 </tr>
+		<tr #error_password#>
+                        <td>lang[password]</td>
+                        <td>#password#</td>
+                </tr>
 		<tr #error_email#>
                         <td>lang[e-mail-address]</td>
                         <td>#email#</td>
@@ -16,13 +20,6 @@
                         <td>lang[language]</td>
                         <td>#language#</td>
                 </tr> }
-		<tr #error_subscriptions#>
-                        <td>
-				{ #is_not_admin# lang[i_want_invitations_for] }
-				{ #is_admin# lang[invitations] }
-			</td>
-                        <td>#subscriptions#</td>
-                </tr>
 
 		{ #is_not_admin#
 		<tr>

@@ -113,6 +113,7 @@ $form=true; $errors__dataform=array();
 		$participant['participant_id']=participant__create_participant_id();
 		$participant['participant_id_crypt']=unix_crypt($participant['participant_id']);
 		$participant['creation_time']=time();
+		$participant['password']=unix_crypt($participant['password']); //encriptamos la contraseña
 		if (isset($_REQUEST['subpool_id']) && $_REQUEST['subpool_id']) 
 				$participant['subpool_id']=$_REQUEST['subpool_id'];
 			else  	$participant['subpool_id']=$settings['subpool_default_registration_id'];

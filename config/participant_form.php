@@ -177,6 +177,27 @@ $participantform[]=array(
 'list_in_session_pdf_list'=>'y'
 );
 
+//[SGC] nuevo campo del formulario
+$participantform[]=array(
+'mysql_column_name'=>'password',
+'name_lang'=>'password',
+'type'=>'textline',
+'subpools'=>'all',
+'compulsory'=>'y',
+'error_message_if_empty_lang'=>'you_have_to_password',
+'default_value'=>'',
+'size'=>'40',
+'maxlength'=>'200',
+'search_include_in_participant_query'=>'n',
+'search_include_in_experiment_assign_query'=>'n',
+'searchresult_list_in_participant_results'=>'n',
+'searchresult_list_in_experiment_assign_results'=>'n',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'n'
+);
+
+
 $participantform[]=array(
 'mysql_column_name'=>'email',
 'name_lang'=>'email',
@@ -212,7 +233,9 @@ $participantform[]=array(
 'type'=>'language'
 );
 
-$participantform[]=array(
+//Eliminamos este elemento del formulario, ya no nos hace falta en la nueva versión
+
+/*$participantform[]=array(
 'mysql_column_name'=>'subscriptions',
 'name_lang'=>'invitations',
 'type'=>'invitations',
@@ -220,7 +243,7 @@ $participantform[]=array(
 'error_message_if_empty_lang'=>'at_least_one_exptype_has_to_be_selected',
 'searchresult_list_in_participant_results'=>'y',
 'search_result_allow_sort'=>'y'
-);
+);*/
 
 $participantform[]=array(
 'mysql_column_name'=>'phone_number',

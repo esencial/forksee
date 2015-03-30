@@ -227,8 +227,7 @@ function get_unique_id($table,$idcol) {
 		while (preg_match("/(\/|\\.)/",$crypt_id)) {
                         $id = rand();
                         $crypt_id=unix_crypt($id);
-                        }
-
+                        }        
                 $query="SELECT ".$idcol." FROM ".table($table)."
                         WHERE ".$idcol."='".$id."'";
                 $line=orsee_query($query);

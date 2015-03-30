@@ -70,6 +70,8 @@ function orsee_db_save_array($array,$table,$key,$keyname) {
 	$result=mysqli_query($GLOBALS['mysqli'],$query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']));
 	$num_rows = mysqli_num_rows($result);
 
+        
+        
 	if ($num_rows>0) {
 		// update query
         	$query="UPDATE ".table($table)." SET ".$set_phrase." WHERE ".$keyname."='".mysqli_real_escape_string($GLOBALS['mysqli'],$key)."'";

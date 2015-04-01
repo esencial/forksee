@@ -11,6 +11,10 @@
                         <td>lang[password]</td>
                         <td>#password#</td>
                 </tr>
+		<tr #error_identification_number#>
+                        <td>lang[identification_number]</td>
+                        <td>#identification_number#</td>
+                </tr>
 		<tr #error_email#>
                         <td>lang[e-mail-address]</td>
                         <td>#email#</td>

@@ -197,6 +197,25 @@ $participantform[]=array(
 'list_in_session_pdf_list'=>'n'
 );
 
+//[SGC] nuevo campo del formulario (DNI)
+$participantform[]=array(
+'mysql_column_name'=>'identification_number',
+'name_lang'=>'identification_number',
+'type'=>'textline',
+'subpools'=>'all',
+'compulsory'=>'y',
+'error_message_if_empty_lang'=>'you_have_to_identification_number',
+'default_value'=>'',
+'size'=>'20',
+'maxlength'=>'50',
+'search_include_in_participant_query'=>'y',
+'search_include_in_experiment_assign_query'=>'y',
+'searchresult_list_in_participant_results'=>'y',
+'searchresult_list_in_experiment_assign_results'=>'y',
+'search_result_allow_sort'=>'y',
+'list_in_session_participants_list'=>'y',
+'list_in_session_pdf_list'=>'y'
+);
 
 $participantform[]=array(
 'mysql_column_name'=>'email',

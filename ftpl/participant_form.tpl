@@ -42,6 +42,11 @@
                         <td>#gender#</td>
                 </tr>
 
+		<tr #error_active_alerts#>
+                        <td>lang[active_alerts]</td>
+                        <td>#active_alerts#</td>
+                </tr>
+
 		{ #is_subpool_type_b#
                 <tr>
 			<td></td>

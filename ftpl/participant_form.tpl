@@ -42,14 +42,24 @@
                         <td>#gender#</td>
                 </tr>
 
-		<tr #error_active_alerts#>
+		<tr>
                         <td>lang[active_alerts]</td>
                         <td>#active_alerts#</td>
                 </tr>
 
-		<tr #error_psychology_student#>
+		<tr>
                         <td>lang[psychology_student]</td>
                         <td>#psychology_student#</td>
+                </tr>
+
+		<tr>
+                        <td>lang[student_from_this_university]</td>
+                        <td>#student_from_this_university#</td>
+                </tr>
+
+		<tr>
+                        <td>lang[date_of_birth]</td>
+                        <td>lang[day]#day_of_birth#lang[month]#month_of_birth#lang[year]#year_of_birth#</td>
                 </tr>
 
 		{ #is_subpool_type_b#

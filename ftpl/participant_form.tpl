@@ -47,6 +47,11 @@
                         <td>#active_alerts#</td>
                 </tr>
 
+		<tr #error_psychology_student#>
+                        <td>lang[psychology_student]</td>
+                        <td>#psychology_student#</td>
+                </tr>
+
 		{ #is_subpool_type_b#
                 <tr>
 			<td></td>

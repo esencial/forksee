@@ -62,6 +62,11 @@
                         <td>lang[day]#day_of_birth#lang[month]#month_of_birth#lang[year]#year_of_birth#</td>
                 </tr>
 
+		<tr>
+                        <td>lang[preferred_hand]</td>
+                        <td>#preferred_hand#</td>
+                </tr>
+
 		{ #is_subpool_type_b#
                 <tr>
 			<td></td>

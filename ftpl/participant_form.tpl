@@ -72,6 +72,15 @@
                         <td>#preferred_hand#</td>
                 </tr>
 
+		<tr>
+                        <td>lang[native_tongue]</td>
+                        <td>#native_tongue#</td>
+                </tr>
+
+		<tr>
+                        <td>lang[second_tongue]</td>
+                        <td>#second_tongue#</td>
+                </tr>
 
 		{ #is_subpool_type_b#
                 <tr>

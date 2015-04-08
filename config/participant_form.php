@@ -413,6 +413,44 @@ $participantform[]=array(
 'type'=>'language'
 );
 
+//[SGC] nuevo campo del formulario (lengua nativa)
+$participantform[]=array(
+'mysql_column_name'=>'native_tongue',
+'name_lang'=>'native_tongue',
+'type'=>'textline',
+'subpools'=>'all',
+'compulsory'=>'y',
+'default_value'=>'',
+'size'=>'20',
+'maxlength'=>'50',
+'search_include_in_participant_query'=>'y',
+'search_include_in_experiment_assign_query'=>'y',
+'searchresult_list_in_participant_results'=>'y',
+'searchresult_list_in_experiment_assign_results'=>'y',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'n'
+);
+
+//[SGC] nuevo campo del formulario (segunda lengua)
+$participantform[]=array(
+'mysql_column_name'=>'second_tongue',
+'name_lang'=>'second_tongue',
+'type'=>'textline',
+'subpools'=>'all',
+'compulsory'=>'y',
+'default_value'=>'',
+'size'=>'20',
+'maxlength'=>'50',
+'search_include_in_participant_query'=>'y',
+'search_include_in_experiment_assign_query'=>'y',
+'searchresult_list_in_participant_results'=>'y',
+'searchresult_list_in_experiment_assign_results'=>'y',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'n'
+);
+
 //Eliminamos este elemento del formulario, ya no nos hace falta en la nueva versión
 
 /*$participantform[]=array(

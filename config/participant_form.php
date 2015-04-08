@@ -359,6 +359,25 @@ $participantform[]=array(
 'list_in_session_pdf_list'=>'y'
 );
 
+//[SGC] nuevo campo del formulario (nivel de estudios)
+$participantform[]=array(
+'mysql_column_name'=>'level_of_education',
+'name_lang'=>'level_of_education',
+'type'=>'select_lang',
+'subpools'=>'all',
+'default_value'=>'',
+'include_none_option'=>'n',
+'search_include_in_participant_query'=>'y',
+'search_include_in_experiment_assign_query'=>'y',
+'searchresult_list_in_participant_results'=>'y',
+'searchresult_list_in_experiment_assign_results'=>'y',
+'search_result_allow_sort'=>'y',
+'list_in_session_participants_list'=>'y',
+'allow_sort_in_session_participants_list'=>'y',
+'list_in_session_pdf_list'=>'y',
+'include_in_statistics'=>'pie'
+);
+
 $participantform[]=array(
 'mysql_column_name'=>'email',
 'name_lang'=>'email',

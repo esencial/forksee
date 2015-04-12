@@ -490,7 +490,24 @@ $participantform[]=array(
 'include_in_statistics'=>'pie'
 );
 
-
+//[SGC] nuevo campo del formulario (deficiencias auditivas)
+$participantform[]=array(
+'mysql_column_name'=>'auditory_impairments',
+'name_lang'=>'auditory_impairments',
+'type'=>'select_lang',
+'subpools'=>'all',
+'default_value'=>'',
+'include_none_option'=>'n',
+'search_include_in_participant_query'=>'y',
+'search_include_in_experiment_assign_query'=>'y',
+'searchresult_list_in_participant_results'=>'y',
+'searchresult_list_in_experiment_assign_results'=>'y',
+'search_result_allow_sort'=>'y',
+'list_in_session_participants_list'=>'y',
+'allow_sort_in_session_participants_list'=>'y',
+'list_in_session_pdf_list'=>'y',
+'include_in_statistics'=>'pie'
+);
 //Eliminamos este elemento del formulario, ya no nos hace falta en la nueva versión
 
 /*$participantform[]=array(

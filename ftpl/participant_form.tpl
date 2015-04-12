@@ -92,6 +92,11 @@
                         <td>#visual_impairments#</td>
                 </tr>
 
+		<tr>
+                        <td>lang[auditory_impairments]</td>
+                        <td>#auditory_impairments#</td>
+                </tr>
+
 		{ #is_subpool_type_b#
                 <tr>
 			<td></td>

@@ -82,6 +82,16 @@
                         <td>#second_tongue#</td>
                 </tr>
 
+		<tr>
+                        <td>lang[second_tongue_fluency]</td>
+                        <td>#second_tongue_fluency#</td>
+                </tr>
+
+		<tr>
+                        <td>lang[visual_impairments]</td>
+                        <td>#visual_impairments#</td>
+                </tr>
+
 		{ #is_subpool_type_b#
                 <tr>
 			<td></td>

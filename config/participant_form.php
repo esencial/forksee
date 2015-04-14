@@ -419,7 +419,7 @@ $participantform[]=array(
 'name_lang'=>'native_tongue',
 'type'=>'textline',
 'subpools'=>'all',
-'compulsory'=>'y',
+'compulsory'=>'n',
 'default_value'=>'',
 'size'=>'20',
 'maxlength'=>'50',
@@ -438,7 +438,7 @@ $participantform[]=array(
 'name_lang'=>'second_tongue',
 'type'=>'textline',
 'subpools'=>'all',
-'compulsory'=>'y',
+'compulsory'=>'n',
 'default_value'=>'',
 'size'=>'20',
 'maxlength'=>'50',
@@ -508,6 +508,45 @@ $participantform[]=array(
 'list_in_session_pdf_list'=>'y',
 'include_in_statistics'=>'pie'
 );
+
+//[SGC] nuevo campo del formulario (trastorno biológico)
+$participantform[]=array(
+'mysql_column_name'=>'biological_disorder',
+'name_lang'=>'biological_disorder',
+'type'=>'textline',
+'subpools'=>'all',
+'compulsory'=>'n',
+'default_value'=>'',
+'size'=>'20',
+'maxlength'=>'200',
+'search_include_in_participant_query'=>'n',
+'search_include_in_experiment_assign_query'=>'n',
+'searchresult_list_in_participant_results'=>'n',
+'searchresult_list_in_experiment_assign_results'=>'n',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'n'
+);
+
+//[SGC] nuevo campo del formulario (trastorno psicológico)
+$participantform[]=array(
+'mysql_column_name'=>'psycological_disorder',
+'name_lang'=>'psycological_disorder',
+'type'=>'textline',
+'subpools'=>'all',
+'compulsory'=>'n',
+'default_value'=>'',
+'size'=>'20',
+'maxlength'=>'200',
+'search_include_in_participant_query'=>'n',
+'search_include_in_experiment_assign_query'=>'n',
+'searchresult_list_in_participant_results'=>'n',
+'searchresult_list_in_experiment_assign_results'=>'n',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'n'
+);
+
 //Eliminamos este elemento del formulario, ya no nos hace falta en la nueva versión
 
 /*$participantform[]=array(

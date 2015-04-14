@@ -97,6 +97,16 @@
                         <td>#auditory_impairments#</td>
                 </tr>
 
+		<tr>
+                        <td>lang[biological_disorder]</td>
+                        <td>#biological_disorder#</td>
+                </tr>
+
+		<tr>
+                        <td>lang[psycological_disorder]</td>
+                        <td>#psycological_disorder#</td>
+                </tr>
+
 		{ #is_subpool_type_b#
                 <tr>
 			<td></td>

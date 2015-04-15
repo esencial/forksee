@@ -107,6 +107,16 @@
                         <td>#psycological_disorder#</td>
                 </tr>
 
+		<tr>
+                        <td>lang[plays_sports_often]</td>
+                        <td>#plays_sports_often#</td>
+                </tr>
+
+		<tr>
+                        <td>lang[lives_with_someone]</td>
+                        <td>#lives_with_someone#</td>
+                </tr>
+
 		{ #is_subpool_type_b#
                 <tr>
 			<td></td>

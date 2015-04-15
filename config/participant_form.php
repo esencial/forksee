@@ -547,6 +547,43 @@ $participantform[]=array(
 'list_in_session_pdf_list'=>'n'
 );
 
+//[SGC] nuevo campo del formulario (Practica deporte varias veces a la semana)
+$participantform[]=array(
+'mysql_column_name'=>'plays_sports_often',
+'name_lang'=>'plays_sports_often',
+'type'=>'radioline',
+'subpools'=>'all',
+'option_values'=>'1,0',
+'option_values_lang'=>'yes,no',
+'default_value'=>'',
+'search_include_in_participant_query'=>'n',
+'search_include_in_experiment_assign_query'=>'n',
+'searchresult_list_in_participant_results'=>'n',
+'searchresult_list_in_experiment_assign_results'=>'n',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'allow_sort_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'n'
+);
+
+//[SGC] nuevo campo del formulario (Vive en pareja actualmente)
+$participantform[]=array(
+'mysql_column_name'=>'lives_with_someone',
+'name_lang'=>'lives_with_someone',
+'type'=>'radioline',
+'subpools'=>'all',
+'option_values'=>'1,0',
+'option_values_lang'=>'yes,no',
+'default_value'=>'',
+'search_include_in_participant_query'=>'n',
+'search_include_in_experiment_assign_query'=>'n',
+'searchresult_list_in_participant_results'=>'n',
+'searchresult_list_in_experiment_assign_results'=>'n',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'allow_sort_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'n'
+);
 //Eliminamos este elemento del formulario, ya no nos hace falta en la nueva versión
 
 /*$participantform[]=array(

@@ -117,6 +117,11 @@
                         <td>#lives_with_someone#</td>
                 </tr>
 
+		<tr>
+                        <td>lang[children]</td>
+                        <td>#children#</td>
+                </tr>
+
 		{ #is_subpool_type_b#
                 <tr>
 			<td></td>

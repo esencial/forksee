@@ -122,6 +122,16 @@
                         <td>#children#</td>
                 </tr>
 
+		<tr>
+                        <td>lang[birth]</td>
+                        <td>#birth#</td>
+                </tr>
+
+		<tr>
+                        <td>lang[diagnosis_suspected]</td>
+                        <td>#diagnosis_suspected#</td>
+                </tr>
+
 		{ #is_subpool_type_b#
                 <tr>
 			<td></td>

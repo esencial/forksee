@@ -604,6 +604,44 @@ $participantform[]=array(
 'include_in_statistics'=>'pie'
 );
 
+//[SGC] nuevo campo del formulario (parto)
+$participantform[]=array(
+'mysql_column_name'=>'birth',
+'name_lang'=>'birth',
+'type'=>'select_lang',
+'subpools'=>'all',
+'default_value'=>'',
+'include_none_option'=>'y',
+'search_include_in_participant_query'=>'y',
+'search_include_in_experiment_assign_query'=>'y',
+'searchresult_list_in_participant_results'=>'y',
+'searchresult_list_in_experiment_assign_results'=>'y',
+'search_result_allow_sort'=>'y',
+'list_in_session_participants_list'=>'y',
+'allow_sort_in_session_participants_list'=>'y',
+'list_in_session_pdf_list'=>'y',
+'include_in_statistics'=>'pie'
+);
+
+//[SGC] nuevo campo del formulario (sospecha de algún diagnóstico)
+$participantform[]=array(
+'mysql_column_name'=>'diagnosis_suspected',
+'name_lang'=>'diagnosis_suspected',
+'type'=>'textline',
+'subpools'=>'all',
+'compulsory'=>'n',
+'default_value'=>'',
+'size'=>'20',
+'maxlength'=>'200',
+'search_include_in_participant_query'=>'n',
+'search_include_in_experiment_assign_query'=>'n',
+'searchresult_list_in_participant_results'=>'n',
+'searchresult_list_in_experiment_assign_results'=>'n',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'n'
+);
+
 //Eliminamos este elemento del formulario, ya no nos hace falta en la nueva versión
 
 /*$participantform[]=array(

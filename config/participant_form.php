@@ -340,6 +340,25 @@ $participantform[]=array(
 'list_in_session_pdf_list'=>'y'
 );
 
+//[SGC] nuevo campo del formulario (Menor de edad)
+$participantform[]=array(
+'mysql_column_name'=>'underage',
+'name_lang'=>'underage',
+'type'=>'radioline',
+'subpools'=>'all',
+'option_values'=>'1,0',
+'option_values_lang'=>'yes,no',
+'default_value'=>'',
+'search_include_in_participant_query'=>'y',
+'search_include_in_experiment_assign_query'=>'y',
+'searchresult_list_in_participant_results'=>'y',
+'searchresult_list_in_experiment_assign_results'=>'y',
+'search_result_allow_sort'=>'y',
+'list_in_session_participants_list'=>'y',
+'allow_sort_in_session_participants_list'=>'y',
+'list_in_session_pdf_list'=>'y'
+);
+
 //[SGC] nuevo campo del formulario (mano preferida)
 $participantform[]=array(
 'mysql_column_name'=>'preferred_hand',

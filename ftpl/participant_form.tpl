@@ -68,6 +68,11 @@
                 </tr>
 
 		<tr>
+                        <td>lang[underage]</td>
+                        <td>#underage#</td>
+                </tr>
+
+		<tr>
                         <td>lang[preferred_hand]</td>
                         <td>#preferred_hand#</td>
                 </tr>

@@ -58,3 +58,6 @@ a, A     { font-family: Arial, Helvetica, sans-serif;
 	}
 
 //-->
+.toHide{
+    display:none;
+}

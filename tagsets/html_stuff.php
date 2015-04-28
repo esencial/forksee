@@ -45,6 +45,7 @@ echo '<!DOCTYPE html><html>
 <TITLE>'.$pagetitle.'</TITLE>
     <link href="../style/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../style/bootstrap/css/style.css" rel="stylesheet">
+  
     <script type="text/javascript" src="../style/bootstrap/js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="../style/bootstrap/js/bootstrap.min.js"></script>
 <!--

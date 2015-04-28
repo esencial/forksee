@@ -8,4 +8,7 @@ and open the template in the editor.
     Author     : silvia
 */
 .cabecera{background-color: #038516; color:#fff;}
+.toHide{
+    display:none;
+}
 

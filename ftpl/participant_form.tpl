@@ -73,6 +73,21 @@
                 </tr>
 
 		<tr>
+			<td>lang[parent_firstname]</td>
+			<td>#parent_fname#</td>
+		</tr>
+
+		<tr>
+                        <td>lang[parent_lastname]</td>
+                        <td>#parent_lname#</td>
+                </tr>
+
+		<tr>
+                        <td>lang[parent_id]</td>
+                        <td>#parent_id#</td>
+                </tr>
+
+		<tr>
                         <td>lang[preferred_hand]</td>
                         <td>#preferred_hand#</td>
                 </tr>

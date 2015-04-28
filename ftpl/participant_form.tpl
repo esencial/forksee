@@ -73,17 +73,17 @@
                 </tr>
 
 		<tr>
-			<td>lang[parent_firstname]</td>
+			<td class="toHide">lang[parent_firstname]</td>
 			<td>#parent_fname#</td>
 		</tr>
 
 		<tr>
-                        <td>lang[parent_lastname]</td>
+                        <td class="toHide">lang[parent_lastname]</td>
                         <td>#parent_lname#</td>
                 </tr>
 
 		<tr>
-                        <td>lang[parent_id]</td>
+                        <td class="toHide">lang[parent_id]</td>
                         <td>#parent_id#</td>
                 </tr>
 
@@ -188,4 +188,10 @@
                         <td>lang[profession]</td>
                         <td>#profession#</td>
                 </tr> }
-
+                <script>
+$(function() {
+    $("[name=underage]").click(function(){
+            $('.toHide').toggle();
+    });
+ });
+ </script>

@@ -74,17 +74,17 @@
 
 		<tr>
 			<td class="toHide">lang[parent_firstname]</td>
-			<td>#parent_fname#</td>
+			<td class="toHide">#parent_fname#</td>
 		</tr>
 
 		<tr>
                         <td class="toHide">lang[parent_lastname]</td>
-                        <td>#parent_lname#</td>
+                        <td class="toHide">#parent_lname#</td>
                 </tr>
 
 		<tr>
                         <td class="toHide">lang[parent_id]</td>
-                        <td>#parent_id#</td>
+                        <td class="toHide">#parent_id#</td>
                 </tr>
 
 		<tr>

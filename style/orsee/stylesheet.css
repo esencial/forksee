@@ -1,6 +1,6 @@
 <style type="text/css">
 
-<!--
+/*
 
 body {
 	margin-top: 0px;
@@ -56,8 +56,5 @@ a, A     { font-family: Arial, Helvetica, sans-serif;
 	color: lightgrey;
 	font-size: 10pt;
 	}
+*/
 
-//-->
-.toHide{
-    display:none;
-}

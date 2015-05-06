@@ -217,6 +217,7 @@ $participantform[]=array(
 'list_in_session_pdf_list'=>'y'
 );
 
+
 //[SGC] nuevo campo del formulario (alertas activas)
 $participantform[]=array(
 'mysql_column_name'=>'active_alerts',
@@ -228,6 +229,25 @@ $participantform[]=array(
 'default_value'=>'',
 'search_include_in_participant_query'=>'n',
 'search_include_in_experiment_assign_query'=>'n',
+'searchresult_list_in_participant_results'=>'n',
+'searchresult_list_in_experiment_assign_results'=>'n',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'allow_sort_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'n'
+);
+
+//[SGC] nuevo campo del formulario (banned)
+$participantform[]=array(
+'mysql_column_name'=>'banned',
+'name_lang'=>'banned',
+'type'=>'radioline',
+'subpools'=>'all',
+'option_values'=>'1,0',
+'option_values_lang'=>'yes,no',
+'default_value'=>'',
+'search_include_in_participant_query'=>'y',
+'search_include_in_experiment_assign_query'=>'y',
 'searchresult_list_in_participant_results'=>'n',
 'searchresult_list_in_experiment_assign_results'=>'n',
 'search_result_allow_sort'=>'n',

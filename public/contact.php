@@ -1,9 +1,9 @@
 <?php
 // part of orsee. see orsee.org
 ob_start();
+ini_set( 'display_errors', 1 );
 $menu__area="contact";
 include ("header.php");
-
 echo '<BR><BR>
 	<div class="">
 	<h4>'; echo $lang['contact'];
@@ -14,28 +14,24 @@ echo '<BR><BR>
         formulario_contacto ();
 	echo '</div>';
 
-           
-session_start();
-include("simple-php-captcha.php");
-$_SESSION['captcha'] = simple_php_captcha();
-
 include ("footer.php");
 
 function formulario_contacto() {
     global $lang;
     $this_lang=$lang['lang'];
-    echo '<form action="#" method="get">';
-    echo $lang['name'];
-    echo '<input type="text" name="fname"><br>';
+    echo '<form action="post.php" method="post">';
+    echo '<table><tr><td>'.$lang['name'].'</td><td>';
+    echo '<input type="text" name="fname"></td></tr><tr><td>';
     echo $lang['email'];
-    echo '<input type="text" name="email"><br>';
+    echo '</td><td><input type="text" name="email"></td></tr><tr><td>';
     echo $lang['email_subject'];
-    echo '<input type="text" name="subject"><br>';
+    echo '</td><td><input type="text" name="subject"></td></tr><tr><td>';
     echo $lang['body_of_message'];
-    echo '<textarea rows="4" cols="50" type="text" name="message"></textarea><br>';
-    echo '<img src="' . $_SESSION['captcha']['image_src'] . '" alt="CAPTCHA" /><br>'; 
-    echo $_SESSION['captcha']['image_src'];
-    echo '<input type="submit" value="Submit">';
+    echo '</td><td><textarea rows="4" cols="50" type="text" name="message"></textarea></td></tr><tr><td>';
+    echo '<p class="url">Write your url: <input type="text" name="url" /></p>
+</td></tr><tr><td>'; 
+   // echo $_SESSION['captcha']['image_src'];
+    echo '</td><td><input type="submit" value="Submit"></td></tr></table>';
     echo '</form>';   
     
 }

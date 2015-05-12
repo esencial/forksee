@@ -15,10 +15,6 @@
                         <td>lang[identification_number]</td>
                         <td>#identification_number#</td>
                 </tr>
-		<tr>
-                        <td>lang[banned]</td>
-                        <td>#banned#</td>
-                </tr>
 		<tr #error_email#>
                         <td>lang[e-mail-address]</td>
                         <td>#email#</td>

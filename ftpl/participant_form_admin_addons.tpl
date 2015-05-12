@@ -14,6 +14,11 @@
             <td>#subpool_id#</td>
         </tr>
 
+	<tr>
+              <td>lang[banned]</td>
+              <td>#banned#</td>
+        </tr>
+
 		<tr>
             <td>lang[rules_signed]</td>
             <td>#rules_signed#</td>

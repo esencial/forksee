@@ -246,6 +246,7 @@ $participantform[]=array(
 'option_values'=>'1,0',
 'option_values_lang'=>'yes,no',
 'default_value'=>'',
+'admin_only'=>'y',
 'search_include_in_participant_query'=>'y',
 'search_include_in_experiment_assign_query'=>'y',
 'searchresult_list_in_participant_results'=>'n',

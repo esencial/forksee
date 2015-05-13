@@ -1,6 +1,6 @@
 
-		<tr>
-        	<td>lang[id]</td>
+        <tr>
+            <td>lang[id]</td>
             <td>#participant_id# (#participant_id_crypt#)</td>
         </tr>
 

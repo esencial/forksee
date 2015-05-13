@@ -777,7 +777,7 @@ function participant__show_form($edit,$button_title="",$form_title="",$errors,$a
 		if (isset($edit['participant_id'])) $tout['participant_id']=$edit['participant_id']; else $tout['participant_id']='';
 		if (isset($edit['participant_id_crypt'])) $tout['participant_id_crypt']=$edit['participant_id_crypt']; else $tout['participant_id_crypt']='';
 		if (isset($edit['creation_time'])) $tout['creation_time']=time__format($lang['lang'],'',false,false,true,false,$edit['creation_time']);  else $tout['creation_time']='';
-		if (!isset($edit['rules_signed'])) $edit['rules_signed']='';
+                if (!isset($edit['rules_signed'])) $edit['rules_signed']='';
 
 		$tout['subpool_id']=subpools__select_field("subpool_id","subpool_id","subpool_name",$edit['subpool_id'],"");
 		$tout['rules_signed']=participant__rules_signed_form_field($edit['rules_signed']);

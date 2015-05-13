@@ -257,6 +257,47 @@ $participantform[]=array(
 'list_in_session_pdf_list'=>'n'
 );
 
+//[SGC] nuevo campo del formulario (banned_amount)
+$participantform[]=array(
+'mysql_column_name'=>'banned_amount',
+'name_lang'=>'banned_amount',
+'type'=>'textline',
+'subpools'=>'all',
+'default_value'=>'',
+'admin_only'=>'y',
+'size'=>'3',
+'maxlength'=>'11',
+'search_include_in_participant_query'=>'n',
+'search_include_in_experiment_assign_query'=>'n',
+'searchresult_list_in_participant_results'=>'n',
+'searchresult_list_in_experiment_assign_results'=>'n',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'allow_sort_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'n'
+);
+
+
+//[SGC] nuevo campo del formulario (banned_unit)
+$participantform[]=array(
+'mysql_column_name'=>'banned_unit',
+'name_lang'=>'banned_unit',
+'type'=>'select_lang',
+'subpools'=>'all',
+'default_value'=>'1',
+'admin_only'=>'y',
+'include_none_option'=>'n',
+'search_include_in_participant_query'=>'y',
+'search_include_in_experiment_assign_query'=>'y',
+'searchresult_list_in_participant_results'=>'y',
+'searchresult_list_in_experiment_assign_results'=>'y',
+'search_result_allow_sort'=>'y',
+'list_in_session_participants_list'=>'y',
+'allow_sort_in_session_participants_list'=>'y',
+'list_in_session_pdf_list'=>'y',
+'include_in_statistics'=>'pie'
+);
+
 //[SGC] nuevo campo del formulario (estudiante de psicología)
 $participantform[]=array(
 'mysql_column_name'=>'psychology_student',

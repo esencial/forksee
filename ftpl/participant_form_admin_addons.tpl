@@ -19,6 +19,11 @@
               <td>#banned#</td>
         </tr>
 
+        <tr>
+         <td class="hideBanned">lang[how_long]</td>
+         <td class="hideBanned">#banned_amount##banned_unit#</td>
+      </tr>
+
 		<tr>
             <td>lang[rules_signed]</td>
             <td>#rules_signed#</td>
@@ -41,3 +46,11 @@
             </td> }
         </tr>
 
+
+<script>
+    $(function() {
+    $("[name=banned]").click(function(){
+            $('.hideBanned').toggle();
+        });
+    });
+ </script>

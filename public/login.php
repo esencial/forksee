@@ -1,5 +1,8 @@
 <?php
-session_start(); // Starting Session
+ob_start(); // Starting Session
+session_start();
+include ("header.php");
+
 $error=''; // Variable To Store Error Message
 if (isset($_POST['submit'])) {
 if (empty($_POST['username']) || empty($_POST['password'])) {
@@ -22,7 +25,7 @@ $password = hash(mysql_real_escape_string($password));
 // SQL query to fetch information of registerd users and finds user match.
 //$query = mysql_query("select * from login where password='$password' AND username='$username'", $connection);
 
-$query="SELECT * FROM ".table('participants')." WHERE password='$password' AND username='$username'";
+$query="SELECT * FROM ".table('participants')." WHERE password='$password' AND email='$username'";
 $query = orsee_query($query,"");
 
 $rows = mysql_num_rows($query);

@@ -1,23 +1,24 @@
 <?php
-include('login.php'); // Includes Login Script
+//include('login.php'); // Includes Login Script
 
 if(isset($_SESSION['login_user'])){
-header("location: profile.php");
+    header("location: profile.php");
 }
-include ("header.php");
+//include ("header.php");
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Login form for participants</title>
+<link rel="stylesheet" href="../style/bootstrap/css/style.css">
 </head>
 <body>
 <div id="main">
 <h1>Login</h1>
 <div id="login">
 <h2>Login Form</h2>
-<form action="" method="post">
+<form action="login.php" method="post">
 <label>Email:</label>
 <input id="name" name="username" placeholder="username" type="text">
 <label>Password:</label>

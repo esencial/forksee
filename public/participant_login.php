@@ -4,6 +4,8 @@ include('login.php'); // Includes Login Script
 if(isset($_SESSION['login_user'])){
 header("location: profile.php");
 }
+include ("header.php");
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,7 +18,7 @@ header("location: profile.php");
 <div id="login">
 <h2>Login Form</h2>
 <form action="" method="post">
-<label>UserName :</label>
+<label>Email :</label>
 <input id="name" name="username" placeholder="username" type="text">
 <label>Password :</label>
 <input id="password" name="password" placeholder="**********" type="password">

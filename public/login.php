@@ -1,15 +1,18 @@
 <?php
-ob_start(); // Starting Session
 session_start();
-include ("header.php");
-
+echo "user name ".$_POST['username'];
+echo "<br>pwd ".$_POST['password'];
 $error=''; // Variable To Store Error Message
-if (isset($_POST['submit'])) {
+//if (isset($_POST['submit'])) {
 if (empty($_POST['username']) || empty($_POST['password'])) {
 $error = "Username or Password is invalid";
 }
 else
 {
+include ("header.php");
+
+    echo "user name ".$_POST['username'];
+    echo "<br>pwd ".$_POST['password'];
 // Define $username and $password
 $username=$_POST['username'];
 $password=$_POST['password'];
@@ -37,5 +40,5 @@ $error = "Username or Password is invalid";
 }
 mysql_close($connection); // Closing Connection
 }
-}
+//}
 ?>

@@ -1,4 +1,4 @@
 <?php
-include('sessions.php');
+include('session.php');
 ?>
 

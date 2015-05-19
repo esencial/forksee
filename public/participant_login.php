@@ -4,7 +4,9 @@
 if(isset($_SESSION['login_user'])){
     header("location: profile.php");
 }
-//include ("header.php");
+$error = '';
+if ($_GET['error'] == 1) $error = "Username or Password is invalid";
+include ("header.php");
 
 ?>
 <!DOCTYPE html>
@@ -15,9 +17,7 @@ if(isset($_SESSION['login_user'])){
 </head>
 <body>
 <div id="main">
-<h1>Login</h1>
 <div id="login">
-<h2>Login Form</h2>
 <form action="login.php" method="post">
 <label>Email:</label>
 <input id="name" name="username" placeholder="username" type="text">

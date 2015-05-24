@@ -128,7 +128,7 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
 
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="/public/index.php">mainpage</a></li> 
+        <li><a href="public/index.php">mainpage</a></li> 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Participant <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">

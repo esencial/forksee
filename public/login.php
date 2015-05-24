@@ -24,7 +24,7 @@ else
 	// SQL query to fetch information of registerd users and finds user match.
 	//$query = mysql_query("select * from login where password='$password' AND username='$username'", $connection);
 
-	$query1 = "SELECT * FROM ".table('participants')." WHERE password='$password' AND email='$username'";
+	$query1 = "SELECT * FROM ".table('participants')." WHERE password='$password' AND identification_number='$username'";
 	$query = orsee_query($query1,"");
 	
 	if (!is_null($query)) {

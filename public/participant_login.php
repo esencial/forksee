@@ -19,7 +19,7 @@ include ("header.php");
 <div id="main">
 <div id="login">
 <form action="login.php" method="post">
-<label>Email:</label>
+<label>DNI:</label>
 <input id="name" name="username" placeholder="username" type="text">
 <label>Password:</label>
 <input id="password" name="password" placeholder="**********" type="password">

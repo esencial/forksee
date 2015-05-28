@@ -13,7 +13,7 @@ else
 	$username=$_POST['username'];
 	$password=$_POST['password'];
 	// Establishing Connection with Server by passing server_name, user_id and password as a parameter
-	$connection = mysql_connect("localhost", "root", "");
+	
 	// To protect MySQL injection for Security purpose
 	$username = stripslashes($username);
 	$password = stripslashes($password);
@@ -25,9 +25,10 @@ else
 	//$query = mysql_query("select * from login where password='$password' AND username='$username'", $connection);
 
 	$query1 = "SELECT * FROM ".table('participants')." WHERE password='$password' AND identification_number='$username'";
-	$query = orsee_query($query1,"");
+	$result=orsee_query($query);
 	
-	if (!is_null($query)) {
+	
+	if (!is_null($result)) {
 		$_SESSION['login_user']=$username; // Initializing Session
 		header("location: profile.php"); // Redirecting To Other Page
 	} else {

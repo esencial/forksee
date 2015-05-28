@@ -34,12 +34,11 @@ margin-bottom:30px
 }
 #login {
 width:300px;
-float:left;
 border-radius:10px;
 font-family:raleway;
 border:2px solid #ccc;
 padding:10px 40px 25px;
-margin-top:70px
+margin:0 auto;
 }
 input[type=text],input[type=password] {
 width:99.5%;
@@ -52,9 +51,9 @@ font-family:raleway
 }
 input[type=submit] {
 width:100%;
-background-color:#FFBC00;
+background-color:#038516;
 color:#fff;
-border:2px solid #FFCB00;
+border:2px solid #038516;
 padding:10px;
 font-size:20px;
 cursor:pointer;

@@ -1,14 +1,12 @@
 <?php
-session_start();
 $error=''; // Variable To Store Error Message
 //if (isset($_POST['submit'])) {
+include ("header.php");	
 if ((is_null($_POST['username'])) or (is_null($_POST['password']))) {
 	header("location: participant_login.php");
 }
 else
 {
-	include ("header.php");
-
 	// Define $username and $password
 	$username=$_POST['username'];
 	$password=$_POST['password'];
@@ -31,7 +29,7 @@ else
 	
 		header("location: participant_login.php?error=1");
 	}
-	mysql_close($connection); // Closing Connection
+	
 }
 //}
 ?>

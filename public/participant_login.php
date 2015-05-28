@@ -19,11 +19,12 @@ include ("header.php");
 <div id="main">
 <div id="login">
 <form action="login.php" method="post">
-<label>DNI:</label>
+<label>Id number:</label>
 <input id="name" name="username" placeholder="username" type="text">
 <label>Password:</label>
 <input id="password" name="password" placeholder="**********" type="password">
 <input name="submit" type="submit" value=" Login ">
+<a href="participant_forgot_pass.php">Forgot your password?</a>
 <span><?php echo $error; ?></span>
 </form>
 </div>

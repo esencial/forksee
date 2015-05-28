@@ -1,21 +1,25 @@
 <?php
-// Establishing Connection with Server by passing server_name, user_id and password as a parameter
-ob_start();
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();// Starting Session
+include ("../config/settings.php");
+include ("../config/system.php");
+include ("../config/requires.php");
+
 // Storing Session
 if (isset($_SESSION['login_user'])){
 	$user_check=$_SESSION['login_user'];
+	
 }else{
+	header('Location: login.php');
     exit();
 } 
-    echo "user name ".$user_check;
     // SQL Query To Fetch Complete Information Of User
-    $query="SELECT email FROM ".table('participants')." WHERE email='$username'";
-    $query = orsee_query($query,"");
+    $query="SELECT identification_number FROM ".table('participants')." WHERE identification_number='$user_check'";
+    $result = orsee_query($query);
 
-    $row = mysql_fetch_assoc($query);
-    $login_session =$row['email'];
-    if(!isset($login_session)){
+    if (!is_null($result)) {
         mysql_close($connection); // Closing Connection
         header('Location: index.php'); // Redirecting To Home Page
     }

@@ -10,8 +10,8 @@ if (isset($_SESSION['login_user'])){
     $query="SELECT identification_number FROM ".table('participants')." WHERE identification_number='$user_check'";
     $result = orsee_query($query);
 
-    if (!is_null($result)) {
-        header('Location: index.php'); // Redirecting To Home Page
+    if (is_null($result)) {
+        header('Location: login.php'); // Redirecting To Home Page
     }
     
 ?>

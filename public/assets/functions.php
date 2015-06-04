@@ -1,26 +1,36 @@
 <?php
-define(PW_SALT,'(+3%_');
+define("PW_SALT",'(+3%_');
 
-function checkUNEmail($uname,$email)
+        error_reporting(E_ALL ^ E_NOTICE);
+		
+        ini_set('display_errors', 1); 
+
+function checkUNEmail($id)
 {
-	global $mySQL;
+	//global $mySQL;
 	$error = array('status'=>false,'userID'=>0);
-	if (isset($email) && trim($email) != '') {
-		//email was entered
-		if ($SQL = $mySQL->prepare("SELECT `ID` FROM `users_enc` WHERE `Email` = ? LIMIT 1"))
+	if (isset($id) && trim($id) != '') {
+		//id was entered
+                $query="SELECT identification_number FROM or_participants WHERE identification_number = '".$id."'";
+                $SQL=orsee_query($query);
+            
+		if ($SQL)
 		{
-			$SQL->bind_param('s',trim($email));
+			/*$SQL->bind_param('s',trim($email));
 			$SQL->execute();
 			$SQL->store_result();
 			$numRows = $SQL->num_rows();
 			$SQL->bind_result($userID);
 			$SQL->fetch();
 			$SQL->close();
-			if ($numRows >= 1) return array('status'=>true,'userID'=>$userID);
+			if ($numRows >= 1) */return array('status'=>true,'userID'=>$id);
 		} else { return $error; }
 	} elseif (isset($uname) && trim($uname) != '') {
 		//username was entered
-		if ($SQL = $mySQL->prepare("SELECT `ID` FROM `users_enc` WHERE Username = ? LIMIT 1"))
+                $query="SELECT `ID` FROM `users_enc` WHERE Username = ? LIMIT 1";
+                $SQL=orsee_query($query);
+                
+		if ($SQL)
 		{
 			$SQL->bind_param('s',trim($uname));
 			$SQL->execute();
@@ -36,7 +46,7 @@ function checkUNEmail($uname,$email)
 		return $error;
 	}
 }
-function getSecurityQuestion($userID)
+/*function getSecurityQuestion($userID)
 {
 	global $mySQL;
 	$questions = array();
@@ -46,7 +56,9 @@ function getSecurityQuestion($userID)
 	$questions[3] = "What year did you graduate from High School?";
 	$questions[4] = "What was the name of your first boyfriend/girlfriend?";
 	$questions[5] = "What is your favorite model of car?";
-	if ($SQL = $mySQL->prepare("SELECT `secQ` FROM `users_enc` WHERE `ID` = ? LIMIT 1"))
+        $query="SELECT secQ FROM or_participants WHERE identification_number = '".$id."'";
+        $SQL=orsee_query($query);
+	if ($SQL)
 	{
 		$SQL->bind_param('i',$userID);
 		$SQL->execute();
@@ -58,7 +70,7 @@ function getSecurityQuestion($userID)
 	} else {
 		return false;
 	}
-}
+}*/
 
 function checkSecAnswer($userID,$answer)
 {

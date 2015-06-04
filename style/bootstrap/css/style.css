@@ -79,4 +79,23 @@ i {
 color:#6495ed
 }
 
+td{
+    padding:0.6em;
+}
 
+.small{
+    font-size: 100%
+}
+
+.cabecera td{
+    padding:0em;
+}
+
+table.my_table{
+    border:1px solid #ccc;
+}
+
+.my_table td{
+    border:1px solid #ccc;
+    padding:0.7em;
+}

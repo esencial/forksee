@@ -1,6 +1,10 @@
 <?php
 // part of orsee. see orsee.org
 ob_start();
+
+include_once ("header.php");
+include_once ('session.php');
+
 $menu__area="calendar";
 include ("header.php");
 

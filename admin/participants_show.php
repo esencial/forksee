@@ -33,8 +33,8 @@ include ("header.php");
 							  $_REQUEST['con']);
 
 			if (!$where_clause) $where_clause=query__where_clause_module("all");
-
-			$select_query="SELECT ".table('participants').".* 
+//show: identification_number, phone_number, gender, profession, banned_unit
+			$select_query="SELECT  *
                         	FROM ".table('participants')."  
 							WHERE";
 							if ($deleted=='b') $select_query.=" (deleted='y' OR deleted='n') ";

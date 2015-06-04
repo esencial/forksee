@@ -295,7 +295,7 @@ function query_show_result($select_query,$sort="lname,fname",$type="edit") {
 	$atypes=array('assign','drop','edit');
 	foreach($atypes as $a) { if (!isset($$a)) $$a=false; }
 
-	echo '  <P class="small">'.$lang['query'].': '.str_replace(",",", ",$select_query).'</P>';
+	//echo '  <P class="small">'.$lang['query'].': '.str_replace(",",", ",$select_query).'</P>';
 	
 	$result=mysqli_query($GLOBALS['mysqli'],$select_query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']));
 
@@ -325,7 +325,7 @@ function query_show_result($select_query,$sort="lname,fname",$type="edit") {
 	if ($assign) echo $lang['only_ny_assigned_part_showed'].'<BR>';
 	if ($drop) echo $lang['only_assigned_part_ny_reg_shownup_part_showed'].'<BR>';
 
-        echo ' <table border=0>
+        echo ' <table class="my_table">
                         <TR>';
 			if ($assign || $drop) echo '<TD></TD>';
                         headcell($lang['id'],"participant_id");

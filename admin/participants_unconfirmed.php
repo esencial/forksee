@@ -30,13 +30,13 @@ include ("header.php");
 			</TD>
 			<TD class="small">
 				'.$lang['id'].'
-			</TD>
+			</TD><!--
 			<TD class="small">
 				'.$lang['lastname'].'
 			</TD>
 			<TD class="small">
 				'.$lang['firstname'].'
-			</TD>
+			</TD>-->
 			<TD class="small">
 				'.$lang['email'].'
 			</TD>

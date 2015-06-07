@@ -23,9 +23,10 @@ function checkUNEmail($id)
 			$SQL->bind_result($userID);
 			$SQL->fetch();
 			$SQL->close();
-			if ($numRows >= 1) */return array('status'=>true,'userID'=>$id);
+			if ($numRows >= 1) */
+                    return array('status'=>true,'userID'=>$id);
 		} else { return $error; }
-	} elseif (isset($uname) && trim($uname) != '') {
+	} /*elseif (isset($uname) && trim($uname) != '') {
 		//username was entered
                 $query="SELECT `ID` FROM `users_enc` WHERE Username = ? LIMIT 1";
                 $SQL=orsee_query($query);
@@ -41,7 +42,7 @@ function checkUNEmail($id)
 			$SQL->close();
 			if ($numRows >= 1) return array('status'=>true,'userID'=>$userID);
 		} else { return $error; }
-	} else {
+	} */else {
 		//nothing was entered;
 		return $error;
 	}
@@ -72,7 +73,7 @@ function checkUNEmail($id)
 	}
 }*/
 
-function checkSecAnswer($userID,$answer)
+/*function checkSecAnswer($userID,$answer)
 {
 	global $mySQL;
 	if ($SQL = $mySQL->prepare("SELECT `Username` FROM `users_enc` WHERE `ID` = ? AND LOWER(`secA`) = ? LIMIT 1"))
@@ -87,27 +88,35 @@ function checkSecAnswer($userID,$answer)
 	} else {
 		return false;
 	}
-}
+}*/
 
-function sendPasswordEmail($userID)
+function sendPasswordEmail($id)
 {
 	global $mySQL;
-	if ($SQL = $mySQL->prepare("SELECT `Username`,`Email`,`Password` FROM `users_enc` WHERE `ID` = ? LIMIT 1"))
-	{
-		$SQL->bind_param('i',$userID);
+        
+        $query="SELECT identification_number, email, password FROM or_participants WHERE identification_number = '".$id."'";
+        $SQL=orsee_query($query);
+	if ($SQL)
+	{            
+		/*$SQL->bind_param('i',$userID);
 		$SQL->execute();
 		$SQL->store_result();
 		$SQL->bind_result($uname,$email,$pword);
 		$SQL->fetch();
-		$SQL->close();
+		$SQL->close();*/
 		$expFormat = mktime(date("H"), date("i"), date("s"), date("m")  , date("d")+3, date("Y"));
 		$expDate = date("Y-m-d H:i:s",$expFormat);
 		$key = md5($uname . '_' . $email . rand(0,10000) .$expDate . PW_SALT);
-		if ($SQL = $mySQL->prepare("INSERT INTO `recoveryemails_enc` (`UserID`,`Key`,`expDate`) VALUES (?,?,?)"))
+                
+                $query="INSERT INTO or_recoveryemails_enc (UserID, KeyUser, expDate) VALUES (".$id.", '".$key."', '".$expDate."')";
+                
+                $done=mysqli_query($GLOBALS['mysqli'],$query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']));
+        
+		if ($done)
 		{
-			$SQL->bind_param('iss',$userID,$key,$expDate);
+			/*$SQL->bind_param('iss',$userID,$key,$expDate);
 			$SQL->execute();
-			$SQL->close();
+			$SQL->close();*/
 			$passwordLink = "<a href=\"?a=recover&email=" . $key . "&u=" . urlencode(base64_encode($userID)) . "\">http://www.oursite.com/forgotPass.php?a=recover&email=" . $key . "&u=" . urlencode(base64_encode($userID)) . "</a>";
 			$message = "Dear $uname,\r\n";
 			$message .= "Please visit the following link to reset your password:\r\n";
@@ -118,14 +127,14 @@ function sendPasswordEmail($userID)
 			$message .= "If you did not request this forgotten password email, no action is needed, your password will not be reset as long as the link above is not visited. However, you may want to log into your account and change your security password and answer, as someone may have guessed it.\r\n\r\n";
 			$message .= "Thanks,\r\n";
 			$message .= "-- Our site team";
-			$headers .= "From: Our Site <webmaster@oursite.com> \n";
+			$headers .= "From: Orsee <info@esencialsistemas.com> \n";
 			$headers .= "To-Sender: \n";
 			$headers .= "X-Mailer: PHP\n"; // mailer
-			$headers .= "Reply-To: webmaster@oursite.com\n"; // Reply address
-			$headers .= "Return-Path: webmaster@oursite.com\n"; //Return Path for errors
+			$headers .= "Reply-To: info@esencialsistemas.com\n"; // Reply address
+			$headers .= "Return-Path: info@esencialsistemas.com\n"; //Return Path for errors
 			$headers .= "Content-Type: text/html; charset=iso-8859-1"; //Enc-type
 			$subject = "Your Lost Password";
-			@mail($email,$subject,$message,$headers);
+			mail($email,$subject,$message,$headers);
 			return str_replace("\r\n","<br/ >",$message);
 		}
 	}

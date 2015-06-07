@@ -18,15 +18,12 @@ include("assets/functions.php");
     
         $show = 'emailForm'; //which form step to show by default
         
-        echo 'subStep: '.$_POST['subStep'];
-        
         if (isset($_POST['subStep']) &&!isset($_GET['a']) && $_SESSION['lockout'] != true)
             {
             switch($_POST['subStep'])
             {
         case 1:
         //we just submitted an email or username for verification
-            echo 'caso1';
             $result = checkUNEmail($_POST['idnumber']);
             if ($result['status'] == false )
             {
@@ -36,7 +33,8 @@ include("assets/functions.php");
                 $error = false;
                 //$show = 'securityForm';
                 $show = 'successPage';                
-                $securityUser = $result['userID'];
+                //$securityUser = $result['userID'];
+                $passwordMessage = sendPasswordEmail($result['userID']);
             }
         break;
         case 2:
@@ -94,12 +92,12 @@ include("assets/functions.php");
                 $securityUser = $result['userID'];
             }
         }
-        if ($_SESSION['badCount'] >= 3)
+        /*if ($_SESSION['badCount'] >= 3)
         {
             $show = 'speedLimit';
             $_SESSION['lockout'] = true;
             $_SESSION['lastTime'] = '' ? mktime() : $_SESSION['lastTime'];
-        }
+        }*/
     
           
         ?>
@@ -146,28 +144,28 @@ include("assets/functions.php");
 	 <?php break; 
          
     case 'userNotFound': ?>
-    
-    <h2>Password Recovery</h2>
-    <p>The username or email you entered was not found in our database.<br /><br /><a href="?">Click here</a> to try again.</p>
+
+        <h2>Password Recovery</h2>
+        <p>The username or email you entered was not found in our database.<br /><br /><a href="?">Click here</a> to try again.</p>
     <?php break; case 'successPage': ?>
-    <h2>Password Recovery</h2>
-    <p>An email has been sent to you with instructions on how to reset your password. <strong>(Mail will not send unless you have an smtp server running locally.)</strong><br /><br /><a href="login.php">Return</a> to the login page. </p>
-    <p>This is the message that would appear in the email:</p>
-    <div class="message"><?= $passwordMessage;?></div>
+        <h2>Password Recovery</h2>
+        <p>An email has been sent to you with instructions on how to reset your password. <strong>(Mail will not send unless you have an smtp server running locally.)</strong><br /><br /><a href="login.php">Return</a> to the login page. </p>
+        <p>This is the message that would appear in the email:</p>
+        <div class="message"><?= $passwordMessage;?></div>
     <?php break; case 'recoverForm': ?>
-    <h2>Password Recovery</h2>
-    <p>Welcome back, <?= getUserName($securityUser=='' ? $_POST['userID'] : $securityUser); ?>.</p>
-    <p>In the fields below, enter your new password.</p>
-    <?php if ($error == true) { ?><span class="error">The new passwords must match and must not be empty.</span><?php } ?>
-    <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
-        <div class="fieldGroup"><label for="pw0">New Password</label><div class="field"><input type="password" class="input" name="pw0" id="pw0" value="" maxlength="20"></div></div>
-        <div class="fieldGroup"><label for="pw1">Confirm Password</label><div class="field"><input type="password" class="input" name="pw1" id="pw1" value="" maxlength="20"></div></div>
-        <input type="hidden" name="subStep" value="3" />
-        <input type="hidden" name="userID" value="<?= $securityUser=='' ? $_POST['userID'] : $securityUser; ?>" />
-        <input type="hidden" name="key" value="<?= $_GET['email']=='' ? $_POST['key'] : $_GET['email']; ?>" />
-        <div class="fieldGroup"><input type="submit" value="Submit" style="margin-left: 150px;" /></div>
-        <div class="clear"></div>
-    </form>
+        <h2>Password Recovery</h2>
+        <p>Welcome back, <?= getUserName($securityUser=='' ? $_POST['userID'] : $securityUser); ?>.</p>
+        <p>In the fields below, enter your new password.</p>
+        <?php if ($error == true) { ?><span class="error">The new passwords must match and must not be empty.</span><?php } ?>
+        <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
+            <div class="fieldGroup"><label for="pw0">New Password</label><div class="field"><input type="password" class="input" name="pw0" id="pw0" value="" maxlength="20"></div></div>
+            <div class="fieldGroup"><label for="pw1">Confirm Password</label><div class="field"><input type="password" class="input" name="pw1" id="pw1" value="" maxlength="20"></div></div>
+            <input type="hidden" name="subStep" value="3" />
+            <input type="hidden" name="userID" value="<?= $securityUser=='' ? $_POST['userID'] : $securityUser; ?>" />
+            <input type="hidden" name="key" value="<?= $_GET['email']=='' ? $_POST['key'] : $_GET['email']; ?>" />
+            <div class="fieldGroup"><input type="submit" value="Submit" style="margin-left: 150px;" /></div>
+            <div class="clear"></div>
+        </form>
     <?php break; case 'invalidKey': ?>
     <h2>Invalid Key</h2>
     <p>The key that you entered was invalid. Either you did not copy the entire key from the email, you are trying to use the key after it has expired (3 days after request), or you have already used the key in which case it is deactivated.<br /><br /><a href="login.php">Return</a> to the login page. </p>

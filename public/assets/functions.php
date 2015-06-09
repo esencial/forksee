@@ -94,7 +94,7 @@ function sendPasswordEmail($id)
 {
 	global $mySQL;
         
-        $query="SELECT identification_number, email, password FROM or_participants WHERE identification_number = '".$id."'";
+        $query="SELECT identification_number, email, password FROM ".table(participants)." WHERE identification_number = '".$id."'";
         $SQL=orsee_query($query);
 	if ($SQL)
 	{            
@@ -104,6 +104,7 @@ function sendPasswordEmail($id)
 		$SQL->bind_result($uname,$email,$pword);
 		$SQL->fetch();
 		$SQL->close();*/
+                $email = $SQL['email'];
 		$expFormat = mktime(date("H"), date("i"), date("s"), date("m")  , date("d")+3, date("Y"));
 		$expDate = date("Y-m-d H:i:s",$expFormat);
 		$key = md5($uname . '_' . $email . rand(0,10000) .$expDate . PW_SALT);
@@ -117,25 +118,27 @@ function sendPasswordEmail($id)
 			/*$SQL->bind_param('iss',$userID,$key,$expDate);
 			$SQL->execute();
 			$SQL->close();*/
-			$passwordLink = "<a href=\"?a=recover&email=" . $key . "&u=" . urlencode(base64_encode($userID)) . "\">http://www.oursite.com/forgotPass.php?a=recover&email=" . $key . "&u=" . urlencode(base64_encode($userID)) . "</a>";
-			$message = "Dear $uname,\r\n";
-			$message .= "Please visit the following link to reset your password:\r\n";
-			$message .= "-----------------------\r\n";
-			$message .= "$passwordLink\r\n";
-			$message .= "-----------------------\r\n";
-			$message .= "Please be sure to copy the entire link into your browser. The link will expire after 3 days for security reasons.\r\n\r\n";
-			$message .= "If you did not request this forgotten password email, no action is needed, your password will not be reset as long as the link above is not visited. However, you may want to log into your account and change your security password and answer, as someone may have guessed it.\r\n\r\n";
-			$message .= "Thanks,\r\n";
+			$passwordLink = "<a href=http://$settings__server_url/participant_forgot_pass.php?a=recover&email=" . $key . "&u=" . urlencode(base64_encode($userID)) . "\">http://$settings__server_url/participant_forgot_pass.php?a=recover&email=" . $key . "&u=" . urlencode(base64_encode($userID)) . "</a>";
+			$message = "Dear $uname,<br>";
+			$message .= "Please visit the following link to reset your password:<br>";
+			$message .= "-----------------------<br>";
+			$message .= "$passwordLink<br>";
+			$message .= "-----------------------<br>";
+			$message .= "Please be sure to copy the entire link into your browser. The link will expire after 3 days for security reasons.<br>";
+			$message .= "If you did not request this forgotten password email, no action is needed, your password will not be reset as long as the link above is not visited. However, you may want to log into your account and change your security password and answer, as someone may have guessed it.<br>";
+			$message .= "Thanks,<br>";
 			$message .= "-- Our site team";
-			$headers .= "From: Orsee <info@esencialsistemas.com> \n";
-			$headers .= "To-Sender: \n";
-			$headers .= "X-Mailer: PHP\n"; // mailer
-			$headers .= "Reply-To: info@esencialsistemas.com\n"; // Reply address
-			$headers .= "Return-Path: info@esencialsistemas.com\n"; //Return Path for errors
-			$headers .= "Content-Type: text/html; charset=iso-8859-1"; //Enc-type
+			$headers = array();
+			$headers[] = "From: Orsee <".$site__mail_account.">";
+			$headers[] = "To-Sender: $email";
+			$headers[] = 'X-Mailer: PHP/'. phpversion(); // mailer
+			$headers[] = "Reply-To: ".$site__mail_account; // Reply address
+			$headers[] = "Return-Path: ".$site__mail_account; //Return Path for errors
+			$headers[] = "Content-Type: text/html; charset=iso-8859-1"; //Enc-type
 			$subject = "Your Lost Password";
 			mail($email,$subject,$message,$headers);
-			return str_replace("\r\n","<br/ >",$message);
+			return "enviado a ".$email;
+			//return str_replace("\r\n","<br/ >",$message);
 		}
 	}
 }

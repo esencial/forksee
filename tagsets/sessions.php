@@ -29,7 +29,7 @@ function sessions__format_alist($session) {
 			</td>
         		<td>';
 				if (check_allow('session_edit')) echo '
-        			<A HREF="session_edit.php?session_id='.$session_id.'">
+        			<A HREF="session_edit.php?session_id='.$session_id.'&e=1">
                 			'.$lang['edit'].'
                 		</A>';
         echo '		</td>

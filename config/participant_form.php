@@ -298,6 +298,145 @@ $participantform[]=array(
 'include_in_statistics'=>'pie'
 );
 
+//[SGA] nuevos campos que sustituyen al de arriba para banear por fechas
+//[SGA] dia de inicio del ban
+$participantform[]=array(
+'mysql_column_name'=>'ban_start_day',
+'name_lang'=>'ban_start_day',
+'type'=>'select_numbers',
+'subpools'=>'all',
+'default_value'=>'',
+'admin_only'=>'y',    
+'value_begin'=>'1',
+'value_end'=>'31',
+'value_step'=>'1',
+'values_reverse'=>'n',
+'include_none_option'=>'n',
+'search_include_in_participant_query'=>'y',
+'search_include_in_experiment_assign_query'=>'y',
+'searchresult_list_in_participant_results'=>'n',
+'searchresult_list_in_experiment_assign_results'=>'n',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'allow_sort_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'y'
+);
+
+//[SGA] mes de inicio del ban
+$participantform[]=array(
+'mysql_column_name'=>'ban_start_month',
+'name_lang'=>'ban_start_month',
+'type'=>'select_numbers',
+'subpools'=>'all',
+'default_value'=>'',
+'admin_only'=>'y',
+'value_begin'=>'1',
+'value_end'=>'12',
+'value_step'=>'1',
+'values_reverse'=>'n',
+'include_none_option'=>'n',
+'search_include_in_participant_query'=>'y',
+'search_include_in_experiment_assign_query'=>'y',
+'searchresult_list_in_participant_results'=>'n',
+'searchresult_list_in_experiment_assign_results'=>'n',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'allow_sort_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'y'
+);
+
+//[SGA] año de inicio del ban
+$participantform[]=array(
+'mysql_column_name'=>'ban_start_year',
+'name_lang'=>'ban_start_year',
+'type'=>'select_numbers',
+'subpools'=>'all',
+'default_value'=>'',
+'admin_only'=>'y',
+'value_begin'=>'func:(int) date("Y")-100',
+'value_end'=>'func:(int) date("Y")',
+'value_step'=>'1',
+'values_reverse'=>'y',
+'include_none_option'=>'n',
+'search_include_in_participant_query'=>'y',
+'search_include_in_experiment_assign_query'=>'y',
+'searchresult_list_in_participant_results'=>'n',
+'searchresult_list_in_experiment_assign_results'=>'n',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'allow_sort_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'y'
+);
+
+//[SGA] dia de fin del ban
+$participantform[]=array(
+'mysql_column_name'=>'ban_end_day',
+'name_lang'=>'ban_end_day',
+'type'=>'select_numbers',
+'subpools'=>'all',
+'default_value'=>'',
+'admin_only'=>'y',    
+'value_begin'=>'1',
+'value_end'=>'31',
+'value_step'=>'1',
+'values_reverse'=>'n',
+'include_none_option'=>'n',
+'search_include_in_participant_query'=>'y',
+'search_include_in_experiment_assign_query'=>'y',
+'searchresult_list_in_participant_results'=>'n',
+'searchresult_list_in_experiment_assign_results'=>'n',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'allow_sort_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'y'
+);
+
+//[SGA] mes de fin del ban
+$participantform[]=array(
+'mysql_column_name'=>'ban_end_month',
+'name_lang'=>'ban_end_month',
+'type'=>'select_numbers',
+'subpools'=>'all',
+'default_value'=>'',
+'admin_only'=>'y',
+'value_begin'=>'1',
+'value_end'=>'12',
+'value_step'=>'1',
+'values_reverse'=>'n',
+'include_none_option'=>'n',
+'search_include_in_participant_query'=>'y',
+'search_include_in_experiment_assign_query'=>'y',
+'searchresult_list_in_participant_results'=>'n',
+'searchresult_list_in_experiment_assign_results'=>'n',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'allow_sort_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'y'
+);
+
+//[SGA] año de fin del ban
+$participantform[]=array(
+'mysql_column_name'=>'ban_end_year',
+'name_lang'=>'ban_end_year',
+'type'=>'select_numbers',
+'subpools'=>'all',
+'default_value'=>'',
+'admin_only'=>'y',
+'value_begin'=>'func:(int) date("Y")-100',
+'value_end'=>'func:(int) date("Y")',
+'value_step'=>'1',
+'values_reverse'=>'y',
+'include_none_option'=>'n',
+'search_include_in_participant_query'=>'y',
+'search_include_in_experiment_assign_query'=>'y',
+'searchresult_list_in_participant_results'=>'n',
+'searchresult_list_in_experiment_assign_results'=>'n',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'allow_sort_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'y'
+);
+
 //[SGC] nuevo campo del formulario (estudiante de psicología)
 $participantform[]=array(
 'mysql_column_name'=>'psychology_student',

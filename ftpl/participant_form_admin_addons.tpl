@@ -18,11 +18,19 @@
               <td>lang[banned]</td>
               <td>#banned#</td>
         </tr>
-
         <tr>
+              <td class="hideBanned">SUSTITUIR POR LANG</td>
+              <td class="hideBanned">lang[day]#ban_start_day#lang[month]#ban_start_month#lang[year]#ban_start_year#</td>
+        </tr>
+        <tr>
+              <td class="hideBanned">SUSTITUIR POR LANG</td>
+              <td class="hideBanned">lang[day]#ban_end_day#lang[month]#ban_end_month#lang[year]#ban_end_year#</td>
+        </tr>
+        
+       <!-- <tr>
          <td class="hideBanned">lang[how_long]</td>
          <td class="hideBanned">#banned_amount##banned_unit#</td>
-      </tr>
+      </tr>-->
 
 		<tr>
             <td>lang[rules_signed]</td>
@@ -53,4 +61,7 @@
             $('.hideBanned').toggle();
         });
     });
+    
+        
+ 
  </script>

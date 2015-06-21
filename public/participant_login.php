@@ -1,16 +1,20 @@
 <?php
 if(isset($_SESSION['login_user'])){
+
     header("location: profile.php");
 }
-$error = '';
-if ($_GET['error'] == 1) $error = "Username or Password is invalid";
-include ("header.php");
 
+$error = '';
+
+if ($_GET['error'] == 1) $error = "Username or Password is invalid";
+if ($_GET['error'] == 2) $error = "You are banned from the system";
+
+include ("header.php");
 ?>
 <div id="main">
-<div id="login">
-<form action="login.php" method="post">
-<label>Id number:</label>
+    <div id="login">
+        <form action="login.php" method="post">
+        <label>Id number:</label>
 <input id="username" name="username" placeholder="username" type="text">
 <label>Password:</label>
 <input id="password" name="password" placeholder="**********" type="password">

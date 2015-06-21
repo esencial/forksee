@@ -1,9 +1,9 @@
 <?php
 define("PW_SALT",'(+3%_');
 
-        error_reporting(E_ALL ^ E_NOTICE);
+    //    error_reporting(E_ALL ^ E_NOTICE);
 		
-        ini_set('display_errors', 1); 
+    //    ini_set('display_errors', 1); 
 
 function checkUNEmail($id)
 {

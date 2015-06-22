@@ -181,6 +181,7 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
             <li><a href="participants_edit.php?addit=true">Create new participant</a></li>
           </ul>
       </li>    
+	  <li><a href="subject_list.php">Subjects</a></li>
       <li><a href="calendar_main.php">calendar</a></li> 
       <li><a href="download_main.php">download</a></li> 
       <li><a href="options_main.php">options</a></li> 

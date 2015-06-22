@@ -1,6 +1,5 @@
 <?php
 // part of orsee. see orsee.org
-error_reporting(E_ALL);
 
 // Settings
 
@@ -39,4 +38,7 @@ $settings__stop_admin_site="n";
 // to stop tracking set to 'y'
 $settings__disable_orsee_tracking="n";
 
+
+//---
+$site__mail_account = "info@esencialsistemas.com";
 ?>

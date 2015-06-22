@@ -301,7 +301,7 @@ include("header.php");
 		</P>';
 
 	// show query
-	echo '	<P class="small">Query: '.$select_query.'</P>';
+	//echo '	<P class="small">Query: '.$select_query.'</P>';
 
 	// get result
 	$result=mysqli_query($GLOBALS['mysqli'],$select_query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']));

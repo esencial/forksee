@@ -118,6 +118,13 @@ include ("header.php");
 // form
 
 	if (isset($_REQUEST['copy']) && $_REQUEST['copy']) $session_id="";
+        
+        //comprobamos si se está editando una única sesión
+        if (isset($_REQUEST['e']) && $_REQUEST['e']) {
+            $edit_session=true;
+        } else {
+            $edit_session=false;
+        }
 
 	if (!$session_id) {
 		$addit=true;
@@ -221,8 +228,9 @@ include ("header.php");
 			</TD>
 		</TR>';
 
-
-        echo '	<TR>
+        //estos 3 campos no nos interesa mostrarlos si se ha accedido para editar una sesión             
+        if (!$edit_session) {
+            echo '	<TR>
 			<TD>
 				Repeat X times
 			</TD>
@@ -231,9 +239,8 @@ include ("header.php");
 				echo '
 			</TD>
 		</TR>';
-                                
-                                
-	echo '	<TR>
+                    
+            echo '	<TR>
 			<TD>
 				'.$lang['experiment_duration'].':
 			</TD>
@@ -247,9 +254,8 @@ include ("header.php");
 				echo ' '.help("session_duration").'
 			</TD>
 		</TR>';
-
-
-	echo ' <TR>
+                                
+            echo ' <TR>
 			<TD>
 				Break between sessions (minutes):
 			</TD>
@@ -258,7 +264,7 @@ include ("header.php");
 				echo '
 			</TD>
 		</TR>';
-                                
+        }                       
                                 
 	echo ' <TR>
 			<TD>

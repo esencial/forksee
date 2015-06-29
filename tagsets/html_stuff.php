@@ -135,6 +135,7 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
         <li><a href="participant_login.php">login</a></li>
         <li><a href="participant_edit.php">my data</a></li>
         <li><a href="participant_show.php">my registrations</a></li>
+        <li><a href="participant_feedback.php">my feedbacks</a></li>
         </ul>
         </li>
         <li><a href="show_calendar.php">calendar</a></li>

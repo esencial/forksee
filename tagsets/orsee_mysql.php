@@ -11,9 +11,9 @@ function table($table) {
 // very convenient functions translated from metahtml
 
 function orsee_query($query,$funcname="") {
-
+        
 	$result=mysqli_query($GLOBALS['mysqli'],$query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']).", Query=".$query);
-	if ($funcname) {
+	if ($funcname && $funcname!='S') {
 		$back=array();
         	while ($line = mysqli_fetch_assoc($result)) {
                 	$back[]=$funcname($line);
@@ -21,7 +21,14 @@ function orsee_query($query,$funcname="") {
         	mysqli_free_result($result);
 		return $back;
 
-         } else {
+         }elseif($funcname=="S")
+         {
+             while ($row = mysqli_fetch_assoc($result))
+             {
+                $back[]=$row;
+             }
+             return $back;
+         }else {
         	$line=mysqli_fetch_assoc($result);
         	mysqli_free_result($result);
         	return $line;

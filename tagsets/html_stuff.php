@@ -1,7 +1,7 @@
 <?php
 // part of orsee. see orsee.org
 
-
+//resubida
 function navigation($orientation="horizontal",$icons=true) {
 	global $expadmindata, $lang, $navigation_disabled, $color;
 

@@ -78,6 +78,12 @@ echo '<center><h4>'.$lang['edit_experiment'].'</h4></center>';
                         if (!isset($_REQUEST['hide_in_cal']) ||!$_REQUEST['hide_in_cal']) $_REQUEST['hide_in_cal']="n";
 
                         if (!isset($_REQUEST['experiment_credits']) ||!$_REQUEST['experiment_credits']) $_REQUEST['experiment_credits']=0;
+                                                
+                        if (!isset($_REQUEST['paid']) ||!$_REQUEST['paid']) $_REQUEST['paid']="n";
+                                                 
+                        if (!isset($_REQUEST['compensation']) ||!$_REQUEST['compensation']) $_REQUEST['compensation']=0; 
+                        
+                        if (!isset($_REQUEST['excluding']) ||!$_REQUEST['excluding']) $_REQUEST['excluding']="n";
 
 			if (!isset($_REQUEST['access_restricted']) ||!$_REQUEST['access_restricted']) $_REQUEST['access_restricted']="n";
 
@@ -109,7 +115,7 @@ echo '<center><h4>'.$lang['edit_experiment'].'</h4></center>';
 
 	// initialize if empty
 	if (!isset($edit)) $edit=array();
-	$formvarnames=array('experiment_name','experiment_public_name','experiment_description','google_maps','experiment_class','experiment_id','sender_mail','experiment_show_type','access_restricted','experiment_finished','hide_in_stats','hide_in_cal', 'experiment_credits');
+	$formvarnames=array('experiment_name','experiment_public_name','experiment_description','google_maps','experiment_class','experiment_id','sender_mail','experiment_show_type','access_restricted','experiment_finished','hide_in_stats','hide_in_cal', 'experiment_credits', 'paid', 'compensation', 'excluding');
 	foreach ($formvarnames as $fvn) {
 		if (!isset($edit[$fvn])) $edit[$fvn]="";
 	}
@@ -303,6 +309,40 @@ echo '<center><h4>'.$lang['edit_experiment'].'</h4></center>';
 					if ($edit['hide_in_cal']=="y") echo " CHECKED";
 					echo '> 
 					'.help("experiment_hide_in_cal").'
+				</TD>
+			</TR>';
+                                        
+	echo '		<TR>
+				<TD>
+					'.$lang['paid'].'
+				</TD>
+				<TD>
+					<INPUT name=paid type=checkbox value="y"';
+					if ($edit['paid']=="y") echo " CHECKED";
+					echo '> 
+					'.help("paid").'
+				</TD>
+			</TR>';
+
+	echo '		<TR>
+				<TD>
+					'.$lang['compensation'].'
+				</TD>
+				<TD>
+					<INPUT name=compensation type=text size=10 maxlength=10 value="'.stripslashes($edit['compensation']).'"> 
+					'.'
+				</TD>
+			</TR>';
+                                                                               
+	echo '		<TR>
+				<TD>
+					'.$lang['excluding'].'
+				</TD>
+				<TD>
+					<INPUT name=excluding type=checkbox value="y"';
+					if ($edit['excluding']=="y") echo " CHECKED";
+					echo '> 
+					'.help("excluding").'
 				</TD>
 			</TR>';
                                         

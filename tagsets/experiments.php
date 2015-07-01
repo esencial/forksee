@@ -250,7 +250,6 @@ function experiment__experiments_format_alist($alist) {
 	global $lang, $color, $experimentclasses;
 	extract($alist);
 
-
         echo '<tr>
         	<td bgcolor="'.$color['list_item_emphasize_background'].'">';
 
@@ -285,6 +284,10 @@ function experiment__experiments_format_alist($alist) {
 		<TR><TD class="small">'.$lang['experimenter'].': '.experiment__list_experimenters($experimenter,true,true).'</TD>
 		<TD class="small">'.$lang['get_emails'].': '.experiment__list_experimenters($experimenter_mail,true,true).'
 			</TD></TR>';
+        
+        //SGC
+        echo '<TR><TD>
+		'.$lang['credits'].': '.$alist['experiment_credits'].'</TD></TR>';
 
 	if ($experiment_type=="laboratory") {
 		echo '<TR>

@@ -48,6 +48,22 @@ echo '<!DOCTYPE html><html>
   
     <script type="text/javascript" src="../style/bootstrap/js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="../style/bootstrap/js/bootstrap.min.js"></script>
+
+    <script language="javascript" type="text/javascript"> 
+     function toggleFields(namecheck) {
+      //  alert(namecheck.checked);
+        if (namecheck.checked == true){
+             document.getElementById("compensation").style.display="block";
+			 document.getElementById("paid").value="y";
+        } else {
+             document.getElementById("compensation").style.display="none";
+			 document.getElementById("paid").value="n";
+		}			
+     }
+    </script>
+            
+                
+    
 <!--
 <link rel="stylesheet" type="text/css" href="../style/'.$settings['style'].'/'.$stylesheet.'">
 -->
@@ -61,6 +77,8 @@ echo '<script type="text/javascript">
 tinymce.init({
     selector: "textarea"
  });
+
+
 </script>'
 ;}
 

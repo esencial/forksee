@@ -317,7 +317,7 @@ echo '<center><h4>'.$lang['edit_experiment'].'</h4></center>';
 					'.$lang['paid'].'
 				</TD>
 				<TD>
-					<INPUT name=paid type=checkbox value="y"';
+					<INPUT name=paid type=checkbox checked="checked" onclick="toggleFields(this)"'; //SGC
 					if ($edit['paid']=="y") echo " CHECKED";
 					echo '> 
 					'.help("paid").'
@@ -329,7 +329,7 @@ echo '<center><h4>'.$lang['edit_experiment'].'</h4></center>';
 					'.$lang['compensation'].'
 				</TD>
 				<TD>
-					<INPUT name=compensation type=text size=10 maxlength=10 value="'.stripslashes($edit['compensation']).'"> 
+					<INPUT name=compensation style="visibility=visible;" id=compensation type=text size=10 maxlength=10 value="'.stripslashes($edit['compensation']).'"> 
 					'.'
 				</TD>
 			</TR>';

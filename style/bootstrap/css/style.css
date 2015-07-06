@@ -99,3 +99,7 @@ table.my_table{
     border:1px solid #ccc;
     padding:0.7em;
 }
+
+span#compensation_label{
+    color:#000000 !important;
+}

@@ -326,7 +326,7 @@ echo '<center><h4>'.$lang['edit_experiment'].'</h4></center>';
 
 	echo '		<TR>
 				<TD>
-					'.$lang['compensation'].'
+					<span id=compensation_label class=negro>'.$lang['compensation'].'</span>
 				</TD>
 				<TD>
 					<INPUT name=compensation style="visibility=visible;" id=compensation type=text size=10 maxlength=10 value="'.stripslashes($edit['compensation']).'"> 

@@ -54,10 +54,12 @@ echo '<!DOCTYPE html><html>
       //  alert(namecheck.checked);
         if (namecheck.checked == true){
              document.getElementById("compensation").style.display="block";
-			 document.getElementById("paid").value="y";
+             document.getElementById("compensation_label").style.display="block";
+             document.getElementById("paid").value="y";
         } else {
              document.getElementById("compensation").style.display="none";
-			 document.getElementById("paid").value="n";
+             document.getElementById("compensation_label").style.display="none";
+             document.getElementById("paid").value="n";
 		}			
      }
     </script>

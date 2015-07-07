@@ -118,7 +118,7 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
  	// info[0]       1          2      3   4     5     6        7          8	  9
  	// entrytype|menu__area|lang_item|url|icon|target|addp?|showonlyifp?|hideifp?|options_condition
 
-	global $settings__root_url, $color, $lang, $menu__area, $settings;
+	global $settings__root_url, $color, $lang, $menu__area, $settings, $settings__server_url, $settings__root_directory;
 
 
 	if (isset($_REQUEST['p']) && !(thisdoc()=="participant_create.php")) {
@@ -133,7 +133,6 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
         
         
         if (strpos($url,'/public/') !== false) {          
-
             echo '<nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -147,7 +146,7 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
 
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'/public/index.php">mainpage</a></li> 
+        <li><a href="http://'.$settings__server_url.$settings__root_directory.'/public">mainpage</a></li> 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Participant <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -185,7 +184,7 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
 
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-2">
       <ul class="nav navbar-nav">
-      <li><a href="/admin/">home</a></li>
+      <li><a href="http://'.$settings__server_url.$settings__root_directory.'/admin">home</a></li>
       <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Experiments <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">

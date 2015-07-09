@@ -747,7 +747,7 @@ include ("header.php");
                                 </TD>
                                 <TD>
                                         '; helpers__select_numbers("options[begin_of_studies_years_backward]",
-                                                                $options['begin_of_studies_years_backward'],0,20,0,1);
+                                                                $options['begin_of_studies_years_backward'],0,60,0,1);
                                                 echo '
                                 </TD>
                         </TR>';

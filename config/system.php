@@ -208,7 +208,7 @@ $system__options=array(
 "default:session_start_years_backward:2",
 "default:session_start_years_forward:5",
 
-"default:begin_of_studies_years_backward:10",
+"default:begin_of_studies_years_backward:10", //aunque realmente se modifica por backend, en options
 "default:begin_of_studies_years_forward:1",
 
 		);

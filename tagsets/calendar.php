@@ -214,8 +214,13 @@ function calendar__month_table_inner($time=0,$admin=false,$print=false) {
                                                		break;
         					}
         				echo '<FONT color="'.$thcolor.'">'.$text.'</FONT>';
+                                        
+                                        if (($cs__status == "not_enough_participants")||($cs__status == "not_enough_reserve")) echo '<BR><FONT color="'.$thcolor.'"><a href="'.$settings__root_url."/public/participant_confirm.php?p=".url_cr_encode($participant_id).'">SIGN IN</a></FONT>';
+                                        
         				}
 
+                                        
+                                        
         			if ((!$print) && $admin && check_allow('experiment_show_participants')) {
                 			echo '<BR><A class="small" HREF="experiment_participants_show.php?experiment_id='.
                 				$entry['experiment_id'].'&focus=registered&session_id='.$entry['session_id'].

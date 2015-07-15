@@ -20,8 +20,9 @@ function formulario_contacto() {
     global $lang;
     $this_lang=$lang['lang'];
     echo '<form action="post.php" method="post">';
-    echo '<table><tr><td>'.$lang['name'].'</td><td>';
-    echo '<input type="text" name="fname"></td></tr><tr><td>';
+    echo '<table>';    //<tr><td>'.$lang['name'].'</td><td>';
+    //echo '<input type="text" name="fname"></td></tr>
+    echo '<tr><td>';
     echo $lang['email'];
     echo '</td><td><input type="text" name="email"></td></tr><tr><td>';
     echo $lang['email_subject'];

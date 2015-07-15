@@ -176,7 +176,8 @@ function log__show_log($log) {
 		</TD>
 		<TD>';
 			if ($log=='participant_actions') {
-				echo $lang['lastname'].', '.$lang['firstname'];
+				//echo $lang['lastname'].', '.$lang['firstname'];
+                                echo $lang['identification_number'];
 				}
 			elseif ($log=='experimenter_actions' || $log=='regular_tasks') {
 				echo $lang['experimenter'];
@@ -206,7 +207,8 @@ function log__show_log($log) {
 			<TD>';
 				if ($log=='participant_actions') {
 				   if ($line['participant_id']) {
-					echo $line['lname'].', '.$line['fname'].
+					//echo $line['lname'].', '.$line['fname'].
+                                       echo $line['participant_id'].
 					' <A HREF="participants_edit.php?participant_id='.
 					$line['participant_id'].'"><FONT class="small">['.$lang['edit'].']</FONT></A>';
 					}

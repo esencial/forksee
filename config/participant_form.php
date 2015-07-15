@@ -135,6 +135,7 @@ Creates a checkbox list of the configured "external experiment types" (see Optio
 function participantform__define() {
 $participantform=array();
 
+/*
 $participantform[]=array(
 'mysql_column_name'=>'lname',
 'name_lang'=>'lastname',
@@ -176,6 +177,7 @@ $participantform[]=array(
 'allow_sort_in_session_participants_list'=>'n',
 'list_in_session_pdf_list'=>'n'
 );
+*/
 
 //[SGC] nuevo campo del formulario
 $participantform[]=array(

@@ -1,12 +1,13 @@
 
-		<tr #error_fname#>
+		<!-- <tr #error_fname#>
 			<td>lang[firstname]</td>
 			<td>#fname#</td>
 		</tr>
 		<tr #error_lname#>
                         <td>lang[lastname]</td>
                         <td>#lname#</td>
-                </tr>
+                </tr> -->
+
 		<tr #error_password#>
                         <td>lang[password]</td>
                         <td>#password#</td>

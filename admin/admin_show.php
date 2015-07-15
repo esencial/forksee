@@ -20,10 +20,10 @@ include ("header.php");
 
 		<table border=0>
 			<tr>
-				<td>'.$lang['username'].'</td>
-				<td>'.$lang['firstname'].'</td>
-				<td>'.$lang['lastname'].'</td>
-				<td>'.$lang['type'].'</td>
+				<td>'.$lang['username'].'</td>';
+				//<td>'.$lang['firstname'].'</td>
+				//<td>'.$lang['lastname'].'</td>
+				echo '<td>'.$lang['type'].'</td>
 				<td>'.$lang['is_experimenter'].'</td>
 				<td></td>
 			</tr>';

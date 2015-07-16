@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $error=''; // Variable To Store Error Message
 //if (isset($_POST['submit'])) {
 include('common.php');	

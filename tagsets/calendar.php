@@ -41,7 +41,7 @@ return $month == 2 ? ($year % 4 ? 28 : ($year % 100 ? 29 : ($year % 400 ? 28 : 2
 function calendar__month_table_inner($time=0,$admin=false,$print=false) {
 	if ($time==0) $time=time();
 
-	global $lang, $color, $settings;
+	global $lang, $color, $settings, $settings__root_directory;
 	static $expcolor_count=0, $expcolors=array(), $lscolor_count=0, $lscolors=array();
 
   	$start_date=date__skip_months(0,$time);
@@ -215,7 +215,7 @@ function calendar__month_table_inner($time=0,$admin=false,$print=false) {
         					}
         				echo '<FONT color="'.$thcolor.'">'.$text.'</FONT>';
                                         
-                                        if (($cs__status == "not_enough_participants")||($cs__status == "not_enough_reserve")) echo '<BR><FONT color="'.$thcolor.'"><a href="'.$settings__root_url."/public/participant_confirm.php?p=".url_cr_encode($participant_id).'">SIGN IN</a></FONT>';
+                                        if (($cs__status == "not_enough_participants")||($cs__status == "not_enough_reserve")) echo '<BR><FONT color="'.$thcolor.'"><a href="'.$settings__root_directory."/public/participant_confirm.php?p=".url_cr_encode($_SESSION['participant_id']).'">SIGN IN</a></FONT>';
                                         
         				}
 

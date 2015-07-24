@@ -4,18 +4,18 @@ ob_start();
 
 include_once ("header.php");
 include_once ('session.php');
-
 $menu__area="calendar";
-include ("header.php");
 
+//include ("header.php");
+
+        
 	if (!isset($_REQUEST['time'])) $_REQUEST['time']=time();
 
 	echo '
 		<center>
 		<BR><BR>
 		<H4>'.$lang['experiment_calendar'].'</h4>';
-
-
+        
 	if (!(isset($_REQUEST['year']) && $_REQUEST['year'])) {
 
 		$lastmonth=date__skip_months(-1,$_REQUEST['time']);
@@ -54,5 +54,7 @@ include ("header.php");
 		</center>';
 
 include ("footer.php");
+          
+         
 ?>
 

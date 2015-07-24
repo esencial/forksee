@@ -48,24 +48,6 @@ echo '<!DOCTYPE html><html>
   
     <script type="text/javascript" src="../style/bootstrap/js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="../style/bootstrap/js/bootstrap.min.js"></script>
-
-    <script language="javascript" type="text/javascript"> 
-     function toggleFields(namecheck) {
-      //  alert(namecheck.checked);
-        if (namecheck.checked == true){
-             document.getElementById("compensation").style.display="block";
-             document.getElementById("compensation_label").style.display="block";
-             document.getElementById("paid").value="y";
-        } else {
-             document.getElementById("compensation").style.display="none";
-             document.getElementById("compensation_label").style.display="none";
-             document.getElementById("paid").value="n";
-		}			
-     }
-    </script>
-            
-                
-    
 <!--
 <link rel="stylesheet" type="text/css" href="../style/'.$settings['style'].'/'.$stylesheet.'">
 -->
@@ -79,8 +61,6 @@ echo '<script type="text/javascript">
 tinymce.init({
     selector: "textarea"
  });
-
-
 </script>'
 ;}
 
@@ -118,7 +98,7 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
  	// info[0]       1          2      3   4     5     6        7          8	  9
  	// entrytype|menu__area|lang_item|url|icon|target|addp?|showonlyifp?|hideifp?|options_condition
 
-	global $settings__root_url, $color, $lang, $menu__area, $settings, $settings__server_url, $settings__root_directory;
+	global $settings__root_url, $color, $lang, $menu__area, $settings;
 
 
 	if (isset($_REQUEST['p']) && !(thisdoc()=="participant_create.php")) {
@@ -133,6 +113,7 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
         
         
         if (strpos($url,'/public/') !== false) {          
+
             echo '<nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -146,7 +127,7 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
 
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="http://'.$settings__server_url.$settings__root_directory.'/public">mainpage</a></li> 
+        <li><a href="'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'/public/index.php">mainpage</a></li> 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Participant <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -155,13 +136,13 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
         <li><a href="participant_edit.php">my data</a></li>
         <li><a href="participant_show.php">my registrations</a></li>
         <li><a href="participant_feedback.php">my feedbacks</a></li>
+        <li><a href="participant_credits.php">my credits</a></li>
         </ul>
         </li>
         <li><a href="show_calendar.php">calendar</a></li>
         <li><a href="rules.php">rules</a></li>
         <li><a href="privacy.php">privacy_policy</a></li>
         <li><a href="faq.php">faqs</a></li>
-        <li><a href="ie.php">internet_experiments</a></li>        
         <li><a href="impressum.php">impressum</a></li>
         <li><a href="contact.php">contact</a></li>        
       </ul>
@@ -184,7 +165,7 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
 
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-2">
       <ul class="nav navbar-nav">
-      <li><a href="http://'.$settings__server_url.$settings__root_directory.'/admin">home</a></li>
+      <li><a href="/admin/">home</a></li>
       <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Experiments <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">

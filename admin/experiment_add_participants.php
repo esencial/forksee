@@ -150,7 +150,7 @@ include ("header.php");
 				}
 		$_SESSION['assign_ids']=array();
 		$exptypes=load_external_experiment_type_names(false);
-		$wstring="subscriptions LIKE '%".$experiment['experiment_ext_type']."%'";
+		//$wstring="subscriptions LIKE '%".$experiment['experiment_ext_type']."%'";
 		echo participants__count_participants($wstring);
 		echo ' '.$lang['xxx_part_in_db_for_xxx_exp'].' ';
 		echo $exptypes[$experiment['experiment_ext_type']];

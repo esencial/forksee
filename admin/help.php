@@ -11,7 +11,7 @@ include ("../style/".$settings['style']."/help_html_header.php");
 		}
 	   elseif ($_REQUEST['topic']=="login_names") {
 		echo '<TABLE>
-			<TR class="cabecera">
+			<TR class="cabecera2">
 				<TD>'.$lang['name'].'</TD>
 				<TD>'.$lang['login_name'].'</TD>
 			</TR>';

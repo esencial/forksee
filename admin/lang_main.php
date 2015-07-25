@@ -77,7 +77,7 @@ include ("header.php");
 
 	echo '<FORM action="'.thisdoc().'">';
 	echo '<TABLE border=0 width="80%">
-		<TR class="cabecera"><TD colspan=2>'.$lang['installed_languages'].'</TD>
+		<TR class="cabecera2"><TD colspan=2>'.$lang['installed_languages'].'</TD>
 		<TD>'.$lang['available_in_public_area'].'</TD><TD>'.$lang['available_for_participants'].'</TD>
 		<TD></TD><TD></TD></TR>';
 	foreach ($languages as $language) { 

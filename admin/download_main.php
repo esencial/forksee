@@ -33,7 +33,7 @@ include ("header.php");
 		}
 	   else {
 
-                echo '  <TR class="cabecera">
+                echo '  <TR class="cabecera2">
 			<TD>
                                 '.$lang['general_downloads'].'
                         </TD>

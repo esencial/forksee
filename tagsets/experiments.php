@@ -57,7 +57,7 @@ function experiment__current_experiment_summary($experimenter="",$finished="n",$
 	
 		echo '</TR>
 			<TR><TD>&nbsp;&nbsp;&nbsp;</TD>
-			<TD class="cabecera">
+			<TD class="cabecera2">
 
 			<TABLE border=0 width="100%">
 			<TR class="cabecera"><TD colspan=2>

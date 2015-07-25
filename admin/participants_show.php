@@ -38,7 +38,8 @@ include ("header.php");
                         	FROM ".table('participants')."  
 							WHERE";
 							if ($deleted=='b') $select_query.=" (deleted='y' OR deleted='n') ";
-							else $select_query.=" deleted='".$deleted."' ";
+						//	else $select_query.=" deleted='".$deleted."' ";
+							else $select_query.=" deleted='n' ";
                         	$select_query.=$where_clause;
 
             $_SESSION['assign_where_clause']=$where_clause;

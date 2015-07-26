@@ -5,6 +5,15 @@ ob_start();
 $menu__area="my_registrations";
 include("header.php");
 
+	if (isset($_REQUEST['cal'])){
+		
+		
+		$p = url_cr_decode($_REQUEST['p']);
+		$e = $_REQUEST['s'];
+	
+		save_record($p, $e);
+		
+	}
 
 	if (isset($_REQUEST['s']) && $_REQUEST['s']) $session_id=url_cr_decode_session($_REQUEST['s']); else $session_id="";
 
@@ -151,13 +160,17 @@ include("header.php");
 	$labs=expregister__list_invited_for($participant_id);
 
 
-	echo '<TR><TD colspan=3>&nbsp;</TD></TR>
+/*	echo '<TR><TD colspan=3>&nbsp;</TD></TR>
 		<TR><TD colspan=3 class="cabecera">
 		'.$lang['experiments_already_registered_for'].'
 		(<A HREF="javascript:openprint()">'.$lang['print_version'].'</A>)
 		</TD>
-		</TR>';
-
+		</TR>';*/
+	echo '<TR><TD colspan=3>&nbsp;</TD></TR>
+			<TR><TD colspan=3 class="cabecera">
+			'.$lang['experiments_already_registered_for'].'
+			</TD>
+			</TR>';
 	$labs2=expregister__list_registered_for($participant_id,$session_id);
 
 	echo '<TR><TD colspan=3>&nbsp;</TD></TR>';

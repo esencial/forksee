@@ -73,10 +73,13 @@ function calendar__month_table_inner($time=0,$admin=false,$print=false) {
 
 	$expcolors_max=count($expcolors_poss)-1;
 
-	$query="SELECT * FROM ".table('sessions').", ".table('experiments').", ".table('lang')."
+/*	$query="SELECT * FROM ".table('sessions').", ".table('experiments').", ".table('lang')."
         	WHERE ".table('sessions').".experiment_id=".table('experiments').".experiment_id
         	AND ".table('sessions').".laboratory_id=".table('lang').".content_name
-        	AND ".table('lang').".content_type='laboratory'";
+        	AND ".table('lang').".content_type='laboratory'";*/
+	$query="SELECT * FROM ".table('sessions').", ".table('experiments').", ".table('lang')."
+		        	WHERE ".table('sessions').".experiment_id=".table('experiments').".experiment_id
+		        	AND ".table('sessions').".laboratory_id=".table('lang').".content_name";	
 	if (!$admin) $query.=" AND ".table('experiments').".hide_in_cal='n' ";
 	$query.=" AND session_start_year='".$year."'
                  AND session_start_month='".$date['mon']."'
@@ -215,7 +218,10 @@ function calendar__month_table_inner($time=0,$admin=false,$print=false) {
         					}
         				echo '<FONT color="'.$thcolor.'">'.$text.'</FONT>';
                                         
-                                        if (($cs__status == "not_enough_participants")||($cs__status == "not_enough_reserve")) echo '<BR><FONT color="'.$thcolor.'"><a href="'.$settings__root_directory."/public/participant_confirm.php?p=".url_cr_encode($_SESSION['participant_id']).'">SIGN IN</a></FONT>';
+                                        
+                                        if (($cs__status == "not_enough_participants")||($cs__status == "not_enough_reserve")) {
+											echo '<BR><FONT color="'.$thcolor.'"><a href="' . $settings__root_directory . "/public/participant_show.php?p=" . url_cr_encode($_SESSION['participant_id']) . "&cal=true&s=" . ($entry['experiment_id']).'">SIGN IN</a></FONT>';
+										}
                                         
         				}
 

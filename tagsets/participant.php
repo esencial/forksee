@@ -850,5 +850,9 @@ function participant__load_result_table_fields($type='search',$tlang='') { // ty
 	return $result_columns;
 }
 
+function save_record($part, $experiment){
+    $query="INSERT INTO " . table('participate_at') . " (participant_id,experiment_id) VALUES (" . $part .",". $experiment .") ";
 
+    $result=mysqli_query($GLOBALS['mysqli'],$query) or die("Ya estás dado de alta en el experimento, no puedes darte de alta de nuevo");            
+}
 ?>

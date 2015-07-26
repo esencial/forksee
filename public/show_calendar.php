@@ -2,8 +2,14 @@
 // part of orsee. see orsee.org
 ob_start();
 
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+
+
+
 include_once ("header.php");
 include_once ('session.php');
+include_once ('./assets/functions.php');
 $menu__area="calendar";
 
 //include ("header.php");
@@ -15,6 +21,8 @@ $menu__area="calendar";
 		<center>
 		<BR><BR>
 		<H4>'.$lang['experiment_calendar'].'</h4>';
+        
+        softBan();
         
 	if (!(isset($_REQUEST['year']) && $_REQUEST['year'])) {
 

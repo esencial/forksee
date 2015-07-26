@@ -192,14 +192,21 @@ function experimentmail__send_invitations_to_queue($experiment_id,$whom="not-inv
 	mt_srand((double)microtime()*1000000);
         $now=mt_rand();
         $order="ORDER BY rand(".$now.") ";
-	$query="INSERT INTO ".table('mail_queue')." (timestamp,mail_type,mail_recipient,experiment_id) 
+/*	$query="INSERT INTO ".table('mail_queue')." (timestamp,mail_type,mail_recipient,experiment_id) 
 		SELECT UNIX_TIMESTAMP(),'invitation', ".table('participants').".participant_id, experiment_id 
 		FROM ".table('participants').", ".table('participate_at')." 
 		WHERE experiment_id='".$experiment_id."' 
 		AND ".table('participants').".participant_id=".table('participate_at').".participant_id ".
 		$aquery." 
-		AND registered = 'n' AND deleted='n'".$order;
-
+		AND registered = 'n' AND deleted='n'".$order;*/
+	$query="INSERT INTO ".table('mail_queue')." (timestamp,mail_type,mail_recipient,experiment_id) 
+			SELECT UNIX_TIMESTAMP(),'invitation', ".table('participants').".participant_id, experiment_id 
+			FROM ".table('participants').", ".table('participate_at')." 
+			WHERE experiment_id='".$experiment_id."' 
+			AND ".table('participants').".participant_id!=".table('participate_at').".participant_id ".
+			$aquery." 
+			AND registered = 'n' AND deleted='n'".$order;	
+//echo $query;die();
 	$done=mysqli_query($GLOBALS['mysqli'],$query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']));
 	$count=mysqli_affected_rows($GLOBALS['mysqli']);
 	return $count;

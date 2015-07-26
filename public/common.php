@@ -29,7 +29,7 @@ $part_load=array("participant_edit.php",
 		"participant_delete.php",
 		"participant_show.php",
 		"participant_show_print.php");
-if (!$participant_id) $participant_id = $_SESSION['participant_id'];
+if (!ISSET($participant_id)) $participant_id = $_SESSION['participant_id'];
 if (in_array(thisdoc(),$part_load)) {
 	// fix the uuencode malformed url issue
 	

@@ -54,14 +54,23 @@ function expregister__list_invited_for_format($varray) {
 
 
 function expregister__list_invited_for($participant_id) {
-	$query="SELECT *
+//	$query="SELECT *
+//      		FROM ".table('participate_at').", ".table('experiments').", ".table('sessions')." 
+//        	WHERE ".table('experiments').".experiment_id=".table('sessions').".experiment_id
+//		AND ".table('experiments').".experiment_id=".table('participate_at').".experiment_id
+//		AND ".table('participate_at').".participant_id = '".$participant_id."'
+//		AND ".table('sessions').".session_finished = 'n'
+//		AND ".table('participate_at').".registered = 'n'
+//		AND ".table('experiments').".experiment_type='laboratory'
+//      		ORDER BY ".table('experiments').".experiment_id, session_start_year, session_start_month, session_start_day,
+//                 session_start_hour, session_start_minute";
+    $query="SELECT *
       		FROM ".table('participate_at').", ".table('experiments').", ".table('sessions')." 
         	WHERE ".table('experiments').".experiment_id=".table('sessions').".experiment_id
 		AND ".table('experiments').".experiment_id=".table('participate_at').".experiment_id
 		AND ".table('participate_at').".participant_id = '".$participant_id."'
 		AND ".table('sessions').".session_finished = 'n'
 		AND ".table('participate_at').".registered = 'n'
-		AND ".table('experiments').".experiment_type='laboratory'
       		ORDER BY ".table('experiments').".experiment_id, session_start_year, session_start_month, session_start_day,
                  session_start_hour, session_start_minute";
 	$labs=orsee_query($query,"expregister__list_invited_for_format");
@@ -159,7 +168,7 @@ function expregister__list_registered_for($participant_id,$reg_session_id="",$ty
 		<TABLE width="100%" border=';
 	if ($type=="print") echo "1"; else echo "0";
 	echo '>';
-	$query="SELECT *
+	/*$query="SELECT *
       		FROM ".table('experiments').", ".table('sessions').", ".table('participate_at')."
         	WHERE ".table('experiments').".experiment_id=".table('sessions').".experiment_id
 		AND ".table('experiments').".experiment_id=".table('participate_at').".experiment_id
@@ -169,8 +178,19 @@ function expregister__list_registered_for($participant_id,$reg_session_id="",$ty
 		AND ".table('participate_at').".registered = 'y' 
 		AND ".table('experiments').".experiment_type='laboratory' 
       		ORDER BY session_start_year, session_start_month, session_start_day,
-                 	session_start_hour, session_start_minute";
+                 	session_start_hour, session_start_minute";*/
 
+        $query="SELECT *
+      		FROM ".table('experiments').", ".table('sessions').", ".table('participate_at')."
+        	WHERE ".table('experiments').".experiment_id=".table('sessions').".experiment_id
+		AND ".table('experiments').".experiment_id=".table('participate_at').".experiment_id
+		AND ".table('participate_at').".participant_id = '".$participant_id."'
+		AND ".table('sessions').".session_id = ".table('participate_at').".session_id
+		AND ".table('sessions').".session_finished = 'n'
+		AND ".table('participate_at').".registered = 'y' 
+      		ORDER BY session_start_year, session_start_month, session_start_day,
+                 	session_start_hour, session_start_minute";
+        
         $result=mysqli_query($GLOBALS['mysqli'],$query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']));
 		$labs=array();
                 while ($line = mysqli_fetch_assoc($result)) {
@@ -190,14 +210,23 @@ function expregister__list_history($participant_id) {
 	echo '<TR><TD colspan=3>
 		<TABLE width=100% border=0>';
 
-     	$query="SELECT *
+//     	$query="SELECT *
+//      		FROM ".table('experiments').", ".table('sessions').", ".table('participate_at')."
+//        	WHERE ".table('experiments').".experiment_id=".table('sessions').".experiment_id
+//        	AND ".table('experiments').".experiment_id=".table('participate_at').".experiment_id
+//        	AND ".table('participate_at').".participant_id = '".$participant_id."'
+//        	AND ".table('sessions').".session_id = ".table('participate_at').".session_id
+//        	AND ".table('participate_at').".registered = 'y'
+//		AND ".table('experiments').".experiment_type='laboratory' 
+//      		ORDER BY session_start_year DESC, session_start_month DESC, session_start_day DESC,
+//                 	session_start_hour DESC, session_start_minute DESC";
+        $query="SELECT *
       		FROM ".table('experiments').", ".table('sessions').", ".table('participate_at')."
         	WHERE ".table('experiments').".experiment_id=".table('sessions').".experiment_id
         	AND ".table('experiments').".experiment_id=".table('participate_at').".experiment_id
         	AND ".table('participate_at').".participant_id = '".$participant_id."'
         	AND ".table('sessions').".session_id = ".table('participate_at').".session_id
         	AND ".table('participate_at').".registered = 'y'
-		AND ".table('experiments').".experiment_type='laboratory' 
       		ORDER BY session_start_year DESC, session_start_month DESC, session_start_day DESC,
                  	session_start_hour DESC, session_start_minute DESC";
         $result=mysqli_query($GLOBALS['mysqli'],$query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']));

@@ -47,6 +47,20 @@ function checkUNEmail($id)
 		return $error;
 	}
 }
+
+function softBan() {
+        
+    $query="SELECT * FROM or_participate_at INNER JOIN or_experiments ON or_participate_at.experiment_id = or_experiments.experiment_id WHERE or_participate_at.participant_id = ".$_SESSION['participant_id']." AND or_experiments.excluding = 'y' AND or_experiments.experiment_finished = 'n'";
+    //SGC -- ACABAR. HAY QUE AJUSTAR MÁS LOS CRITERIOS.
+    $SQL=orsee_query($query);
+	if ($SQL)
+	{
+		echo "Estás realizando un experimento excluyente con el resto. Cuando termines el experimento, podrás volver a apuntarte a otros.";
+		die();
+	}
+    //echo $query;
+}
+
 /*function getSecurityQuestion($userID)
 {
 	global $mySQL;

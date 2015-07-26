@@ -87,8 +87,8 @@ function query__join_assign($experiment,$query_modules,$use) {
         	}
 	$query__join_phrase.=	") WHERE ".table('participate_at').".participant_id IS NULL ";
 
-	$query__join_phrase.=" AND ".table('participants').".subscriptions LIKE '%".
-				$experiment['experiment_ext_type']."%'"; 
+	//$query__join_phrase.=" AND ".table('participants').".subscriptions LIKE '%".
+	//			$experiment['experiment_ext_type']."%'"; 
 	$query__join_phrase.=" AND ".table('participants').".deleted='n'";
 	return $query__join_phrase;
 }

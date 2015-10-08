@@ -11,6 +11,10 @@ and open the template in the editor.
 .toHide, .url, .hideBanned{
     display:none;
 }
+.only-parent{
+	display: block;
+}
+
 #main {
 width:960px;
 margin:50px auto;
@@ -20,7 +24,7 @@ span {
 color:red
 }
 h2 {
-background-color:#FEFFED;
+/*background-color:#FEFFED;*/
 text-align:center;
 border-radius:10px 10px 0 0;
 margin:-10px -40px;
@@ -50,7 +54,7 @@ font-size:16px;
 font-family:raleway
 }
 input[type=submit] {
-width:100%;
+width:200px;
 background-color:#038516;
 color:#fff;
 border:2px solid #038516;

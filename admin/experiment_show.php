@@ -112,7 +112,7 @@ include ("header.php");
 		<TR>
 			<TD colspan=2 bgcolor="'.$color['list_list_background'].'">
 
-			<TABLE border=0 width=100%>';
+			<TABLE border=1 width=100%>';
 
      	$query="SELECT *
       		FROM ".table('sessions')."
@@ -132,10 +132,12 @@ include ("header.php");
 		</TR>
 		<TR>
 			<TD>';
-				if (check_allow('session_edit')) echo '
+				if (check_allow('session_edit')) {
+                                    echo '
 					<A HREF="session_edit.php?experiment_id='.
 						$experiment['experiment_id'].'">'.
-					$lang['create_new'].'</A>';
+					$lang['create_new'].'</A><BR />';
+                                }
 	echo '		</TD>
 			<TD>
 			</TD>

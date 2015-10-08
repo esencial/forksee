@@ -8,14 +8,15 @@
                         <td>#lname#</td>
                 </tr> -->
 
-		<tr #error_password#>
-                        <td>lang[password]</td>
-                        <td>#password#</td>
-                </tr>
+		
 		<tr #error_identification_number#>
                         <td>lang[identification_number]</td>
                         <td>#identification_number#</td>
                 </tr>
+				<tr #error_password#>
+		                        <td>lang[password]</td>
+		                        <td>#password#</td>
+		                </tr>
 		<tr #error_email#>
                         <td>lang[e-mail-address]</td>
                         <td>#email#</td>
@@ -73,7 +74,7 @@
                         <td>#underage#</td>
                 </tr>
 
-		<tr>
+	<!--	<tr>
 			<td class="toHide">lang[parent_firstname]</td>
 			<td class="toHide">#parent_fname#</td>
 		</tr>
@@ -81,7 +82,7 @@
 		<tr>
                         <td class="toHide">lang[parent_lastname]</td>
                         <td class="toHide">#parent_lname#</td>
-                </tr>
+                </tr>-->
 
 		<tr>
                         <td class="toHide">lang[parent_id]</td>
@@ -139,8 +140,8 @@
                 </tr>
 
 		<tr>
-                        <td>lang[children]</td>
-                        <td>#children#</td>
+                        <td class="only-parent">lang[children]</td>
+                        <td class="only-parent">#children#</td>
                 </tr>
 
 		<tr>
@@ -159,16 +160,16 @@
                 	<td>
                 		<table width="100%" border="0">
                 			<tr>
-						<td #error_field_of_studies#>lang[studies]<br />#field_of_studies#</td>
+						<td class="only-parent" #error_field_of_studies#>lang[studies]<br />#field_of_studies#</td>
 
-        					<td align="center">&nbsp;lang[or]&nbsp;</td>
+        					<td class="only-parent" align="center">&nbsp;lang[or]&nbsp;</td>
 
-						<td #error_profession#>lang[profession]<br />#profession#</td>
+						<td class="only-parent" #error_profession#>lang[profession]<br />#profession#</td>
 					</tr>
-					<tr>
+			<!--		<tr>
 						<td #error_begin_of_studies#>lang[begin_of_studies]<br />#begin_of_studies#</td>
 						<td colspan="2"></td>
-					</tr>
+					</tr>-->
 				</table>
 			</td>
                 </tr> }
@@ -178,11 +179,12 @@
                         <td>lang[studies]</td>
                         <td>#field_of_studies#</td>
 		</tr>
-
+<!--
 		<tr #error_begin_of_studies#>
 			<td>lang[begin_of_studies]</td>
 			<td>#begin_of_studies#</td>
-                </tr> }
+                </tr> -->
+}
 
 		{ #is_subpool_type_w#
                 <tr #error_profession#>
@@ -193,6 +195,7 @@
 $(function() {
     $("[name=underage]").click(function(){
             $('.toHide').toggle();
+			$('.only-parent').toggle();
     });
  });
  </script>

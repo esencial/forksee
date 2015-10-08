@@ -1,9 +1,9 @@
 <?php
-
 include_once ("header.php");
 include_once ('session.php');
 $menu__area="my_data";
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 	$form=true;
 	

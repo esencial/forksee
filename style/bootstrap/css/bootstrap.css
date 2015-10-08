@@ -69,7 +69,7 @@ mark {
   background: #ff0;
 }
 small {
-  font-size: 80%;
+  font-size: 95% !important;
 }
 sub,
 sup {

@@ -11,7 +11,7 @@ $experiment_GET = $_GET['exp'];
 
 if(!is_null($experiment_GET))
 {
-    $query1 = "SELECT * FROM ".table('experiment_participant_feeback')." WHERE idParticipant='".$_SESSION['login_user']."' AND idExperiment='".$experiment_GET."'"; 
+    $query1 = "SELECT * FROM ".table('participate_at')." WHERE participant_id='".$_SESSION['login_user']."' AND experiment_id='".$experiment_GET."'"; 
     $result=orsee_query($query1);
 
     if(is_null($result)){   //si no resulta exitosa la consulta, quiere decir que el menda intentaba acceder por URL y le mandamos de vuelta al login
@@ -43,18 +43,18 @@ if ($_SERVER['REQUEST_METHOD']=='POST') //AL pulsar guardar...
     {
         $feedBack_POST=$_POST['feed'];
 
-        $query1 = "UPDATE ".table('experiment_participant_feeback')." SET feedback='".$feedBack_POST."' WHERE idParticipant='".$_SESSION['login_user']."' AND idExperiment='".$experiment_GET."'";  //TODO poner el que sea de session
+        $query1 = "UPDATE ".table('participate_at')." SET feedback='".$feedBack_POST."' WHERE participant_id='".$_SESSION['login_user']."' AND experiment_id='".$experiment_GET."'";  
         $result=orsee_query($query1);
-        echo $lang['changes_saved'];
+        echo "</br></br><p align='center'>".$lang['changes_saved']."</p></br></br>";
     }
     else        //SI no cambio de select, está en el mismo que en el principio. Esto se ha montado asi ya que el elemnto <select> tiene el mismo nombre y no se puede distinguir si viene por GET o por POST para actualziarlos ya que parece que el superglogal $_request lo edita por igual
     {
         $expId_POST = $_POST['exp'];
         $feedBack_POST=$_POST['feed'];
 
-        $query1 = "UPDATE ".table('experiment_participant_feeback')." SET feedback='".$feedBack_POST."' WHERE idParticipant='".$_SESSION['login_user']."' AND idExperiment='".$expId_POST."'";  //TODO poner el que sea de session
+        $query1 = "UPDATE ".table('participate_at')." SET feedback='".$feedBack_POST."' WHERE participant_id='".$_SESSION['login_user']."' AND experiment_id='".$expId_POST."'";  
         $result=orsee_query($query1);
-       echo $lang['changes_saved'];
+       echo "</br></br><p align='center'>".$lang['changes_saved']."</p></br></br>";
     }  
 }  
   
@@ -64,12 +64,13 @@ $experiment_GET = $_GET['exp'];
 
 if(!is_null($experiment_GET))
 {   
-    $query1 = "SELECT * FROM ".table('experiment_participant_feeback')." WHERE idParticipant='".$_SESSION['login_user']."'";  //TODO poner el que sea de session
+    $query1 = "SELECT * FROM ".table('participate_at')." WHERE participant_id='".$_SESSION['login_user']."'";  
+    
     $result=orsee_query($query1,'S');
     
     
     
-    $queryAux = "SELECT * FROM ".table('experiments')." WHERE experiment_id='".$experiment_GET."'";  //TODO poner el que sea de session
+    $queryAux = "SELECT * FROM ".table('experiments')." WHERE experiment_id='".$experiment_GET."'";  
     $resultAux=orsee_query($queryAux,'S');
     
     foreach($resultAux as $rowAux)                  
@@ -80,17 +81,17 @@ if(!is_null($experiment_GET))
         }
     }
     echo '<form method="POST">';
-    echo '<select name="exp" id="exp" onChange="getData(this)">';
+    echo 'Select an experiment to see or add a feedback: <select name="exp" id="exp" onChange="getData(this)">';
     echo '<option>'.$expName.'</option>';  
     
     foreach($result as $row)
     {
-        if($row['idExperiment']==$experiment_GET)
+        if($row['experiment_id']==$experiment_GET)
         {
             $feedBack = $row['feedback'];
         }
         
-        $query2 = "SELECT * FROM ".table('experiments')." WHERE experiment_id='".$row['idExperiment']."'";
+        $query2 = "SELECT * FROM ".table('experiments')." WHERE experiment_id='".$row['experiment_id']."'";
         $result2=orsee_query($query2,'S');
         
         foreach($result2 as $row2)
@@ -101,7 +102,7 @@ if(!is_null($experiment_GET))
     }
     echo '</select>';
     
-    echo '</br></br><textarea id="feed" name="feed" rows="4" cols="50">'.$feedBack.'</textarea>';
+    echo '</br></br><div align="center"><textarea id="feed" name="feed" rows="10" cols="100">'.$feedBack.'</textarea></div></br></br>';
     
     echo '<input type="submit" value="Save Changes"></input>';
     
@@ -109,21 +110,26 @@ if(!is_null($experiment_GET))
 }
 else
 {
-        $query1 = "SELECT * FROM ".table('experiment_participant_feeback')." WHERE idParticipant='".$_SESSION['login_user']."'";    //TODO poner el que sea de session
+        $query1 = "SELECT * FROM ".table('participate_at')." WHERE participant_id='".$_SESSION['login_user']."'";    
         $result=orsee_query($query1,'S');
         if(!is_null($result))
         {
             echo '<form method="POST">';
-            echo '<select name="exp" id="exp" onChange="getData(this)">';
+            echo 'Select an experiment to see or add a feedback: <select name="exp" id="exp" onChange="getData(this)">';
             //while(count($result)!=0)
             foreach($result as $row)
             {   
                 if(!isset($firstFeedBack))
                 {
-                    $firstFeedBack = $row['feedback'];      //Es el primer registro de feedbacks y que coincide con el primero por defecto del <select>
+                    if($row['feedback']==NULL){
+                        $firstFeedBack="";          //Por si el primero fuera NULL y no se cumpliese el isset()
+                    }
+                    else{
+                        $firstFeedBack = $row['feedback'];   //Es el primer registro de feedbacks y que coincide con el primero por defecto del <select>
+                    }
                 }
 
-                $query2 = "SELECT * FROM ".table('experiments')." WHERE experiment_id='".$row['idExperiment']."'";
+                $query2 = "SELECT * FROM ".table('experiments')." WHERE experiment_id='".$row['experiment_id']."'";
                 $result2=orsee_query($query2,'S');
                 foreach($result2 as $row2)
                 {
@@ -134,7 +140,7 @@ else
             }
             echo '</select>';
 
-           echo '</br></br><textarea rows="4" id="feed" name="feed" cols="50">'.$firstFeedBack.'</textarea> </br></br>';
+           echo '</br></br><div align="center"><textarea id="feed" name="feed" rows="10" cols="100">'.$firstFeedBack.'</textarea></div></br></br>';
 
            echo '<input type="submit" value="Save Changes"></input>';
            echo '</form>';

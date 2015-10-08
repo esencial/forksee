@@ -82,7 +82,7 @@ include ("header.php");
 	$button_title = ($participant_id) ? $lang['save'] : $lang['add'];
 
 	participant__show_form($_REQUEST,$button_title,$lang['edit_participant'],$errors__dataform,true);
-        
+
 	if ($participant_id) {
 
 	echo '<CENTER><BR><BR>';

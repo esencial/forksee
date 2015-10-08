@@ -31,6 +31,7 @@ include ("header.php");
                 $year=$query2['year'];
                 $credits=$query2['credits'];
                 
+                
                 echo "<tr><td width=20>".$id."</td>";
                 echo "<td width=20>".$desc."</td>";
                 echo "<td width=20>".$degree."</td>";

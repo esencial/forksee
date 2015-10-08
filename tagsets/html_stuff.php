@@ -1,5 +1,6 @@
 <?php
 // part of orsee. see orsee.org
+ob_start();
 
 //resubida
 function navigation($orientation="horizontal",$icons=true) {
@@ -49,7 +50,7 @@ echo '<!DOCTYPE html><html>
     <script type="text/javascript" src="../style/bootstrap/js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="../style/bootstrap/js/bootstrap.min.js"></script>
 <!--
-<link rel="stylesheet" type="text/css" href="../style/'.$settings['style'].'/'.$stylesheet.'">
+<link rel="stylesheet" type="text/css" href="../style/'.$settings['style'].'/'./*$stylesheet.*/'">
 -->
 <script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>';
 
@@ -97,8 +98,8 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
 	// menu entry format:
  	// info[0]       1          2      3   4     5     6        7          8	  9
  	// entrytype|menu__area|lang_item|url|icon|target|addp?|showonlyifp?|hideifp?|options_condition
-
-	global $settings__root_url, $color, $lang, $menu__area, $settings;
+	
+    global $settings__root_url, $settings__server_url, $settings__root_directory, $color, $lang, $menu__area, $settings;
 
 
 	if (isset($_REQUEST['p']) && !(thisdoc()=="participant_create.php")) {
@@ -109,11 +110,7 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
         	}
         $url="http://".$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_PORT'].$_SERVER['REQUEST_URI'];
         
-        
-        
-        
-        if (strpos($url,'/public/') !== false) {          
-
+		if (strpos($url,'/public/') !== false) { 
             echo '<nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -127,17 +124,23 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
 
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'/public/index.php">mainpage</a></li> 
+        <li><a href="'.$settings__root_directory.'/public/index.php">mainpage</a></li> 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Participant <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-        <li><a href="participant_create.php">register</a></li>
-        <li><a href="participant_login.php">login</a></li>
-        <li><a href="participant_edit.php">my data</a></li>
+          <ul class="dropdown-menu" role="menu">';
+
+		if (!(isset($_SESSION['login_user']))) {
+			echo '<li><a href="participant_create.php">register</a></li>
+				<li><a href="participant_login.php">login</a></li>';
+		} else {
+ 			echo ' <li><a href="participant_edit.php">my data</a></li>
         <li><a href="participant_show.php">my registrations</a></li>
         <li><a href="participant_feedback.php">my feedbacks</a></li>
         <li><a href="participant_credits.php">my credits</a></li>
-        </ul>
+		<li><a href="logout.php">logout</a></li>
+		';}
+
+		echo '</ul>
         </li>
         <li><a href="show_calendar.php">calendar</a></li>
         <li><a href="rules.php">rules</a></li>

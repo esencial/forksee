@@ -16,7 +16,7 @@ include ("header.php");
 		<BR><BR>
 		<h3>'.$lang['log_files'].': '.$lang[$log].'</h3>
 		';
-
+        
 	$num_rows=log__show_log($log);
 
 

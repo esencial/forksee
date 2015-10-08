@@ -453,7 +453,17 @@ function participantform__load() {
 	}
 	return $pform;
 }
-
+function participantformedit__load() {
+	$pform=participantformedit__define();
+	foreach ($pform as $k=>$f) {
+		$t=participantform__allvalues();	
+		foreach ($f as $kf=>$vf) {
+			$t[$kf]=$vf;
+		}
+		$pform[$k]=$t;
+	}
+	return $pform;
+}
 
 // processing the template
 function load_form_template($tpl_name,$out) {
@@ -725,7 +735,12 @@ function participant__show_form($edit,$button_title="",$form_title="",$errors,$a
 
 	if ($admin) $nonunique=participantform__get_nonunique($edit,$edit['participant_id']);
 
-	$formfields=participantform__load();
+	if (!isset($edit['s'])) {
+		$formfields=participantform__load();
+	}else{
+		
+		$formfields=participantformedit__load();
+	}
 
 	foreach ($formfields as $f) { 
 	if($f['subpools']=='all' | in_array($subpool['subpool_id'],explode(",",$f['subpools']))) {
@@ -767,9 +782,12 @@ function participant__show_form($edit,$button_title="",$form_title="",$errors,$a
 			$tout['error_'.$f['mysql_column_name']]=''; 
 		}
 	}}
-	
-	$formoutput=load_form_template('participant_form',$out);
-
+	if (!isset($edit['s'])) {
+		$formoutput=load_form_template('participant_form',$out);
+	}else{
+		
+		$formoutput=load_form_template('participant_form_edit',$out);
+	}	
 	echo '<table cellspacing=0 cellpadding="10em" border=0 width="90%">';
 	echo $formoutput;
 

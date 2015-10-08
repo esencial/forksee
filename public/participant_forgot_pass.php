@@ -5,11 +5,9 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
-        
-error_reporting(E_ALL ^ E_NOTICE);		
-ini_set('display_errors', 1);    
-        
-include ("header.php");
+include_once ("header.php");
+include_once ('session.php');
+
 include("assets/functions.php");
 
 
@@ -122,7 +120,7 @@ include("assets/functions.php");
     <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
         <div class="fieldGroup"><label for="idnumber">Identification number</label><div class="field"><input type="text" name="idnumber" id="idnumber" value="" maxlength="20"></div></div>
         <input type="hidden" name="subStep" value="1" />
-        <div class="fieldGroup"><input type="submit" value="Submit" style="margin-left: 150px;" /></div>
+        <div class="fieldGroup"><input type="submit" value="Submit" /></div>
         <div class="clear"></div>
     </form>
     <?php break;

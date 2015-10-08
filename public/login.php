@@ -63,7 +63,7 @@ else
             
             $_SESSION['login_user']=$username; // Initializing Session
             $_SESSION['participant_id']=$result['participant_id'];
-            header("location: participant_edit.php"); // Redirecting To Other Page
+            header("location: show_calendar.php"); // Redirecting To Other Page
 
                 
         }else {

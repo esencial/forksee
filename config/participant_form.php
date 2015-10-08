@@ -179,25 +179,6 @@ $participantform[]=array(
 );
 */
 
-//[SGC] nuevo campo del formulario
-$participantform[]=array(
-'mysql_column_name'=>'password',
-'name_lang'=>'password',
-'type'=>'textline',
-'subpools'=>'all',
-'compulsory'=>'y',
-'error_message_if_empty_lang'=>'you_have_to_password',
-'default_value'=>'',
-'size'=>'40',
-'maxlength'=>'200',
-'search_include_in_participant_query'=>'n',
-'search_include_in_experiment_assign_query'=>'n',
-'searchresult_list_in_participant_results'=>'n',
-'searchresult_list_in_experiment_assign_results'=>'n',
-'search_result_allow_sort'=>'n',
-'list_in_session_participants_list'=>'n',
-'list_in_session_pdf_list'=>'n'
-);
 
 //[SGC] nuevo campo del formulario (DNI)
 $participantform[]=array(
@@ -217,6 +198,26 @@ $participantform[]=array(
 'search_result_allow_sort'=>'y',
 'list_in_session_participants_list'=>'y',
 'list_in_session_pdf_list'=>'y'
+);
+
+//[SGC] nuevo campo del formulario
+$participantform[]=array(
+'mysql_column_name'=>'password',
+'name_lang'=>'password',
+'type'=>'textline',
+'subpools'=>'all',
+'compulsory'=>'y',
+'error_message_if_empty_lang'=>'you_have_to_password',
+'default_value'=>'',
+'size'=>'40',
+'maxlength'=>'200',
+'search_include_in_participant_query'=>'n',
+'search_include_in_experiment_assign_query'=>'n',
+'searchresult_list_in_participant_results'=>'n',
+'searchresult_list_in_experiment_assign_results'=>'n',
+'search_result_allow_sort'=>'n',
+'list_in_session_participants_list'=>'n',
+'list_in_session_pdf_list'=>'n'
 );
 
 

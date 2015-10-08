@@ -20,6 +20,7 @@ include("header.php");
 	show_message();
 
 	echo '	<H4>'.$lang['admin_login_page'].'</H4>
+	<div id="login">
 		';
 
 	if (isset($_REQUEST['adminname']) && isset($_REQUEST['password'])) {
@@ -41,7 +42,7 @@ include("header.php");
 
 	admin__login_form();
 
-	echo '</center>';
+	echo '</div></center>';
 
 include("footer.php");
 

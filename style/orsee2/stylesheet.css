@@ -1,16 +1,15 @@
 <style type="text/css">
 
-<!--
+/*
 
 body {
 	margin-top: 0px;
 	margin-left: 0px;
 	margin-right: 0px;
 	margin-bottom: 2px;
-        font-family: Helvetica, sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
         font-size: 10pt;
-	font-weight: bold;
-	       color: black;
+	        color: black;
       }
 
 td    { font-family: Arial, Helvetica, sans-serif;
@@ -41,6 +40,7 @@ a, A     { font-family: Arial, Helvetica, sans-serif;
 .title1     { font-family: Arial, helvetica, sans-serif;	
 		font-size: 14pt;
         	text-decoration: none; 
+		font-weight: bold;
 	  }
 
 
@@ -48,13 +48,13 @@ a, A     { font-family: Arial, Helvetica, sans-serif;
 	font-family: Arial, Helvetica, sans-serif;
 	color: white;
 	font-weight: bold;
-	font-size: 9pt;
+	font-size: 10pt;
 	}
 
 .menu_item {
 	font-family: Arial, Helvetica, sans-serif;
 	color: lightgrey;
-	font-size: 9pt;
+	font-size: 10pt;
 	}
+*/
 
-//-->

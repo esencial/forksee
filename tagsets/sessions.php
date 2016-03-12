@@ -28,10 +28,22 @@ function sessions__format_alist($session) {
 				'.laboratories__get_laboratory_name($laboratory_id).'
 			</td>
         		<td>';
-				if (check_allow('session_edit')) echo '
-        			<A HREF="session_edit.php?session_id='.$session_id.'&e=1">
+				if (check_allow('session_edit')) echo '<br>
+        			<A style="width: 100%;
+    background-color: #038516;
+    color: #fff;
+    border: 2px solid #038516;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 15px;" HREF="session_edit.php?session_id='.$session_id.'&e=1">
                 			'.$lang['edit'].'
-                		</A>';
+                		</A><br><br>
+                		<FORM action="session_delete.php">
+				<INPUT type=hidden name=session_id value="'.$session_id.'">
+							<INPUT type=submit name=submit value="'.$lang['delete'].'">
+				</form>';
         echo '		</td>
         	</tr>';
 

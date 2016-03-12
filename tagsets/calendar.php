@@ -77,9 +77,18 @@ function calendar__month_table_inner($time=0,$admin=false,$print=false) {
         	WHERE ".table('sessions').".experiment_id=".table('experiments').".experiment_id
         	AND ".table('sessions').".laboratory_id=".table('lang').".content_name
         	AND ".table('lang').".content_type='laboratory'";*/
-	$query="SELECT * FROM ".table('sessions').", ".table('experiments').", ".table('lang')."
+			
+			
+	$query="SELECT * FROM ".table('sessions').", ".table('experiments').", ".table('lang')." as lang_e  
 		        	WHERE ".table('sessions').".experiment_id=".table('experiments').".experiment_id
-		        	AND ".table('sessions').".laboratory_id=".table('lang').".content_name";	
+					AND ".table('sessions').".laboratory_id=lang_e.content_name"; 
+					/*
+					SELECT * 
+					FROM or_sessions, or_experiments, or_lang AS lang_s, or_lang AS lang_e
+					WHERE or_sessions.experiment_id = or_experiments.experiment_id
+					AND or_experiments.experiment_class = lang_e.content_name
+					AND or_sessions.laboratory_id = lang_s.content_name
+					*/	
 	if (!$admin) $query.=" AND ".table('experiments').".hide_in_cal='n' ";
 	$query.=" AND session_start_year='".$year."'
                  AND session_start_month='".$date['mon']."'
@@ -164,7 +173,12 @@ function calendar__month_table_inner($time=0,$admin=false,$print=false) {
 				$start_time=time__get_timepack_from_pack($entry,"session_start_");
 				$duration=time__get_timepack_from_pack($entry,"session_duration_");
 				$end_time=time__add_packages($start_time,$duration);
-
+				$query ="SELECT * FROM ".table('lang')." where content_name='".$entry['experiment_class']."'";
+				
+				$result=mysqli_query($GLOBALS['mysqli'],$query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']));
+        		while ($clases=mysqli_fetch_assoc($result)) {
+					$clase = $clases['es'];
+				}	
 				echo time__format($lang['lang'],$start_time,true,false,true,true).'-'.
                                                 time__format($lang['lang'],$end_time,true,false,true,true);
 
@@ -180,6 +194,8 @@ function calendar__month_table_inner($time=0,$admin=false,$print=false) {
         				if ($admin) echo $entry['experiment_name'];
                 				else echo $entry['experiment_public_name'];
         				echo '</FONT>';
+						echo '<br>'.$lang['type'].': '.$lang[$entry['experiment_type']].'<br>';
+						echo '<br>'.$lang['class'].': '.$clase.'<br>';
         				if ((!$print) && $admin && check_allow('experiment_show')) echo '</A>';
 				}
 

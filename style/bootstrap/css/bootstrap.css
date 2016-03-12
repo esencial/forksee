@@ -6319,6 +6319,7 @@ button.close {
 .modal-footer:after {
   clear: both;
 }
+
 .center-block {
   display: block;
   margin-right: auto;
@@ -6563,4 +6564,5 @@ button.close {
     display: none !important;
   }
 }
+
 /*# sourceMappingURL=bootstrap.css.map */

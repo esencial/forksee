@@ -1,12 +1,26 @@
 <?php
 // part of orsee. see orsee.org
-ob_start();
+//ob_start();
 $menu__area="public_register";
 include ("header.php");
 
 if (isset($_REQUEST['no'])) redirect("public/");
 echo '<BR><BR>';
-
+if (isset($_REQUEST['underage'])=='1'){
+	//es menor de edad, busco el mail del padre
+	$query="SELECT email, participant_id FROM ".table('participants')." WHERE identification_name='".($_REQUEST['parent_id'])."'";
+	echo $query;
+	$result = orsee_query($query);
+	if ($result){
+		$email = $result['email'];
+		$parent_id = $result['participant_id'];
+	}else {
+	  echo "No existe este adulto en nuestra base de datos";
+	  exit;
+	}
+}
+$_REQUEST['email'] = $email;
+$_REQUEST['parent_id'] = $parent_id;
 if (!(isset($_REQUEST['s'])) && !(isset($_REQUEST['r']))) {
 	echo '<BR><BR>
 		<center>';
@@ -110,10 +124,12 @@ $form=true; $errors__dataform=array();
 		
 	if ($continue) {
         $participant=$_REQUEST;
+        var_dump($participant);
 		$participant['participant_id']=participant__create_participant_id();
 		$participant['participant_id_crypt']=unix_crypt($participant['participant_id']);
+		$participant['identification_number']=unix_crypt($participant['identification_number']);
 		$participant['creation_time']=time();
-		$participant['password']=unix_crypt($participant['password']); //encriptamos la contraseña
+		$participant['password']=md5($participant['password']); //encriptamos la contraseña
 		if (isset($_REQUEST['subpool_id']) && $_REQUEST['subpool_id']) 
 				$participant['subpool_id']=$_REQUEST['subpool_id'];
 			else  	$participant['subpool_id']=$settings['subpool_default_registration_id'];
@@ -143,7 +159,7 @@ if (isset($_REQUEST['r']) && $_REQUEST['r']=="t") {
 if (isset($_REQUEST['s']) && $_REQUEST['s'] && isset($_REQUEST['dr']) && $_REQUEST['dr']) {
 	$_REQUEST['subpool_id']=$_REQUEST['s'];  
 
-	if ($form) participant__show_form($_REQUEST,$lang['submit'],$lang['registration_form'],$errors__dataform,false);
+	if ($form) participant__show_form($_REQUEST,$lang['submit'],$lang['registration_form'],$errors__dataform,false, false);
 
 	}
 

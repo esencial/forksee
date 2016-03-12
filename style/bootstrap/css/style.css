@@ -11,10 +11,15 @@ and open the template in the editor.
 .toHide, .url, .hideBanned{
     display:none;
 }
-.only-parent{
-	display: block;
+.texto-1{
+	width: 50% !important; 
+	    padding: 10px !important;
+	    margin-top: 8px !important;
+	    border: 1px solid #ccc !important;
+	    padding-left: 5px !important;
+	    font-size: 14px !important;
+	    margin-bottom:10px !important;
 }
-
 #main {
 width:960px;
 margin:50px auto;
@@ -24,7 +29,7 @@ span {
 color:red
 }
 h2 {
-/*background-color:#FEFFED;*/
+background-color:#FEFFED;
 text-align:center;
 border-radius:10px 10px 0 0;
 margin:-10px -40px;
@@ -54,7 +59,7 @@ font-size:16px;
 font-family:raleway
 }
 input[type=submit] {
-width:200px;
+width:100%;
 background-color:#038516;
 color:#fff;
 border:2px solid #038516;
@@ -106,4 +111,55 @@ table.my_table{
 
 span#compensation_label{
     color:#000000 !important;
+}
+.only18{
+	display:inline-grid;
+}
+.btn-danger {
+    color: #fff ;
+    background-color: red;
+    border-color: #2e6da4;
+    display: inline-block !important;
+    padding: 6px 12px !important;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.btn-primary1 {
+    color: #fff ;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    display: inline-block !important;
+    padding: 6px 12px !important;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
 }

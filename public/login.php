@@ -20,17 +20,17 @@ else
 	// To protect MySQL injection for Security purpose
 	$username = stripslashes($username);
 	$password = stripslashes($password);
-        
+    $password = md5($password);    
 	//$username = mysql_real_escape_string($username);
         
         
 	//$password = md5(mysql_real_escape_string($password));
-        $password = md5($password);
+     //   $password = md5($password);
         
         
-	$query1 = "SELECT * FROM ".table('participants')." WHERE password='$password' AND identification_number='$username'";
-	$result=orsee_query($query1);
+	$query1 = "SELECT * FROM ".table('participants')." WHERE password='$password' AND identification_name='$username'";
 	
+	$result=orsee_query($query1);
 	if (!is_null($result)) {
             
             //[SGA] Comprobamos si está baneado
@@ -58,13 +58,12 @@ else
                 //[SGA] Zona reservada para el ban de la fase 2: ban por experimento
                 
                 //End [SGA]
-            }
-            
-            
-            $_SESSION['login_user']=$username; // Initializing Session
-            $_SESSION['participant_id']=$result['participant_id'];
-            header("location: show_calendar.php"); // Redirecting To Other Page
-
+            } else { 
+            	$_SESSION['login_user']=$username; // Initializing Session
+            	$_SESSION['participant_id']=$result['participant_id'];
+            	header("location: participant_show.php"); // Redirecting To Other Page
+				
+			}
                 
         }else {
 	

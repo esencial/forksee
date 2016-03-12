@@ -558,7 +558,7 @@ include ("header.php");
                                 </TD>
                                 <TD>
                                         '; helpers__select_numbers("options[lab_participants_default]",
-                                                                $options['lab_participants_default'],1,
+                                                                $options['lab_participants_default'],0,
 								$options['lab_participants_max'],0,1);
                                                 echo '
                                 </TD>
@@ -580,7 +580,7 @@ include ("header.php");
                                 </TD>
                                 <TD>
                                         '; helpers__select_numbers("options[reserve_participants_default]",
-                                                                $options['reserve_participants_default'],1,
+                                                                $options['reserve_participants_default'],0,
                                                                 $options['reserve_participants_max'],0,1);
                                                 echo '
                                 </TD>

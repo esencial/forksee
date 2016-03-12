@@ -19,7 +19,9 @@ include ("header.php");
 <label>Password:</label>
 <input id="password" name="password" placeholder="**********" type="password">
 <input name="submit" type="submit" value=" Login ">
-<a href="participant_forgot_pass.php">Forgot your password?</a>
+<a href="participant_forgot_pass.php">¿Olvidó su contraseña?</a>
+<br><p>
+<a href="participant_create.php?s=1.php">Registrarse en el sistema</a></p>
 <span><?php echo $error; ?></span>
 </form>
 </div>

@@ -1,7 +1,7 @@
 <?php
 // part of orsee. see orsee.org
 ob_start();
-
+if ($_REQUEST['query_field'] != '')  $_REQUEST['query_field'] = base64_encode($_REQUEST['query_field']);
 $menu__area="participants";
 $title="show participants";
 $query_modules=array("field","noshowups","nr_participations","subjectpool",
@@ -22,8 +22,9 @@ include ("header.php");
 
 	if (isset($_REQUEST['show']) && $_REQUEST['show']) {
 
-		$sort = (isset($_REQUEST['sort']) && $_REQUEST['sort']) ? $_REQUEST['sort']:"lname,fname,email";
-
+	//	$sort = (isset($_REQUEST['sort']) && $_REQUEST['sort']) ? $_REQUEST['sort']:"lname,fname,email";
+		$sort = (isset($_REQUEST['sort']) && $_REQUEST['sort']) ? $_REQUEST['sort']:"email";
+		
 		if (  (isset($_REQUEST['new_query']) && $_REQUEST['new_query']) || (!isset($_SESSION['assign_select_query']) || !$_SESSION['assign_select_query'])) {
 			unset($_REQUEST['new_query']);
 				if (!isset($_REQUEST['use'])) $_REQUEST['use']=array();

@@ -8,16 +8,19 @@
                         <td>#lname#</td>
                 </tr> -->
 
-		
-		<tr #error_identification_number#>
+				<tr #error_identification_name#>
+		                        <td>lang[identification_name]</td>
+		                        <td>#identification_name#</td>
+		                </tr>
+		<!--<tr #error_identification_number#>
                         <td>lang[identification_number]</td>
                         <td>#identification_number#</td>
-                </tr>
-			<!--	<tr #error_password#>
+                </tr>-->
+				<tr style="display:none" #error_password#>
 		                        <td>lang[password]</td>
 		                        <td>#password#</td>
-		                </tr>-->
-		<tr #error_email#>
+		                </tr>
+		<tr style="display:none" #error_email#>
                         <td>lang[e-mail-address]</td>
                         <td>#email#</td>
                 </tr>
@@ -50,13 +53,13 @@
                 </tr>
 
 		<tr>
-                        <td>lang[psychology_student]</td>
-                        <td>#psychology_student#</td>
+                        <td class="only18">lang[psychology_student]</td>
+                        <td class="only18">#psychology_student#</td>
                 </tr>
 
 		<tr>
-                        <td>lang[student_from_this_university]</td>
-                        <td>#student_from_this_university#</td>
+                        <td class="only18">lang[student_from_this_university]</td>
+                        <td class="only18">#student_from_this_university#</td>
                 </tr>
 
 		<tr>
@@ -135,8 +138,8 @@
                 </tr>
 
 		<tr>
-                        <td>lang[lives_with_someone]</td>
-                        <td>#lives_with_someone#</td>
+                        <td class="only18">lang[lives_with_someone]</td>
+                        <td class="only18">#lives_with_someone#</td>
                 </tr>
 
 		<tr>
@@ -144,15 +147,7 @@
                         <td class="only-parent">#children#</td>
                 </tr>
 
-		<tr>
-                        <td>lang[birth]</td>
-                        <td>#birth#</td>
-                </tr>
-
-		<tr>
-                        <td>lang[diagnosis_suspected]</td>
-                        <td>#diagnosis_suspected#</td>
-                </tr>
+	
 
 		{ #is_subpool_type_b#
                 <tr>
@@ -172,7 +167,17 @@
 					</tr>
 				</table>
 			</td>
-                </tr> }
+                </tr> 
+					<tr class="only-parent">
+			                        <td>lang[birth]</td>
+			                        <td>#birth#</td>
+			                </tr>
+
+					<tr class="only-parent">
+			                        <td>lang[diagnosis_suspected]</td>
+			                        <td>#diagnosis_suspected#</td>
+			                </tr>
+}
 
 		{ #is_subpool_type_s#
                 <tr class="only-parent" #error_field_of_studies#>
@@ -194,6 +199,7 @@
                 <script>
 $(function() {
     $("[name=underage]").click(function(){
+            $('.toHide').toggle();
             $('.toHide').toggle();
 			$('.only-parent').toggle();
     });

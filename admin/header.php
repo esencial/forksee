@@ -4,6 +4,7 @@ include ("../config/settings.php");
 include ("../config/system.php");
 include ("../config/requires.php");
 include ("../config/participant_form.php");
+include ("../config/participant_form_edit.php");
 
 	$document=thisdoc();
 	if ($settings__stop_admin_site=="y" && $document!="error_temporarily_disabled.php")

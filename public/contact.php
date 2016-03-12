@@ -1,7 +1,6 @@
 <?php
 // part of orsee. see orsee.org
 ob_start();
-ini_set( 'display_errors', 1 );
 $menu__area="contact";
 include ("header.php");
 echo '<BR><BR>

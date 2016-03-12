@@ -5,14 +5,15 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
+$menu__area="public_register";
 include_once ("header.php");
-include_once ('session.php');
+//include_once ('session.php');
 
 include("assets/functions.php");
 
 
        
-        ob_start();
+    //    ob_start();
     
         $show = 'emailForm'; //which form step to show by default
         
@@ -32,7 +33,7 @@ include("assets/functions.php");
                 //$show = 'securityForm';
                 $show = 'successPage';                
                 //$securityUser = $result['userID'];
-                $passwordMessage = sendPasswordEmail($result['userID']);
+                $passwordMessage = sendPasswordEmail($result['id']);
             }
         break;
         case 2:
@@ -62,8 +63,7 @@ include("assets/functions.php");
         break;
         case 3:
             //we are submitting a new password (only for encrypted)
-            echo 'caso3';
-            if ($_POST['userID'] == '' || $_POST['key'] == '') header("location: login.php");
+            if ($_POST['userID'] == '') header("location: login.php");
             if (strcmp($_POST['pw0'], $_POST['pw1']) != 0 || trim($_POST['pw0']) == '')
             {
             $error = true;
@@ -71,13 +71,12 @@ include("assets/functions.php");
             } else {
             $error = false;
             $show = 'recoverSuccess';
-            updateUserPassword($_POST['userID'], $_POST['pw0'], $_POST['key']);
+            updateUserPassword($_POST['userID'], $_POST['pw0']);
             }
         break;
             }            
         }
         elseif (isset($_GET['a']) && $_GET['a'] == 'recover' && $_GET['email'] != "") {
-            echo 'entra por el elseif';
             $show = 'invalidKey';
             $result = checkEmailKey($_GET['email'],urldecode(base64_decode($_GET['u'])));
             if ($result == false)
@@ -87,7 +86,9 @@ include("assets/functions.php");
             } elseif ($result['status'] == true) {
                 $error = false;
                 $show = 'recoverForm';
-                $securityUser = $result['userID'];
+               /******el userid no lo carga bien****/
+                $securityUser = $result["userID"];
+                
             }
         }
         /*if ($_SESSION['badCount'] >= 3)
@@ -110,22 +111,23 @@ include("assets/functions.php");
 <body>
 <div id="header"></div>
 <div id="page">
-<?php switch($show) {
+<?php 
+switch($show) {
     
     case 'emailForm': ?>
     
-	<h2>Password Recovery</h2>
-    <p>You can use this form to recover your password if you have forgotten it. Because your password is securely encrypted in our database, it is impossible actually recover your password, but we will email you a link that will enable you to reset it securely. Enter either your username or your email address below to get started.</p>
-    <?php if ($error == true) { ?><span class="error">You must enter either a username or password to continue.</span><?php } ?>
+	<h2><?php echo $lang['pass_recovery']; ?></h2>
+    <p><?php echo $lang['explanation_pass_recovery']; ?></p>
+    <?php if ($error == true) { ?><span class="error"><?php echo $lang['error_pass_recover'];?></span><?php } ?>
     <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
-        <div class="fieldGroup"><label for="idnumber">Identification number</label><div class="field"><input type="text" name="idnumber" id="idnumber" value="" maxlength="20"></div></div>
+        <div class="fieldGroup"><div class="field"><input type="text" name="idnumber" id="idnumber" value="" maxlength="220"></div></div>
         <input type="hidden" name="subStep" value="1" />
-        <div class="fieldGroup"><input type="submit" value="Submit" /></div>
+        <div class="btn btn-block  btn-lg" style="width:30%"><input  type="submit" value="<?php echo $lang['submit'];?>"></div>
         <div class="clear"></div>
     </form>
     <?php break;
     
-    case 'securityForm': ?>
+   /* case 'securityForm': ?>
     
     <h2>Password Recovery</h2>    
     <p>Please answer the security question below:</p>
@@ -139,37 +141,38 @@ include("assets/functions.php");
         <div class="clear"></div>
     </form>
 
-	 <?php break; 
+	 <?php break; */
          
     case 'userNotFound': ?>
 
-        <h2>Password Recovery</h2>
-        <p>The username or email you entered was not found in our database.<br /><br /><a href="?">Click here</a> to try again.</p>
-    <?php break; case 'successPage': ?>
-        <h2>Password Recovery</h2>
-        <p>An email has been sent to you with instructions on how to reset your password. <strong>(Mail will not send unless you have an smtp server running locally.)</strong><br /><br /><a href="login.php">Return</a> to the login page. </p>
-        <p>This is the message that would appear in the email:</p>
-        <div class="message"><?= $passwordMessage;?></div>
-    <?php break; case 'recoverForm': ?>
-        <h2>Password Recovery</h2>
-        <p>Welcome back, <?= getUserName($securityUser=='' ? $_POST['userID'] : $securityUser); ?>.</p>
-        <p>In the fields below, enter your new password.</p>
-        <?php if ($error == true) { ?><span class="error">The new passwords must match and must not be empty.</span><?php } ?>
+        <h2><?php $lang['Password_Recovery']; ?></h2>
+        <p><?php $lang['username_not_found']; ?><br /><br /><a href="participant_forgot_pass.php"><?php $lang['clic'];?></a> <?php $lang['try'];?></p>
+    <?php break; 
+    case 'successPage': ?>
+        <?php echo $lang['msg_recovery_pass'];  ?>
+    <?php break; 
+    case 'recoverForm': ?>
+        <h2><?php $lang['Password_Recovery']; ?></h2>
+        <?php $user = urldecode(base64_decode($_GET['u'])); ?>
+        <p><?php $lang['hello']; ?> <? //echo getUserName($securityUser); ?>.</p>
+        <p><?php $lang['enter_new_pass']; ?></p>
+        <?php if ($error == true) { ?><span class="error"><?php $lang['new_pass_match']; ?></span><?php } ?>
         <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
-            <div class="fieldGroup"><label for="pw0">New Password</label><div class="field"><input type="password" class="input" name="pw0" id="pw0" value="" maxlength="20"></div></div>
-            <div class="fieldGroup"><label for="pw1">Confirm Password</label><div class="field"><input type="password" class="input" name="pw1" id="pw1" value="" maxlength="20"></div></div>
+            <div class="fieldGroup"><label for="pw0"><?php $lang['new_pass']; ?></label><div class="field"><input type="password" class="input" name="pw0" id="pw0" value="" maxlength="20"></div></div>
+            <div class="fieldGroup"><label for="pw1"><?php $lang['confirm_new_pass']; ?></label><div class="field"><input type="password" class="input" name="pw1" id="pw1" value="" maxlength="20"></div></div>
             <input type="hidden" name="subStep" value="3" />
-            <input type="hidden" name="userID" value="<?= $securityUser=='' ? $_POST['userID'] : $securityUser; ?>" />
-            <input type="hidden" name="key" value="<?= $_GET['email']=='' ? $_POST['key'] : $_GET['email']; ?>" />
-            <div class="fieldGroup"><input type="submit" value="Submit" style="margin-left: 150px;" /></div>
+            <input type="hidden" name="userID" value="<?php echo $user; ?>" />
+          <!--  <input type="hidden" name="key" value="<?= $_GET['email']=='' ? $_POST['key'] : $_GET['email']; ?>" />-->
+            <br><br>
+            <div class="fieldGroup"><input type="submit" value="Aceptar" /></div>
             <div class="clear"></div>
         </form>
     <?php break; case 'invalidKey': ?>
     <h2>Invalid Key</h2>
     <p>The key that you entered was invalid. Either you did not copy the entire key from the email, you are trying to use the key after it has expired (3 days after request), or you have already used the key in which case it is deactivated.<br /><br /><a href="login.php">Return</a> to the login page. </p>
     <?php break; case 'recoverSuccess': ?>
-    <h2>Password Reset</h2>
-    <p>Congratulations! your password has been reset successfully.</p><br /><br /><a href="login.php">Return</a> to the login page. </p>
+    <h2><?php $lang['Password_Recovery']; ?></h2>
+    <p><?php $lang['congrats']; ?> </p>
     <?php break; case 'speedLimit': ?>
     <h2>Warning</h2>
     <p>You have answered the security question wrong too many times. You will be locked out for 15 minutes, after which you can try again.</p><br /><br /><a href="login.php">Return</a> to the login page. </p>

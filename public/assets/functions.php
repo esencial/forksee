@@ -11,9 +11,10 @@ function checkUNEmail($id)
 	$error = array('status'=>false,'userID'=>0);
 	if (isset($id) && trim($id) != '') {
 		//id was entered
-                $query="SELECT identification_number FROM or_participants WHERE identification_number = '".$id."'";
+                $query="SELECT participant_id FROM or_participants WHERE identification_name = '".($id)."'";
+
                 $SQL=orsee_query($query);
-            
+
 		if ($SQL)
 		{
 			/*$SQL->bind_param('s',trim($email));
@@ -24,7 +25,8 @@ function checkUNEmail($id)
 			$SQL->fetch();
 			$SQL->close();
 			if ($numRows >= 1) */
-                    return array('status'=>true,'userID'=>$id);
+			
+                    return array('status'=>true,'id'=>$SQL['participant_id']);
 		} else { return $error; }
 	} /*elseif (isset($uname) && trim($uname) != '') {
 		//username was entered
@@ -50,7 +52,7 @@ function checkUNEmail($id)
 
 function softBan() {
         
-    $query="SELECT * FROM or_participate_at INNER JOIN or_experiments ON or_participate_at.experiment_id = or_experiments.experiment_id WHERE or_participate_at.participant_id = ".$_SESSION['participant_id']." AND or_experiments.excluding = 'y' AND or_experiments.experiment_finished = 'n'";
+    $query="SELECT * FROM ".table(participate_at)." INNER JOIN or_experiments ON or_participate_at.experiment_id = or_experiments.experiment_id WHERE or_participate_at.participant_id = ".$_SESSION['participant_id']." AND or_experiments.excluding = 'y' AND or_experiments.experiment_finished = 'n'";
     //SGC -- ACABAR. HAY QUE AJUSTAR MÁS LOS CRITERIOS.
     $SQL=orsee_query($query);
 	if ($SQL)
@@ -61,31 +63,7 @@ function softBan() {
     //echo $query;
 }
 
-/*function getSecurityQuestion($userID)
-{
-	global $mySQL;
-	$questions = array();
-	$questions[0] = "What is your mother's maiden name?";
-	$questions[1] = "What city were you born in?";
-	$questions[2] = "What is your favorite color?";
-	$questions[3] = "What year did you graduate from High School?";
-	$questions[4] = "What was the name of your first boyfriend/girlfriend?";
-	$questions[5] = "What is your favorite model of car?";
-        $query="SELECT secQ FROM or_participants WHERE identification_number = '".$id."'";
-        $SQL=orsee_query($query);
-	if ($SQL)
-	{
-		$SQL->bind_param('i',$userID);
-		$SQL->execute();
-		$SQL->store_result();
-		$SQL->bind_result($secQ);
-		$SQL->fetch();
-		$SQL->close();
-		return $questions[$secQ];
-	} else {
-		return false;
-	}
-}*/
+
 
 /*function checkSecAnswer($userID,$answer)
 {
@@ -106,106 +84,119 @@ function softBan() {
 
 function sendPasswordEmail($id)
 {
-	global $mySQL;
-        
-        $query="SELECT identification_number, email, password FROM ".table(participants)." WHERE identification_number = '".$id."'";
-        $SQL=orsee_query($query);
+	global $mySQL;global $settings;global $settings__server_url;
+	$query="SELECT identification_name, email, password FROM ".table(participants)." WHERE participant_id = '".$id."'";
+    $SQL=orsee_query($query);
 	if ($SQL)
 	{            
-		/*$SQL->bind_param('i',$userID);
-		$SQL->execute();
-		$SQL->store_result();
-		$SQL->bind_result($uname,$email,$pword);
-		$SQL->fetch();
-		$SQL->close();*/
-                $email = $SQL['email'];
+		$email = $SQL['email'];
+		$uname = $SQL['identification_name'];
 		$expFormat = mktime(date("H"), date("i"), date("s"), date("m")  , date("d")+3, date("Y"));
 		$expDate = date("Y-m-d H:i:s",$expFormat);
 		$key = md5($uname . '_' . $email . rand(0,10000) .$expDate . PW_SALT);
                 
-                $query="INSERT INTO or_recoveryemails_enc (UserID, KeyUser, expDate) VALUES (".$id.", '".$key."', '".$expDate."')";
+        $query="INSERT INTO ".table(recoveryemails_enc)." (UserID, KeyUser, expDate) VALUES (".$id.", '".$key."', '".$expDate."')";
                 
-                $done=mysqli_query($GLOBALS['mysqli'],$query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']));
+        $done=mysqli_query($GLOBALS['mysqli'],$query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']));
         
 		if ($done)
 		{
-			/*$SQL->bind_param('iss',$userID,$key,$expDate);
-			$SQL->execute();
-			$SQL->close();*/
-			$passwordLink = "<a href=http://$settings__server_url/participant_forgot_pass.php?a=recover&email=" . $key . "&u=" . urlencode(base64_encode($userID)) . "\">http://$settings__server_url/participant_forgot_pass.php?a=recover&email=" . $key . "&u=" . urlencode(base64_encode($userID)) . "</a>";
-			$message = "Dear $uname,<br>";
-			$message .= "Please visit the following link to reset your password:<br>";
-			$message .= "-----------------------<br>";
-			$message .= "$passwordLink<br>";
-			$message .= "-----------------------<br>";
-			$message .= "Please be sure to copy the entire link into your browser. The link will expire after 3 days for security reasons.<br>";
-			$message .= "If you did not request this forgotten password email, no action is needed, your password will not be reset as long as the link above is not visited. However, you may want to log into your account and change your security password and answer, as someone may have guessed it.<br>";
-			$message .= "Thanks,<br>";
-			$message .= "-- Our site team";
-			$headers = array();
-			$headers[] = "From: Orsee <".$site__mail_account.">";
-			$headers[] = "To-Sender: $email";
-			$headers[] = 'X-Mailer: PHP/'. phpversion(); // mailer
-			$headers[] = "Reply-To: ".$site__mail_account; // Reply address
-			$headers[] = "Return-Path: ".$site__mail_account; //Return Path for errors
-			$headers[] = "Content-Type: text/html; charset=iso-8859-1"; //Enc-type
-			$subject = "Your Lost Password";
-			mail($email,$subject,$message,$headers);
-			return "enviado a ".$email;
+			$queryb = "select ".$settings['public_standard_language']." from ".table('lang')." where content_name='body_lost_passwd'";
+			$SQLb=orsee_query($queryb);
+			$querys = "select ".$settings['public_standard_language']." from ".table('lang')." where  content_name='subject_lost_passwd'";
+			$SQLs=orsee_query($querys);
+		//	echo $queryb."<br>".$querys;
+			$passwordLink = "<a href=http://".$settings__server_url."/experimentos/public/participant_forgot_pass.php?a=recover&email=" . $key . "&u=" . urlencode(base64_encode($id)).">http://".$settings__server_url."/experimentos/public/participant_forgot_pass.php?a=recover&email=" . $key . "&u=" . urlencode(base64_encode($id)) . "</a>";
+			
+			$messageTemp = $SQLb[$settings['public_standard_language']];
+			$subject = $SQLs[$settings['public_standard_language']];
+			
+			$message = str_replace("passwordLink", $passwordLink,$messageTemp);
+			$message = str_replace("uname", $uname,$message);
+			
+			require_once('../phpmailer/PHPMailer_5.2.4/class.phpmailer.php');
+
+			    $mail             = new PHPMailer();
+			    $mail->CharSet = "text/plain; charset=UTF-8;";
+
+			    $mail->IsSMTP(); // Usar SMTP para enviar
+			    $mail->SMTPDebug  = 0; // habilita información de depuración SMTP (para pruebas)
+			                           // 1 = errores y mensajes
+			                           // 2 = sólo mensajes
+			    $mail->SMTPAuth   = true; // habilitar autenticación SMTP
+			    $mail->Host       = "smtp.gmail.com"; // establece el servidor SMTP
+			    $mail->Port       = 587; // configura el puerto SMTP utilizado
+			    $mail->SMTPSecure = "tls";
+			    $mail->Username   = "agora.experimentos@gmail.com"; // nombre de usuario UGR
+			    $mail->Password   = "Ninguna1@"; // contraseña del usuario UGR
+			    $mail->IsHTML(false);	
+			    $mail->SetFrom('Experimentos', 'Agora');
+			    $mail->Subject    = $subject;
+			    $mail->MsgHTML($message); // Fija el cuerpo del mensaje
+			//    $mail->$body;
+			    $address = $email; // Dirección del destinatario
+			    $mail->AddAddress($address, "Psicología");
+				if(!$mail->Send()) {
+			       $done = "Error: " . $mail->ErrorInfo;
+			    }
+			    else {
+			       //$done = "¡Mensaje enviado!";
+			    }
+				return $email;
+
+				}
+			
 			//return str_replace("\r\n","<br/ >",$message);
 		}
 	}
-}
+
 
 function checkEmailKey($key,$userID)
 {
-	global $mySQL;
+	global $mySQL;global $settings;
 	$curDate = date("Y-m-d H:i:s");
-	if ($SQL = $mySQL->prepare("SELECT `UserID` FROM `recoveryemails_enc` WHERE `Key` = ? AND `UserID` = ? AND `expDate` >= ?"))
+	$query = "SELECT `UserID` FROM ".table(recoveryemails_enc)." WHERE `KeyUser` = '".$key."' AND `UserID` = '".$userID."' AND `expDate` >= '".$curDate."'";
+	$SQL=orsee_query($query);
+	if ($SQL)
 	{
-		$SQL->bind_param('sis',$key,$userID,$curDate);
-		$SQL->execute();
-		$SQL->execute();
-		$SQL->store_result();
-		$numRows = $SQL->num_rows();
-		$SQL->bind_result($userID);
-		$SQL->fetch();
-		$SQL->close();
-		if ($numRows > 0 && $userID != '')
+	//	$SQL->bind_param('sis',$key,$userID,$curDate);
+	//	$SQL->execute();
+	//	$SQL->store_result();
+	//	$numRows = $SQL->num_rows();
+	//	$SQL->bind_result($userID);
+	//	$SQL->fetch();
+	//	$SQL->close();
+	
 		{
-			return array('status'=>true,'userID'=>$userID);
+			return array('status'=>true,'userID'=>$SQL["UserID"]);
 		}
 	}
 	return false;
 }
 
-function updateUserPassword($userID,$password,$key)
+function updateUserPassword($userID,$password)
 {
-	global $mySQL;
-	if (checkEmailKey($key,$userID) === false) return false;
-	if ($SQL = $mySQL->prepare("UPDATE `users_enc` SET `Password` = ? WHERE `ID` = ?"))
+	global $mySQL;global $settings;
+	//if (checkEmailKey($key,$userID) === false) return false;
+	echo "UPDATE `".table(participants)."` SET `password` = '".md5($password)."' WHERE `participant_id` = ".$userID;die();
+	if ($SQL = orsee_query("UPDATE `".table(participants)."` SET `password` = '".md5($password)."' WHERE `participant_id` = ".$userID))
 	{
-		$password = md5(trim($password) . PW_SALT);
-		$SQL->bind_param('si',$password,$userID);
-		$SQL->execute();
-		$SQL->close();
-		$SQL = $mySQL->prepare("DELETE FROM `recoveryemails_enc` WHERE `Key` = ?");
-		$SQL->bind_param('s',$key);
-		$SQL->execute();
+		
+		$SQL = orsee_query("DELETE FROM `".table(recoveryemails_enc)."` WHERE `Key` = ".$key);
+		
 	}
 }
 
 function getUserName($userID)
 {
-	global $mySQL;
-	if ($SQL = $mySQL->prepare("SELECT `Username` FROM `users_enc` WHERE `ID` = ?"))
+	global $mySQL;global $settings;
+
+	$query ="SELECT `identification_name` FROM ".table(participants)." WHERE `participant_id` = ".$userID;
+	
+	$SQL=orsee_query($query);
+	if ($SQL)
 	{
-		$SQL->bind_param('i',$userID);
-		$SQL->execute();
-		$SQL->store_result();
-		$SQL->bind_result($uname);
-		$SQL->fetch();
-		$SQL->close();
-	}
-	return $uname;
+
+		return $uname;
+		}
 }

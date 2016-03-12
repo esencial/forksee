@@ -236,9 +236,11 @@ function participant__create_new_participant_id($participant_id) {
 		}
 	$new_id=participant__create_participant_id();
 	foreach ($tables as $table=>$column) {
+			if ($column!='identification_number'){
                 $query="UPDATE ".table($table)." SET ".$column."='".$new_id."' WHERE ".$column."='".$participant_id."'";
                 $done=mysqli_query($GLOBALS['mysqli'],$query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']));
                 }
+            }
 	foreach ($crypt_tables as $table) {
 		$query="UPDATE ".table($table)." SET participant_id_crypt='".unix_crypt($new_id)."' WHERE participant_id='".$new_id."'";
 		$done=mysqli_query($GLOBALS['mysqli'],$query) or die("Database error: " . mysqli_error($GLOBALS['mysqli']));
@@ -442,8 +444,13 @@ $array=array(
 return $array;
 }
 
-function participantform__load() {
-	$pform=participantform__define();
+function participantform__load($edit_user=false) {
+	
+	if ($edit_user){
+		$pform=participantformedit__define();
+	}else{
+		$pform=participantform__define();
+	}	
 	foreach ($pform as $k=>$f) {
 		$t=participantform__allvalues();	
 		foreach ($f as $kf=>$vf) {
@@ -455,10 +462,12 @@ function participantform__load() {
 }
 function participantformedit__load() {
 	$pform=participantformedit__define();
+	
 	foreach ($pform as $k=>$f) {
-		$t=participantform__allvalues();	
+		$t=participantform__allvalues();
 		foreach ($f as $kf=>$vf) {
 			$t[$kf]=$vf;
+			
 		}
 		$pform[$k]=$t;
 	}
@@ -699,7 +708,7 @@ function participant__select_existing($name,$prevalue,$where='',$show_count=fals
 
 
 // the participant form
-function participant__show_form($edit,$button_title="",$form_title="",$errors,$admin=false) {
+function participant__show_form($edit,$button_title="",$form_title="",$errors,$admin=false, $edit_user=true) {
 	global $lang, $subpool, $settings, $color;
 	$out=array(); $tout=array();
 
@@ -734,13 +743,8 @@ function participant__show_form($edit,$button_title="",$form_title="",$errors,$a
 	if (!$admin) echo '<INPUT type=hidden name=subpool_id value="'.$edit['subpool_id'].'">'; 
 
 	if ($admin) $nonunique=participantform__get_nonunique($edit,$edit['participant_id']);
-
-	if (!isset($edit['s'])) {
-		$formfields=participantform__load();
-	}else{
 		
-		$formfields=participantformedit__load();
-	}
+		$formfields=participantform__load($edit_user);
 
 	foreach ($formfields as $f) { 
 	if($f['subpools']=='all' | in_array($subpool['subpool_id'],explode(",",$f['subpools']))) {
@@ -782,11 +786,11 @@ function participant__show_form($edit,$button_title="",$form_title="",$errors,$a
 			$tout['error_'.$f['mysql_column_name']]=''; 
 		}
 	}}
-	if (!isset($edit['s'])) {
-		$formoutput=load_form_template('participant_form',$out);
+	if ($_REQUEST['addit']!='true') {
+		$formoutput=load_form_template('participant_form_edit',$out);
 	}else{
 		
-		$formoutput=load_form_template('participant_form_edit',$out);
+		$formoutput=load_form_template('participant_form',$out);
 	}	
 	echo '<table cellspacing=0 cellpadding="10em" border=0 width="90%">';
 	echo $formoutput;

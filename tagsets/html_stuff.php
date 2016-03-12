@@ -44,11 +44,11 @@ echo '<!DOCTYPE html><html>
 <meta http-equiv="content-type" content="text/html; charset='.$charset.'">
 <meta http-equiv="expires" content="0">
 <TITLE>'.$pagetitle.'</TITLE>
-    <link href="../style/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../style/bootstrap/css/style.css" rel="stylesheet">
+    <link href="http://'.$_SERVER['HTTP_HOST'].'/orsee/style/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="http://'.$_SERVER['HTTP_HOST'].'/orsee/style/bootstrap/css/style.css" rel="stylesheet">
   
-    <script type="text/javascript" src="../style/bootstrap/js/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="../style/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://'.$_SERVER['HTTP_HOST'].'/orsee/style/bootstrap/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="http://'.$_SERVER['HTTP_HOST'].'/orsee/style/bootstrap/js/bootstrap.min.js"></script>
 <!--
 <link rel="stylesheet" type="text/css" href="../style/'.$settings['style'].'/'./*$stylesheet.*/'">
 -->
@@ -100,7 +100,7 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
  	// entrytype|menu__area|lang_item|url|icon|target|addp?|showonlyifp?|hideifp?|options_condition
 	
     global $settings__root_url, $settings__server_url, $settings__root_directory, $color, $lang, $menu__area, $settings;
-
+	global $expadmindata;
 
 	if (isset($_REQUEST['p']) && !(thisdoc()=="participant_create.php")) {
                 $addp="?p=".urlencode($_REQUEST['p']);
@@ -124,30 +124,30 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
 
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="'.$settings__root_directory.'/public/index.php">mainpage</a></li> 
+       <!-- <li><a href="'.$settings__root_directory.'/public/index.php">'.$lang['mainpage'].'</a></li>--> 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Participant <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">'.$lang['participant'].' <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">';
 
 		if (!(isset($_SESSION['login_user']))) {
-			echo '<li><a href="participant_create.php">register</a></li>
-				<li><a href="participant_login.php">login</a></li>';
+			echo '<li><a href="participant_create.php?s=1">'.$lang['register'].'</a></li>
+				<li><a href="participant_login.php">'.$lang['login'].'</a></li>';
 		} else {
- 			echo ' <li><a href="participant_edit.php">my data</a></li>
-        <li><a href="participant_show.php">my registrations</a></li>
-        <li><a href="participant_feedback.php">my feedbacks</a></li>
-        <li><a href="participant_credits.php">my credits</a></li>
-		<li><a href="logout.php">logout</a></li>
+ 			echo ' <li><a href="participant_edit.php">'.$lang['my_data'].'</a></li>
+        <li><a href="participant_show.php">'.$lang['my_registrations'].'</a></li>
+        <li><a href="participant_feedback.php">'.$lang['my_feedbacks'].'</a></li>
+        <li><a href="participant_credits.php">'.$lang['my_credits'].'</a></li>
+		<li><a href="logout.php">'.$lang['logout'].'</a></li>
 		';}
 
 		echo '</ul>
         </li>
-        <li><a href="show_calendar.php">calendar</a></li>
-        <li><a href="rules.php">rules</a></li>
-        <li><a href="privacy.php">privacy_policy</a></li>
-        <li><a href="faq.php">faqs</a></li>
-        <li><a href="impressum.php">impressum</a></li>
-        <li><a href="contact.php">contact</a></li>        
+        <li><a href="show_calendar.php">'.$lang['calendar'].'</a></li>
+        <li><a href="rules.php">'.$lang['rules'].'</a></li>
+        <li><a href="privacy.php">'.$lang['privacy_policy'].'</a></li>
+        <li><a href="faq.php">'.$lang['faqs'].'</a></li>
+        <li><a href="impressum.php">'.$lang['impressum'].'</a></li>
+        <li><a href="contact.php">'.$lang['contact'].'</a></li>        
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -168,29 +168,30 @@ function tab_menu($menu_items,$orientation="horizontal",$current_user_data_box="
 
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-2">
       <ul class="nav navbar-nav">
-      <li><a href="/admin/">home</a></li>
-      <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Experiments <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="experiment_main.php">Main</a></li>  
-            <li><a href="experiment_my.php">My experiments</a></li>  
-            <li><a href="experiment_old.php">Finished</a></li>  
-            <li><a href="experiment_edit.php?addit=true">Create new experiment</a></li>
+   <!--   <li><a href="'.$settings__root_directory.'/admin/">'.$lang['home'].'</a></li>-->
+      <li class="dropdown">';
+      
+      echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">'.$lang['experiments'].' <span class="caret"></span></a>';
+      echo '<ul class="dropdown-menu" role="menu">';
+      if (($expadmindata['admin_type']=='installer') or ($expadmindata['admin_type']=='admin')) echo '<li><a href="experiment_main.php">'.$lang['Main'].'</a></li>';  
+      echo '<li><a href="experiment_my.php">'.$lang['My_experiments'].'</a></li>  
+            <li><a href="experiment_old.php">'.$lang['Finished'].'</a></li>  
+            <li><a href="experiment_edit.php?addit=true">'.$lang['Create_new_experiment'].'</a></li>
           </ul>
       </li>
       <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Participants <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">'.$lang['participants'].' <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="participants_main.php">Main</a></li>  
-            <li><a href="participants_edit.php?addit=true">Create new participant</a></li>
+            <li><a href="participants_main.php">'.$lang['Main'].'</a></li>  
+            <li><a href="participants_edit.php?addit=true">'.$lang['Create_new_participant'].'</a></li>
           </ul>
       </li>    
-	  <li><a href="subject_list.php">Subjects</a></li>
-      <li><a href="calendar_main.php">calendar</a></li> 
-      <li><a href="download_main.php">download</a></li> 
-      <li><a href="options_main.php">options</a></li> 
-      <li><a href="statistics_main.php">stats</a></li> 
-      <li><a href="admin_logout.php">logout</a></li> 
+	  <li><a href="subject_list.php">'.$lang['subjects'].'</a></li>
+      <li><a href="calendar_main.php">'.$lang['calendar'].'</a></li> 
+      <li><a href="download_main.php">'.$lang['download'].'</a></li> 
+      <li><a href="options_main.php">'.$lang['options'].'</a></li> 
+      <li><a href="statistics_main.php">'.$lang['stats'].'</a></li> 
+      <li><a href="admin_logout.php">'.$lang['logout'].'</a></li> 
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

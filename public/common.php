@@ -55,11 +55,13 @@ if (in_array(thisdoc(),$part_load)) {
 if (!isset($authdata['language'])) $authdata['language']=$settings['public_standard_language'];
 $lang=load_language($authdata['language']);
 
-        if (isset($participant) && $participant['excluded']=="y") {
-                message ($lang['error_sorry_you_are_excluded']." ".
-                        $lang['if_you_have_questions_write_to']." ".support_mail_link());
-                redirect("public/");
-                }
+        if ($_REQUEST['underage']!='1'){   
+		        if (isset($participant) && $participant['excluded']=="y") {
+		                message ($lang['error_sorry_you_are_excluded']." ".
+		                        $lang['if_you_have_questions_write_to']." ".support_mail_link());
+		                redirect("public/");
+		                }
+		        }
 
         if (isset($participant) && $participant['deleted']=="y") {
                 message ($lang['error_sorry_you_are_deleted']." ".

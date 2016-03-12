@@ -33,14 +33,14 @@ include("header.php");
   			message($lang['you_have_to_give_a_username']);
 			$continue=false;
 			}
-		/*if (!$_REQUEST['fname']) {
+		if (!$_REQUEST['fname']) {
                         message($lang['you_have_to_fname']);
                         $continue=false;
                         }
 		if (!$_REQUEST['lname']) {
                         message($lang['you_have_to_lname']);
                         $continue=false;
-                        }*/
+                        }
 
 		if (!$_REQUEST['email']) {
                         message($lang['you_have_to_give_email_address']);
@@ -109,7 +109,7 @@ include("header.php");
 			</tr>
 
 			<tr>';
-				/*<td align=right>
+				<td align=right>
 					'.$lang['firstname'].':
 				</td>
 				<td>&nbsp;&nbsp;</td>
@@ -126,7 +126,7 @@ include("header.php");
 				<td>
 					<input name="lname" type=text size=20 maxlength=50 value="'.$admin['lname'].'">
 				</td>
-			</tr>*/
+			</tr>
 
 			echo '<tr>
                                 <td align=right>

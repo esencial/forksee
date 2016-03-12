@@ -3,7 +3,7 @@
 ob_start();
 
 $menu__area= (isset($_REQUEST['participant_id']) && $_REQUEST['participant_id']) ? "participant_edit" : "participant_create";
-$title="edit participant";
+$title="Mantenimiento de participante";
 
 /*
 todos:
@@ -27,7 +27,8 @@ include ("header.php");
 		foreach ($_REQUEST as $k=>$v) {
 			if(!is_array($v)) $_REQUEST[$k]=trim($v);
 		}
-		$errors__dataform=participantform__check_fields($_REQUEST,true);		
+	//	$errors__dataform=participantform__check_fields($_REQUEST,true);		
+	    $errors__dataform=participantform__check_fields($_REQUEST,false);		
         $error_count=count($errors__dataform);
         if ($error_count>0) $continue=false;
 
@@ -45,7 +46,7 @@ include ("header.php");
 
 			$done=orsee_db_save_array($participant,"participants",$participant['participant_id'],"participant_id");
 			if ($done) message($lang['changes_saved']);
-			var_dump($participant);
+		//	var_dump($participant);
 			
 			if (!$participant_id && isset($_REQUEST['register_session']) && $_REQUEST['register_session']=='y') {
 				$session=orsee_db_load_array("sessions",$_REQUEST['session_id'],"session_id");
@@ -81,7 +82,7 @@ include ("header.php");
 
 	$button_title = ($participant_id) ? $lang['save'] : $lang['add'];
 
-	participant__show_form($_REQUEST,$button_title,$lang['edit_participant'],$errors__dataform,true);
+	participant__show_form($_REQUEST,$button_title,$lang['edit_participant'],$errors__dataform,true, "participant_form");
 
 	if ($participant_id) {
 

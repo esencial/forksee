@@ -330,8 +330,10 @@ function query_show_result($select_query,$sort="lname,fname",$type="edit") {
 			if ($assign || $drop) echo '<TD></TD>';
                         headcell($lang['id'],"participant_id");
                         foreach($columns as $c) {
-                        	if($c['allow_sort']) headcell($c['column_name'],$c['sort_order']);
-                        	else headcell($c['column_name']);
+							if ($c['column_name']!='Identification number'){
+                        		if($c['allow_sort']) headcell($c['column_name'],$c['sort_order']);
+                        		else headcell($c['column_name']);
+							}	
                         }
                         headcell($lang['noshowup'],"number_noshowup,number_reg");
                         headcell($lang['rules'],"rules_signed,lname,fname");

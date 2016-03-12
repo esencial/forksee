@@ -36,10 +36,10 @@ include ("header.php");
 			</TD>
 			<TD class="small">
 				'.$lang['firstname'].'
-			</TD>-->
+			</TD>
 			<TD class="small">
 				'.$lang['email'].'
-			</TD>
+			</TD>-->
 			<TD class="small">
 				'.$lang['subscriptions'].'
 			</TD>
@@ -76,7 +76,7 @@ include ("header.php");
 		$message=str_replace("\m","\n",$message);
 		$message=str_replace("\n","%0D%0A",$message);
 
-		$linktext='mailto:'.$line['email'].'?subject='.str_replace(" ","%20",$lang['registration_email_subject']).'&reply-to='.urlencode($settings['support_mail']).'&body='.$message;
+	//	$linktext='mailto:'.$line['email'].'?subject='.str_replace(" ","%20",$lang['registration_email_subject']).'&reply-to='.urlencode($settings['support_mail']).'&body='.$message;
 
 
 		echo '	<tr class="small"';
@@ -87,16 +87,16 @@ include ("header.php");
 					'.time__format($lang['lang'],"",false,false,false,false,$line['creation_time']).'
 				</td>
    				<td class="small">
-					'.$line['participant_id'].'
+					'.$line['identification_number'].'
 				</td>
-   				<td class="small">
+   			<!--	<td class="small">
 					'.$line['lname'].'
 				</TD>
    				<td class="small">
 					'.$line['fname'].'
 				</td>
    				<td class="small">
-					<A class="small" HREF="'.$linktext.'">'.$line['email'].'</A>
+					<A class="small" HREF="'.$linktext.'">'.$line['email'].'</A>-->
 				</td>
    				<td class="small">
 					'.$line['subscriptions'].'
@@ -115,7 +115,7 @@ include ("header.php");
 
 
 	$emailstring=implode(",",$emails);
-        echo '<BR><BR><A HREF="mailto:'.$settings['support_mail'].'?bcc='.$emailstring.'">'.$lang['write_message_to_all_listed'].'</A>';
+     //   echo '<BR><BR><A HREF="mailto:'.$settings['support_mail'].'?bcc='.$emailstring.'">'.$lang['write_message_to_all_listed'].'</A>';
 	echo '<BR><BR><A href="participants_main.php">'.icon('back').' '.$lang['back'].'</A><BR><BR>';
 
 	echo '</CENTER>';

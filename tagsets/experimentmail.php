@@ -32,8 +32,41 @@ function experimentmail__send($recipient,$subject,$message,$headers,$env_sender=
 		}
 	   else {
 	    $headers="Errors-To: ".$settings['support_mail']."\r\n".$headers;
-		$done=mail($recipient,$subject,$message,$headers);
-		}
+		//$done=mail($recipient,$subject,$message,$headers);
+	
+require_once('../phpmailer/PHPMailer_5.2.4/class.phpmailer.php');
+
+    $mail             = new PHPMailer();
+    $mail->CharSet = "text/plain; charset=UTF-8;";
+
+    $body             = $message;
+    $mail->IsSMTP(); // Usar SMTP para enviar
+    $mail->SMTPDebug  = 0; // habilita información de depuración SMTP (para pruebas)
+                           // 1 = errores y mensajes
+                           // 2 = sólo mensajes
+    $mail->SMTPAuth   = true; // habilitar autenticación SMTP
+    $mail->Host       = "smtp.gmail.com"; // establece el servidor SMTP
+    $mail->Port       = 587; // configura el puerto SMTP utilizado
+    $mail->SMTPSecure = "tls";
+    $mail->Username   = "agora.experimentos@gmail.com"; // nombre de usuario UGR
+    $mail->Password   = "Ninguna1@"; // contraseña del usuario UGR
+    $mail->IsHTML(false);	
+    $mail->SetFrom('Experimentos', 'Agora');
+    $mail->Subject    = $subject;
+    $mail->MsgHTML($body); // Fija el cuerpo del mensaje
+//    $mail->$body;
+    $address = $recipient; // Dirección del destinatario
+    $mail->AddAddress($address, "Psicología");
+
+    if(!$mail->Send()) {
+       $done = "Error: " . $mail->ErrorInfo;
+    }
+    else {
+       $done = "¡Mensaje enviado!";
+    }
+	echo $done;
+
+	}
 	return $done;
 }
 

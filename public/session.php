@@ -7,7 +7,7 @@ if (isset($_SESSION['login_user'])){
     exit();
 } 
     // SQL Query To Fetch Complete Information Of User
-    $query="SELECT identification_number FROM ".table('participants')." WHERE identification_number='$user_check'";
+    $query="SELECT identification_name FROM ".table('participants')." WHERE identification_name='$user_check'";
     $result = orsee_query($query);
 
     if (is_null($result)) {

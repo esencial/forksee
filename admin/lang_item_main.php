@@ -147,9 +147,9 @@ include ("header.php");
 			echo '<td class="small">'.$np.'</td>';
 		}
                        
-   		echo '		<TD><button type="button">
+   		echo '		<TD>
 					<A HREF="lang_item_edit.php?item='.$item.'&id='.$line['lang_id'].'">'.
-						$lang['edit'].'</A></button>
+						$lang['edit'].'</A>
 				</TD>
    			</tr>';
    		if ($shade) $shade=false; else $shade=true;

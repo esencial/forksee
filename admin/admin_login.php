@@ -29,8 +29,9 @@ include("header.php");
 		if ($logged_in) {
 			$expadmindata['admin_id']=$_SESSION['expadmindata']['admin_id'];
 			log__admin("login");
-			if ($_REQUEST['redirect']) redirect($_REQUEST['redirect']);
-				else redirect("admin/index.php");
+		//	if ($_REQUEST['redirect']) redirect($_REQUEST['redirect']);
+				//else 
+				redirect("admin/experiment_my.php");
 			}
 		   else {
 			message($lang['error_password_or_username']);
@@ -42,7 +43,9 @@ include("header.php");
 
 	admin__login_form();
 
-	echo '</div></center>';
+	echo '</div>';
+    echo message($lang['pie_login_page']);
+    echo '</center>';
 
 include("footer.php");
 
